@@ -1,5 +1,5 @@
 #Error pages
-ErrorDocument 404  https://www.jbn.co.ug/404
+ErrorDocument 404  https://www.okellojohnsilas.com/404
 
 RewriteEngine On
 RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]

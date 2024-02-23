@@ -11,10 +11,10 @@
 	}
     
   /* Database connection */ 
-//   $dbconn = new mysqli('localhost','root','','oj49');
+  $dbconn = new mysqli('localhost','root','','oj49');
   
   // Application name
-  $app_name="JBN";
+  $app_name="OKELLO JOHN SILAS";
   
   /* Check connection */ 
   // if ($dbconn->connect_error) {

@@ -1,23 +1,37 @@
 <head>
-    <!-- Meta Data -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>OKELLO JOHN SILAS</title>
-    <!-- 
-Moonlight Template 
-http://www.templatemo.com/tm-512-moonlight
--->
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="<?php print base_url().'assets/dist/front/src/'; ?>apple-touch-icon.png">
-    <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="<?php print base_url().'assets/dist/front/src/'; ?>css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php print base_url().'assets/dist/front/src/'; ?>css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="<?php print base_url().'assets/dist/front/src/'; ?>css/fontAwesome.css">
-    <link rel="stylesheet" href="<?php print base_url().'assets/dist/front/src/'; ?>css/light-box.css">
-    <link rel="stylesheet" href="<?php print base_url().'assets/dist/front/src/'; ?>css/templatemo-main.css">
-    <!-- Font family -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <script src="<?php print base_url().'assets/dist/front/src/'; ?>js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <title><?php print $app_name; ?></title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/img/favicon.png" rel="icon">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/bootstrap-icons/bootstrap-icons.css"
+        rel="stylesheet">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="<?php print base_url().'assets/dist/front/src'; ?>/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+  * Template Name: Personal
+  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
