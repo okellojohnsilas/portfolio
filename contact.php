@@ -1,14 +1,11 @@
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
     <div class="container">
-
         <div class="section-title">
             <h2>Contact</h2>
             <p>Contact Me</p>
         </div>
-
         <div class="row mt-2">
-
             <div class="col-md-6 d-flex align-items-stretch">
                 <div class="info-box">
                     <i class="bx bx-map"></i>
@@ -16,7 +13,6 @@
                     <p>A108 Adam Street, New York, NY 535022</p>
                 </div>
             </div>
-
             <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
                 <div class="info-box">
                     <i class="bx bx-share-alt"></i>
@@ -30,7 +26,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-6 mt-4 d-flex align-items-stretch">
                 <div class="info-box">
                     <i class="bx bx-envelope"></i>
@@ -46,8 +41,7 @@
                 </div>
             </div>
         </div>
-
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
+        <form class="php-email-form mt-4" action="" method="post" role="form">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -69,7 +63,7 @@
             </div>
             <div class="text-center"><button type="submit">Send Message</button></div>
         </form>
-
     </div>
 </section>
 <!-- End Contact Section -->
+<?php include 'components/front/bottom.php'; ?>
