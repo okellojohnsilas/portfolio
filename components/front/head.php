@@ -1,37 +1,26 @@
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> <?php print $app_name; ?></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php print base_url(); ?>assets/dist/front/src/img/favicon.ico">
 
-    <title><?php print $app_name; ?></title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <!-- CSS here -->
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/slicknav.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/flaticon.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/progressbar_barfiller.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/gijgo.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/animate.min.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/animated-headline.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/magnific-popup.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/themify-icons.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/slick.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/nice-select.css">
+    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/style.css">
 
-    <!-- Favicons -->
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/img/favicon.png" rel="icon">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/bootstrap-icons/bootstrap-icons.css"
-        rel="stylesheet">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="<?php print base_url().'assets/dist/front/src'; ?>/css/style.css" rel="stylesheet">
-
-    <!-- =======================================================
-  * Template Name: Personal
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>

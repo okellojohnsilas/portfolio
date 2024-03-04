@@ -9,7 +9,7 @@ RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^ %{REQUEST_URI}.php [NC,L]
 
 #DirectoryIndex
-DirectoryIndex index.php
+DirectoryIndex coming_soon.php
 
 <IfModule deflate_module>
     # Enable compression for the following file types.

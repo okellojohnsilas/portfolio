@@ -1,26 +1,35 @@
-<!-- ======= Header ======= -->
-<header id="header">
-    <div class="container">
-        <h1><a href="<?php print base_url(); ?>"><?php print $app_name;?></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-        <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link active" href="#header">Home</a></li>
-                <li><a class="nav-link" href="#about">About</a></li>
-                <li><a class="nav-link" href="#resume">Resume</a></li>
-                <li><a class="nav-link" href="#services">Services</a></li>
-                <li><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-        <div class="social-links">
-            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+<header>
+    <div class="header-area header-transparent">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <!-- <div class="logo">
+                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                    </div> -->
+                    <!-- Main-menu -->
+                    <div class="main-menu f-right d-none d-lg-block">
+                        <nav>
+                            <ul id="navigation">
+                                <li class="active"><a href="<?php print base_url(); ?>">Home</a></li>
+                                <li><a href="about">About</a></li>
+                                <li><a href="resume">Resume</a></li>
+                                <li><a href="portfolio">Portfolio</a></li>
+                                <li><a href="contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Header-btn -->
+                    <div class="header-info-right d-none d-lg-block">
+                        <a href="contact" class="btn header-btn">Let's Talk <i class="ti-arrow-right"></i></a>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</header><!-- End Header -->
+    <!-- Header End -->
+</header>
