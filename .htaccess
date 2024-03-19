@@ -1,15 +1,14 @@
-#Error pages
+# Error pages
 ErrorDocument 404  https://www.okellojohnsilas.com/404
 
 RewriteEngine On
 RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
 RewriteRule ^ /%1 [NC,L,R]
-
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^ %{REQUEST_URI}.php [NC,L]
 
-#DirectoryIndex
-DirectoryIndex coming_soon.php
+# DirectoryIndex
+DirectoryIndex index.php
 
 <IfModule deflate_module>
     # Enable compression for the following file types.

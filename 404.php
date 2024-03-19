@@ -1,14 +1,5 @@
 <?php 
     include 'components/front/top.php';
-    include 'components/front/preloader.php';
-    include 'components/front/header.php'; ?>
-<main>
-    <?php 
-        include 'components/front/404.php';
-    ?>
-</main>
-<?php 
-    include 'components/front/newsletter.php';
-    include 'components/front/footer.php';
+    include 'components/front/404.php';    
     include 'components/front/bottom.php'; 
 ?>

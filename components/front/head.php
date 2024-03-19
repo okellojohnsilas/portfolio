@@ -1,26 +1,21 @@
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <title> <?php print $app_name; ?></title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php print base_url(); ?>assets/dist/front/src/img/favicon.ico">
-
-    <!-- CSS here -->
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/slicknav.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/flaticon.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/gijgo.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/animate.min.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/animated-headline.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/magnific-popup.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/themify-icons.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/slick.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/nice-select.css">
-    <link rel="stylesheet" href="<?php print base_url(); ?>assets/dist/front/src/css/style.css">
-
+    <!-- Favicon-->
+    <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico" /> -->
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="<?php print base_url(); ?>assets/dist/front/src/css/styles.css" rel="stylesheet" />
+    <!-- H captcha -->
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
