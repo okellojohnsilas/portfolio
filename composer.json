@@ -1,5 +1,6 @@
 {
     "require": {
-        "gabordemooij/redbean": "dev-master"
+        "gabordemooij/redbean": "dev-master",
+        "stichoza/google-translate-php": "^5.1"
     }
 }
