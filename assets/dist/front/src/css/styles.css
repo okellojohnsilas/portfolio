@@ -2844,6 +2844,7 @@ textarea.form-control-lg {
   opacity: var(--bs-btn-disabled-opacity);
 }
 
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #1abc9c;
@@ -11043,4 +11044,14 @@ html {
 
 .copyright {
   background-color: #1a252f;
+}
+
+/* My additions */
+
+.btn-block{
+  width:100%;
+}
+
+.text-justify{
+  text-align:justify;
 }
