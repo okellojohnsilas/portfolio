@@ -1,4 +1,7 @@
 <?php
+    /* Language and trasnlation section start */ 
+    require 'vendor/autoload.php';
+    use Stichoza\GoogleTranslate\GoogleTranslate;
     // Function to get preferred language from browser
     function getPreferredLanguage() {
         // Check if 'HTTP_ACCEPT_LANGUAGE' header is set
@@ -47,4 +50,9 @@
             }
         }
     }
+    // Translate text
+    function translate_text($text,$lang){
+       return GoogleTranslate::trans($text, $lang, 'en');
+    }
+    /* Language and trasnlation section end */
 ?>

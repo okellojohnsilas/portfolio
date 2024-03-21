@@ -10,15 +10,10 @@
     setPreferredLanguageCookie();
     // Retrieve the preferred language from the cookie
     $language = substr($_COOKIE['preferred_language'], 0, 2); // Extract the first two characters
-    echo $language; // Print the preferred language
-    
-    require 'vendor/autoload.php';
-	use Stichoza\GoogleTranslate\GoogleTranslate;
-    echo GoogleTranslate::trans('OKELLO JOHN SILAS', 'ja', 'en');	
-    
+    // echo $language; // Print the preferred language    
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php print $language; ?>">
 <?php  include "components/front/head.php"; ?>
 
 <body>

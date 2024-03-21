@@ -2,7 +2,7 @@
  <section class="page-section mb-0" id="about">
      <div class="container">
          <!-- About Section Heading-->
-         <h2 class="page-section-heading text-center text-uppercase">ABOUT ME</h2>
+         <h2 class="page-section-heading text-center text-secondary text-uppercase">ABOUT ME</h2>
          <!-- Icon Divider-->
          <div class="divider-custom">
              <div class="divider-custom-line"></div>
@@ -11,7 +11,8 @@
          </div>
          <!-- About Section Content-->
          <div class="ms-auto">
-             <p class="lead text-justify">I am a self-motivated and adaptable software developer recognized for
+             <p class="lead text-justify text-secondary">I am a self-motivated and adaptable software developer
+                 recognized for
                  translating
                  complex business needs
                  into innovative technical solutions. Known for collaboration and adaptability, I excel in team
@@ -28,12 +29,13 @@
          </div>
          <!-- About Section Button-->
          <div class="text-center mt-4">
-             <a class="btn btn-xl btn-outline-dark" href="resume">
-                 <i class="fas fa-eye me-2"></i>
-                 My Resume!
+             <a class="btn btn-xl btn-outline-secondary fw-bold" href="resume">
+                 RESUME
+                 <i class="far fa-file-lines"></i> 
+
              </a>
-             <a class="btn btn-xl btn-outline-dark" href="about">
-                 See More!
+             <a class="btn btn-xl btn-primary fw-bold" href="about">
+                 READ MORE
                  <i class="fas fa-arrow-right me-2"></i>
              </a>
          </div>

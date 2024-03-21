@@ -11047,11 +11047,10 @@ html {
 }
 
 /* My additions */
-
 .btn-block{
   width:100%;
 }
 
-.text-justify{
-  text-align:justify;
+.text-justify {
+  text-align: justify !important;
 }

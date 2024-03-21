@@ -35,8 +35,8 @@ hr {
 }
 </style>
 <div class="container pt-5">
-    <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php print $app_name; ?>" href="assets/dist/front/src/img/personal/c.v/c.v.pdf">DOWNLOAD PDF <i
-            class="fas fa-download"></i></a>
+    <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php print $app_name; ?>"
+        href="assets/dist/front/src/img/personal/c.v/c.v.pdf">PRINT RESUME <i class="fas fa-print"></i></a>
     <h1 class="text-center pt-3">OKELLO JOHN SILAS</h1>
     <h3>SOFTWARE ENGINEER</h3>
     <p class="lead text-center fw-bold"><a href="mailto:johnsilasokello49@gmail.com">johnsilasokello49@gmail.com</a> |

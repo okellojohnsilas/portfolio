@@ -1,15 +1,20 @@
-<div class="page-section bg-primary text-white">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container pt-5">
-            <h1 class="display-3"><?php print $page_name; ?></h1>
-            <nav aria-label="breadcrumb">
+<section class="page-section bg-primary text-white">
+    <div class="container pt-5">
+        <div class="jumbotron text-center">
+            <h1><?php print $page_name?></h1>
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <nav aria-label="breadcrumb" class="d-flex justify-content-center">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><i class="fas fa-house"></i> <a class="text-white fw-bold"
-                            href="<?php print base_url(); ?>">HOME</a></li>
-                    <li class="breadcrumb-item text-white fw-bold active" aria-current="page"><?php print $page_name; ?>
-                    </li>
+                    <li class="breadcrumb-item lead fs-4"><a class="text-decoration-none fw-bold text-secondary"
+                            href="<?php print base_url(); ?>"><i class="fas fa-house"></i> HOME</a></li>
+                    <li class="breadcrumb-item lead fs-4 fw-bold text-light" aria-current="page">
+                        <?php print $page_name; ?></li>
                 </ol>
             </nav>
         </div>
-    </div>
+</section>
 </div>
