@@ -33,35 +33,89 @@ hr {
     height: 0.5rem;
     background: black;
 }
+
+#list-example {
+    padd position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+    /* Adjust this value as needed */
+    /* z-index: 1000; */
+    /* Ensure it stays on top of other content */
+}
 </style>
-<div class="container pt-5">
-    <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php print $app_name; ?>"
-        href="assets/dist/front/src/img/personal/c.v/c.v.pdf">PRINT RESUME <i class="fas fa-print"></i></a>
-    <h1 class="text-center pt-3">OKELLO JOHN SILAS</h1>
-    <h3>SOFTWARE ENGINEER</h3>
-    <p class="lead text-center fw-bold"><a href="mailto:johnsilasokello49@gmail.com">johnsilasokello49@gmail.com</a> |
-        okellojohnsilas.com</p>
-    <div class="d-flex align-items-start">
-        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <button class="nav-link fw-bold active" id="v-pills-summary-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-summary" type="button" role="tab" aria-controls="v-pills-summary"
-                aria-selected="true">Summary</button>
-            <button class="nav-link fw-bold" id="v-pills-work-tab" data-bs-toggle="pill" data-bs-target="#v-pills-work"
-                type="button" role="tab" aria-controls="v-pills-work" aria-selected="false">Experience</button>
-            <button class="nav-link fw-bold" id="v-pills-education-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-education" type="button" role="tab" aria-controls="v-pills-education"
-                aria-selected="false">Education</button>
-            <button class="nav-link fw-bold" id="v-pills-skills-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-skills" type="button" role="tab" aria-controls="v-pills-skills"
-                aria-selected="false">Skills</button>
-            <button class="nav-link fw-bold" id="v-pills-references-tab" data-bs-toggle="pill"
-                data-bs-target="#v-pills-references" type="button" role="tab" aria-controls="v-pills-references"
-                aria-selected="false">References</button>
+<!-- <div class="container-fluid pt-5"> -->
+<!-- <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php // print $app_name; ?>"
+        href="assets/dist/front/src/img/personal/c.v/c.v.pdf">PRINT RESUME <i class="fas fa-print"></i></a> -->
+<!-- sidebar start  -->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary <?php hide_on_mobile(); ?>">
+            <div id="list-example" class="d-flex flex-column align-items-center align-items-sm-start text-white pt-5">
+                <a href="javascript:void(0)"
+                    class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none pt-3">
+                    <span class="fs-3 d-none d-sm-inline fw-bold">SECTIONS</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
+                    <li class="nav-item active">
+                        <a href="#professional-summary" class="nav-link active align-middle px-3">
+                            <span class="ms-1 d-none d-sm-inline fw-bold">PROFESSIONAL
+                                SUMMARY</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#work-experience" class="nav-link align-middle px-3">
+                            <i class="fs-4 bi-house"></i> <span
+                                class="ms-1 d-none d-sm-inline fw-bold">WORK EXPERIENCE</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#education" class="nav-link align-middle px-3">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline fw-bold">EDUCATION</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link align-middle px-3">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline fw-bold">SKILLS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#referees" class="nav-link align-middle px-3">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline fw-bold">REFEREES</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="tab-content pb-5" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-summary" role="tabpanel"
-                aria-labelledby="v-pills-summary-tab" tabindex="0">
-                <h4>Professional Summary</h4>
+        <div class="col py-3">
+            <div class="container">
+                <!-- Mobile navbar start -->
+                <nav
+                    class="navbar bg-secondary ">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
+                                class="d-inline-block align-text-top">
+                            Bootstrap
+                        </a>
+                    </div>
+                </nav>
+                <!-- Mobile navbar end -->
+                <!-- Bio and contact start -->
+                <h1 class="text-center pt-3 text-secondary">OKELLO JOHN SILAS</h1>
+                <h3 class="text-secondary">SOFTWARE ENGINEER</h3>
+                <p class="lead text-center fw-bold text-secondary">
+                    <a class="text-decoration-none text-secondary" href="mailto:johnsilasokello49@gmail.com" target="_BLANK"><i
+                            class="far fa-envelope"></i>
+                        johnsilasokello49@gmail.com</a> |
+                    <a href="<?php print base_url()?>" class="text-secondary" target="_BLANK"><i
+                            class="fas fa-link"></i>porfolio</span></a> |
+                    <a href="<?php print base_url()?>" class="text-decoration-none text-secondary" target="_BLANK"><i
+                            class="fab fa-github-square"></i> Github </span></a>
+                </p>
+                <!-- Bio and contact end -->
+                <!-- Professional summary Start -->
+                <h4 id="professional-summary">Professional Summary</h4>
                 <hr>
                 <p class="lead">I am a self-motivated and adaptable software developer recognized for translating
                     complex
@@ -76,10 +130,9 @@ hr {
                     technical background, I am committed to delivering cutting-edge solutions in the dynamic field of
                     Machine
                     Learning, especially in cancer research and radiomics.</p>
-            </div>
-            <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab"
-                tabindex="0">
-                <h4>Work Experience</h4>
+                <!-- Professional summary end -->
+                <!-- Work experience end -->
+                <h4 id="work-experience">Work Experience</h4>
                 <hr>
                 <div class="row">
                     <div class="col-10">
@@ -277,10 +330,9 @@ hr {
                         information
                         and services.</li>
                 </ul>
-            </div>
-            <div class="tab-pane fade" id="v-pills-education" role="tabpanel" aria-labelledby="v-pills-education-tab"
-                tabindex="0">
-                <h4>Education</h4>
+                <!-- Work experience end -->
+                <!-- Education start -->
+                <h4 id="education">Education</h4>
                 <hr>
                 <div class="row">
                     <div class="col-10">
@@ -330,10 +382,10 @@ hr {
                     </div>
                 </div>
                 <p>Moringa School, Nairobi Kenya.</p>
-            </div>
-            <div class="tab-pane fade" id="v-pills-skills" role="tabpanel" aria-labelledby="v-pills-skills-tab"
-                tabindex="0">
-                <h4>Skills &amp; Abilities</h4>
+                <!-- </div> -->
+                <!-- Education end -->
+                <!-- Skills and Abilities start -->
+                <h4 class="skills">Skills &amp; Abilities</h4>
                 <hr>
                 <p class="lead">Object-Oriented Programming, Machine Learning, Integration, Mobile App Development, Web
                     application
@@ -346,13 +398,11 @@ hr {
                     Project Management Continuous Integration Systems Software Testing and Validation Problem-Solving.
                     JSON mapping Performance Analytics, Analytical Skills, Creative Problem-Solving, Project
                     Documentation,
-
                     Testing and debugging, Reliability, Android Software Development, SOAP and RESTful Web Services,
                     Adobe Software, CRM Software, System Administration, Relationship Building.</p>
-            </div>
-            <div class="tab-pane fade" id="v-pills-references" role="tabpanel" aria-labelledby="v-pills-references-tab"
-                tabindex="0">
-                <h4>References</h4>
+                <!-- Skills and Abilities end -->
+                <!-- Referees start -->
+                <h4 id="referees">Referees</h4>
                 <hr>
                 <div class="row pb-5">
                     <div class="col-md-6 col-sm-12">
@@ -410,8 +460,10 @@ hr {
                         </p>
                     </div>
                 </div>
+                <!-- Referees end -->
             </div>
         </div>
     </div>
 </div>
+<!-- sidebar end -->
 <?php include 'components/front/bottom.php'; ?>

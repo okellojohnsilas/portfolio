@@ -1,14 +1,22 @@
 <section class="bg-primary text-center p-3">
     <div class="container">
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 mt-4">GET MY FREE NEWSLETTER</h2>
+        <div class="row">
+            <div class="col-9">
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 py-3">GET MY FREE
+                    NEWSLETTER</h2>
+            </div>
+            <div class="col-3"> <button class="btn btn-secondary btn-xl fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#newsletter">GET TODAY
+                    <i class="fas fa-paper-plane"></i></button></div>
+        </div>
+
         <!-- Icon Divider-->
-        <div class="divider-custom">
+        <!-- <div class="divider-custom">
             <div class="divider-custom-line"></div>
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
             <div class="divider-custom-line"></div>
-        </div>
-        <button class="btn btn-secondary btn-xl fw-bold" data-bs-toggle="modal" data-bs-target="#newsletter">GET TODAY
-            <i class="fas fa-paper-plane"></i></button>
+        </div> -->
+
     </div>
 </section>
 <!-- Portfolio Modals-->
@@ -39,7 +47,8 @@
                     <p class="mb-4" style="text-align:justify">🌟 Stay ahead of the curve with exclusive
                         insights and updates
                         delivered straight to your inbox! My newsletter is your gateway to a wealth of valuable
-                        content, including expert tips, industry trends, and insider knowledge collected from various sources using vetted API's. Join a
+                        content, including expert tips, industry trends, and insider knowledge collected from various
+                        sources using vetted API's. Join a
                         community of forward-thinkers and never miss a beat in your journey towards success.
                         Sign up now to unlock a world of opportunities and stay informed, inspired, and
                         empowered!

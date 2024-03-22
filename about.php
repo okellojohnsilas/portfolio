@@ -1,5 +1,5 @@
 <?php 
-    $page_name = "About Me";
+    $page_name = "ABOUT ME";
     include 'components/front/top.php';
     include 'components/front/breadcrumbs.php';
     include 'components/front/about.php';
