@@ -44,7 +44,6 @@ hr {
     /* Ensure it stays on top of other content */
 }
 </style>
-<!-- <div class="container-fluid pt-5"> -->
 <!-- <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php // print $app_name; ?>"
         href="assets/dist/front/src/img/personal/c.v/c.v.pdf">PRINT RESUME <i class="fas fa-print"></i></a> -->
 <!-- Mobile navbar start -->
@@ -81,7 +80,6 @@ hr {
                         <a class="nav-link fw-bold text-primary" href="#referees">REFEREES</a>
                     </li>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -128,9 +126,7 @@ hr {
             </div>
         </div>
         <div class="col py-3">
-
             <div class="container">
-
                 <!-- Bio and contact start -->
                 <h1 class="text-center pt-3 text-secondary">OKELLO JOHN SILAS</h1>
                 <h3 class="text-secondary">SOFTWARE ENGINEER</h3>
@@ -172,7 +168,7 @@ hr {
                         <h5>Ritsumeikan University | College of Global Liberal Arts Teaching Assistant</h5>
                     </div>
                     <div class="col-2 text-center">
-                        <p>2023 - 2024</p>
+                        <p class=" text-end">2023 - 2024</p>
                     </div>
                 </div>
                 <ul>
@@ -203,8 +199,8 @@ hr {
                     <div class="col-10">
                         <h5>CapaBuil Limited | Data Analytics Business Development Associate</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2022 - 2023</p>
+                    <div class="col-2">
+                        <p class="text-end">2022 - 2023</p>
                     </div>
                 </div>
                 <ul>
@@ -237,8 +233,8 @@ hr {
                     <div class="col-10">
                         <h5>MAAT Systems East Africa | Software Engineer</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2022</p>
+                    <div class="col-2">
+                        <p class="text-end">2022</p>
                     </div>
                 </div>
                 <ul>
@@ -271,7 +267,7 @@ hr {
                         <h5>Strathmore Computing and Engineering Students Association | Club Ambassador</h5>
                     </div>
                     <div class="col-2 text-center">
-                        <p>2021 - 2022</p>
+                        <p class=" text-end">2021 - 2022</p>
                     </div>
                 </div>
                 <ul class="">
@@ -310,7 +306,7 @@ hr {
                         <h5>12th Student&apos;s Council Strathmore University | Presidential Senate Advisor</h5>
                     </div>
                     <div class="col-2 text-center">
-                        <p>2020 - 2021</p>
+                        <p class=" text-end">2020 - 2021</p>
                     </div>
                 </div>
                 <ul>
@@ -353,8 +349,8 @@ hr {
                     <div class="col-10">
                         <h5>Strathmore University | Students Helping Students External Outreach Ambassador</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2020</p>
+                    <div class="col-2">
+                        <p class=" text-end">2020</p>
                     </div>
                 </div>
                 <ul>
@@ -394,8 +390,8 @@ hr {
                     <div class="col-10">
                         <h5>Master of Science, Information Science and Engineering</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2022 - 2024</p>
+                    <div class="col-2">
+                        <p class=" text-end">2022 - 2024</p>
                     </div>
                 </div>
                 <p>Ritsumeikan University.</p>
@@ -403,8 +399,8 @@ hr {
                     <div class="col-10">
                         <h5>Bachelor of Science, Business Information and Technology</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2018 - 2022</p>
+                    <div class="col-2">
+                        <p class=" text-end">2018 - 2022</p>
                     </div>
                 </div>
                 <p>Strathmore University.</p>
@@ -412,8 +408,8 @@ hr {
                     <div class="col-10">
                         <h5>Diploma of Sceince , Business Information and Technology</h5>
                     </div>
-                    <div class="col-2 text-center">
-                        <p>2018 - 2019</p>
+                    <div class="col-2">
+                        <p class=" text-end">2018 - 2019</p>
                     </div>
                 </div>
                 <p>Strathmore University.</p>
@@ -425,7 +421,7 @@ hr {
                         <h5>Artificial Intelligence and Machine Learning</h5>
                     </div>
                     <div class="col-2 text-center">
-                        <p>2021</p>
+                        <p class=" text-end">2021</p>
                     </div>
                 </div>
                 <p>Strathmore University IT Students Association, Strathmore University.</p>
@@ -434,11 +430,10 @@ hr {
                         <h5>Introduction To Programming: Software Engineer</h5>
                     </div>
                     <div class="col-2 text-center">
-                        <p>2019</p>
+                        <p class=" text-end">2019</p>
                     </div>
                 </div>
                 <p>Moringa School, Nairobi Kenya.</p>
-                <!-- </div> -->
                 <!-- Education end -->
                 <!-- Skills and Abilities start -->
                 <h4 class="skills">Skills &amp; Abilities</h4>

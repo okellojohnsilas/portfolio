@@ -2,7 +2,7 @@
 <section class="page-section bg-primary text-white portfolio" id="portfolio">
     <div class="container">
         <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary text-white mb-0">My Projects</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary text-white mb-0">SAMPLE PROJECTS</h2>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -12,7 +12,7 @@
         <!-- Portfolio Grid Items-->
         <div class="row justify-content-center">
             <!-- Portfolio Item 1-->
-            <div class="col-md-6 col-lg-6 mb-5">
+            <div class="col-md-6 col-lg-6 mb-2">
                 <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#JBN">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <!-- Portfolio Item 2-->
-            <div class="col-md-6 col-lg-6 mb-5">
+            <div class="col-md-6 col-lg-6 mb-2">
                 <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#STEAMLabs">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i
@@ -33,10 +33,10 @@
                         style="height:15rem;width:100%;" alt="STEAMLabs Africa Image" />
                 </div>
             </div>
-            <a class="btn btn-xl btn-secondary fw-bold" href="about">
+            <!-- <a class="btn btn-xl btn-secondary fw-bold" href="about">
                 SEE ALL
                 <i class="fas fa-arrow-right me-2"></i>
-            </a>
+            </a> -->
         </div>
     </div>
 </section>
