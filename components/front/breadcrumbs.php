@@ -1,3 +1,4 @@
+<!-- Breadcrumb section start -->
 <section class="page-section bg-primary text-white">
     <div class="container pt-5">
         <div class="jumbotron text-center">
@@ -22,5 +23,6 @@
                 <!-- Breadcrumb end -->
             </div>
         </div>
+    </div>
 </section>
-</div>
+<!-- Breadcrumb section end -->

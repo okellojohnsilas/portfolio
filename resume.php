@@ -47,26 +47,66 @@ hr {
 <!-- <div class="container-fluid pt-5"> -->
 <!-- <a class="btn btn-primary btn-block fw-bold" style="width:100%;" download="<?php // print $app_name; ?>"
         href="assets/dist/front/src/img/personal/c.v/c.v.pdf">PRINT RESUME <i class="fas fa-print"></i></a> -->
+<!-- Mobile navbar start -->
+<nav class="navbar navbar-dark bg-secondary <?php display_on_mobile_only(); ?>">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="#">RESUME SECTIONS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-secondary" tabindex="-1" id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title border-0 border-bottom text-primary" id="offcanvasDarkNavbarLabel">SECTIONS
+                </h5>
+                <button type="button" class="btn-close btn-sm btn-close-white btn-primary" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-primary" href="#professional-summary">SUMMARY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-primary" href="#work-experience">WORK EXPERIENCE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-primary" href="#education">EDUCATION</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-primary" href="#skills">SKILLS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-primary" href="#referees">REFEREES</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Mobile navbar end -->
 <!-- sidebar start  -->
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary <?php hide_on_mobile(); ?>">
             <div id="list-example" class="d-flex flex-column align-items-center align-items-sm-start text-white pt-5">
                 <a href="javascript:void(0)"
-                    class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none pt-3">
-                    <span class="fs-3 d-none d-sm-inline fw-bold">SECTIONS</span>
+                    class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none border-0 border-bottom pt-3">
+                    <span class="fs-4 d-none d-sm-inline fw-bold ">SECTIONS</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
                     <li class="nav-item active">
-                        <a href="#professional-summary" class="nav-link active align-middle px-3">
-                            <span class="ms-1 d-none d-sm-inline fw-bold">PROFESSIONAL
+                        <a href="#professional-summary" class="nav-link align-middle px-3">
+                            <span class="ms-1 d-none d-sm-inline fw-bold">
                                 SUMMARY</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#work-experience" class="nav-link align-middle px-3">
-                            <i class="fs-4 bi-house"></i> <span
-                                class="ms-1 d-none d-sm-inline fw-bold">WORK EXPERIENCE</span>
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline fw-bold">
+                                EXPERIENCE</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -88,25 +128,15 @@ hr {
             </div>
         </div>
         <div class="col py-3">
+
             <div class="container">
-                <!-- Mobile navbar start -->
-                <nav
-                    class="navbar bg-secondary ">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
-                            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24"
-                                class="d-inline-block align-text-top">
-                            Bootstrap
-                        </a>
-                    </div>
-                </nav>
-                <!-- Mobile navbar end -->
+
                 <!-- Bio and contact start -->
                 <h1 class="text-center pt-3 text-secondary">OKELLO JOHN SILAS</h1>
                 <h3 class="text-secondary">SOFTWARE ENGINEER</h3>
                 <p class="lead text-center fw-bold text-secondary">
-                    <a class="text-decoration-none text-secondary" href="mailto:johnsilasokello49@gmail.com" target="_BLANK"><i
-                            class="far fa-envelope"></i>
+                    <a class="text-decoration-none text-secondary" href="mailto:johnsilasokello49@gmail.com"
+                        target="_BLANK"><i class="far fa-envelope"></i>
                         johnsilasokello49@gmail.com</a> |
                     <a href="<?php print base_url()?>" class="text-secondary" target="_BLANK"><i
                             class="fas fa-link"></i>porfolio</span></a> |
@@ -122,12 +152,15 @@ hr {
                     business needs
                     into innovative technical solutions. Known for collaboration and adaptability, I excel in team
                     environments,
-                    working closely with data and operations teams to meet customer needs. My expertise includes Machine
-                    Learning and Deep Learning, with a focus on cancer research and radiomics. Proficient in handling
+                    working closely with data and operations teams to meet customer needs. My expertise includes
+                    Machine
+                    Learning and Deep Learning, with a focus on cancer research and radiomics. Proficient in
+                    handling
                     technical issues, creating system documentation, and conducting quality assurance, I bring
                     efficiency to
                     project development and prioritize user experience optimization. Backed by a strong academic and
-                    technical background, I am committed to delivering cutting-edge solutions in the dynamic field of
+                    technical background, I am committed to delivering cutting-edge solutions in the dynamic field
+                    of
                     Machine
                     Learning, especially in cancer research and radiomics.</p>
                 <!-- Professional summary end -->
@@ -143,7 +176,8 @@ hr {
                     </div>
                 </div>
                 <ul>
-                    <li><b>Engaging Classroom Activities:</b> Implemented creative and engaging classroom activities to
+                    <li><b>Engaging Classroom Activities:</b> Implemented creative and engaging classroom activities
+                        to
                         enhance
                         student interest and motivation.</li>
                     <li><b>Enhanced Participation:</b> Improved overall class participation by introducing group
@@ -152,12 +186,14 @@ hr {
                     </li>
                     <li><b>Continuous Assessment and Adaptation:</b> Evaluated student performance through regular
                         assessments, tracked progress, and adjusted instructional strategies accordingly.</li>
-                    <li><b>Constructive Feedback:</b> Provided constructive feedback on student assignments to refine
+                    <li><b>Constructive Feedback:</b> Provided constructive feedback on student assignments to
+                        refine
                         their
                         writing
                         skills and comprehension.
                     </li>
-                    <li><b>Mentorship and Support:</b> Served as a mentor to new teaching assistants, offering guidance
+                    <li><b>Mentorship and Support:</b> Served as a mentor to new teaching assistants, offering
+                        guidance
                         on
                         effective classroom management and instruction strategies, and assisted in developing
                         comprehensive
@@ -173,21 +209,25 @@ hr {
                 </div>
                 <ul>
                     <li><b>Strategic Communication and Contract Acquisition:</b> Developed compelling proposals and
-                        presentations that effectively communicated the value of solutions, securing multiple contracts
+                        presentations that effectively communicated the value of solutions, securing multiple
+                        contracts
                         with
                         potential clients.</li>
                     <li><b>Revenue Growth Strategies:</b> Increased company revenue through proactive promotion of
                         products
-                        and services via cold calling, networking, and impactful presentations to prospective customers.
+                        and services via cold calling, networking, and impactful presentations to prospective
+                        customers.
                     </li>
                     <li><b>Customized Solutions and Successful Partnerships:</b> Collaborated with cross-functional
                         teams to
                         develop customized solutions for clients' unique business needs, fostering successful and
                         lasting
                         partnerships.</li>
-                    <li><b>Exceptional Customer Service:</b> Provided outstanding customer service by addressing client
+                    <li><b>Exceptional Customer Service:</b> Provided outstanding customer service by addressing
+                        client
                         concerns
-                        promptly and maintaining regular communication throughout the entire partnership process.</li>
+                        promptly and maintaining regular communication throughout the entire partnership process.
+                    </li>
                     <li><b>Upselling and Cross-Selling Success:</b> Identified opportunities for upselling and
                         cross-selling
                         within
@@ -202,13 +242,15 @@ hr {
                     </div>
                 </div>
                 <ul>
-                    <li> <b>Code Quality Assurance:</b> Assisted in conducting thorough code reviews to identify areas
+                    <li> <b>Code Quality Assurance:</b> Assisted in conducting thorough code reviews to identify
+                        areas
                         of
                         improvement and ensure adherence to best practices within the development team.</li>
                     <li> <b>Efficient Deployment Practices:</b> Supported continuous integration and deployment
                         practices,
                         reducing time-to-market for new features, and promoting efficient release processes.</li>
-                    <li><b>Legacy Code Refinement:</b> Refined legacy codebases by refactoring outdated methodologies
+                    <li><b>Legacy Code Refinement:</b> Refined legacy codebases by refactoring outdated
+                        methodologies
                         and
                         replacing deprecated components with modern alternatives.</li>
                     <li> <b>Security Enhancement:</b> Improved security measures within existing systems through
@@ -217,7 +259,8 @@ hr {
                     <li> <b>Innovation and Scalable Solutions:</b> Contributed to research on new technologies,
                         collaborated
                         with
-                        cross-functional teams, and played a role in developing scalable web applications that increased
+                        cross-functional teams, and played a role in developing scalable web applications that
+                        increased
                         user
                         engagement and satisfaction. Developed user-friendly interfaces for seamless navigation and
                         improved
@@ -232,24 +275,29 @@ hr {
                     </div>
                 </div>
                 <ul class="">
-                    <li><b>SCESA Diversity and Inclusivity Team:</b> Engaged in a team within the Strathmore Computing
+                    <li><b>SCESA Diversity and Inclusivity Team:</b> Engaged in a team within the Strathmore
+                        Computing
                         and
                         Engineering Students' Association (SCESA) that focused on addressing the needs of diverse
                         groups,
                         fostering inclusivity, and promoting industrial experiences for over 250 members.
                     </li>
-                    <li><b>Promoting STEM Culture:</b> Actively participated in various activities aimed at growing the
+                    <li><b>Promoting STEM Culture:</b> Actively participated in various activities aimed at growing
+                        the
                         culture
                         and
                         adoption of science, technology, engineering, and mathematics (STEM) among fellow students
                         through
                         seminars and courses.</li>
-                    <li><b>Operational Support:</b> Assisted the team in developing operational policies and procedures
+                    <li><b>Operational Support:</b> Assisted the team in developing operational policies and
+                        procedures
                         to
                         enhance
                         service delivery within the association.</li>
-                    <li> <b>Community Engagement and Networking:</b> Served as an ambassador at charity events, built
-                        relationships with key stakeholders, and developed an extensive network of community contacts,
+                    <li> <b>Community Engagement and Networking:</b> Served as an ambassador at charity events,
+                        built
+                        relationships with key stakeholders, and developed an extensive network of community
+                        contacts,
                         increasing the organization's visibility.</li>
                     <li> <b>Outreach and Representation:</b> Developed and implemented a comprehensive social media
                         outreach
@@ -273,24 +321,28 @@ hr {
                         enhancing overall project effectiveness.</li>
                     <li><b>Adaptability and Communication:</b> Demonstrated adaptability by taking on additional
                         responsibilities,
-                        streamlining communication channels, and organizing team meetings to improve project efficiency.
+                        streamlining communication channels, and organizing team meetings to improve project
+                        efficiency.
                     </li>
                     <li> <b>Effective Project Management:</b> Managed multiple priorities effectively, delivering
                         consistent
                         results
-                        under tight deadlines throughout the internship period, while actively participating in concept
+                        under tight deadlines throughout the internship period, while actively participating in
+                        concept
                         development and idea generation.</li>
                     <li> <b>Collaboration and Stakeholder Relations:</b> Participated in cross-functional teams,
                         supported
                         project
                         managers in monitoring progress, maintained clear communication with stakeholders, and
                         contributed
-                        to comprehensive market research for company growth. I collaborated with external partners to
+                        to comprehensive market research for company growth. I collaborated with external partners
+                        to
                         ensure
                         smooth implementation of events which led to the generation of over half a million shillings
                         towards the
                         Elimisha Student Scholarship fund.</li>
-                    <li> <b>Data Analysis and Productivity Improvement:</b> Utilized data analysis skills to identify
+                    <li> <b>Data Analysis and Productivity Improvement:</b> Utilized data analysis skills to
+                        identify
                         areas of
                         improvement in projects, implemented new organizational tools for task tracking and time
                         management,
@@ -308,19 +360,23 @@ hr {
                 <ul>
                     <li><b>Data Improvement and Analysis:</b> Improved data collection methods for tracking outreach
                         efforts,
-                        allowing for more accurate analysis of results and impact during the creation of the Students
+                        allowing for more accurate analysis of results and impact during the creation of the
+                        Students
                         Helping
                         Students Program.</li>
-                    <li><b>Community Engagement and Relationship Building:</b> Established strong relationships with key
+                    <li><b>Community Engagement and Relationship Building:</b> Established strong relationships with
+                        key
                         stakeholders and conducted regular follow-ups with community members, reinforcing positive
                         relationships and ensuring necessary support.</li>
                     <li><b>Effective Outreach Campaigns:</b> Supported team members in executing successful outreach
-                        campaigns, resulting in heightened community awareness of available resources, and strengthened
+                        campaigns, resulting in heightened community awareness of available resources, and
+                        strengthened
                         partnerships with local organizations through regular communication and collaboration.</li>
                     <li><b>Adaptability and Goal Setting:</b> Adapted quickly to changing circumstances during
                         fieldwork,
                         tailored
-                        presentations to specific audience demographics, and evaluated the success of outreach campaigns
+                        presentations to specific audience demographics, and evaluated the success of outreach
+                        campaigns
                         using quantitative metrics, contributing to improved project outcomes.</li>
                     <li><b>Communication and Outreach Strategies:</b> Streamlined communication channels within the
                         outreach
@@ -387,15 +443,20 @@ hr {
                 <!-- Skills and Abilities start -->
                 <h4 class="skills">Skills &amp; Abilities</h4>
                 <hr>
-                <p class="lead">Object-Oriented Programming, Machine Learning, Integration, Mobile App Development, Web
+                <p class="lead">Object-Oriented Programming, Machine Learning, Integration, Mobile App Development,
+                    Web
                     application
                     development, Algorithm development, Software Architecture, Design API Development, Performance
-                    Optimization, Continuous Integration and Deployment Data Structure Optimization, Software Testing
-                    Strategies, Cross-platform Development, Network Security Protocols, Code Review Techniques, Software
-                    Debugging, Effective verbal communication, Code testing, Data Storage and Retrieval API Design and
+                    Optimization, Continuous Integration and Deployment Data Structure Optimization, Software
+                    Testing
+                    Strategies, Cross-platform Development, Network Security Protocols, Code Review Techniques,
+                    Software
+                    Debugging, Effective verbal communication, Code testing, Data Storage and Retrieval API Design
+                    and
                     Development, RDMS Development, Software Documentation Control Education.
                     Databases: Oracle, MongoDB Source and Version Control: Git, GitHub.
-                    Project Management Continuous Integration Systems Software Testing and Validation Problem-Solving.
+                    Project Management Continuous Integration Systems Software Testing and Validation
+                    Problem-Solving.
                     JSON mapping Performance Analytics, Analytical Skills, Creative Problem-Solving, Project
                     Documentation,
                     Testing and debugging, Reliability, Android Software Development, SOAP and RESTful Web Services,

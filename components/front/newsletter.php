@@ -1,26 +1,31 @@
 <section class="bg-primary text-center p-3">
     <div class="container">
         <div class="row">
-            <div class="col-9">
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0 py-3">GET MY FREE
+            <div class="col-sm-12 col-md-9">
+                <h2 class="text-center text-uppercase text-secondary fw-bold mb-0 py-3">GET MY FREE
                     NEWSLETTER</h2>
             </div>
-            <div class="col-3"> <button class="btn btn-secondary btn-xl fw-bold" data-bs-toggle="modal"
-                    data-bs-target="#newsletter">GET TODAY
-                    <i class="fas fa-paper-plane"></i></button></div>
+            <div class="col-sm-12 col-md-3">
+                <!-- Newsletter button modal -->
+                <button class="btn btn-secondary btn-xl fw-bold <?php hide_on_mobile(); ?>" data-bs-toggle="modal"
+                    data-bs-target="#newsletter">GET
+                    TODAY
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <!-- Newsletter button modal -->
+                <!-- Mobile newsletter button modal -->
+                <button class="btn btn-secondary btn-sm fw-bold <?php display_on_mobile_only(); ?>"
+                    data-bs-toggle="modal" data-bs-target="#newsletter">GET
+                    TODAY
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <!-- Mobile newsletter button modal -->
+            </div>
         </div>
-
-        <!-- Icon Divider-->
-        <!-- <div class="divider-custom">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div> -->
-
     </div>
 </section>
-<!-- Portfolio Modals-->
-<!-- Portfolio Modal 1-->
+<!-- Newsletter Modals Section -->
+<!-- Newsletter Modal -->
 <div class="portfolio-modal modal fade" id="newsletter" tabindex="-1" aria-labelledby="newsletter" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -55,10 +60,10 @@
                     </p>
                     <form class="justify-content-center">
                         <div class="form-group pb-3">
-                            <div class="form-group row">
-                                <label for="newletter-email" class="col-sm-2 col-form-label fw-bold">EMAIL
-                                    ADDRESS</label>
-                                <div class="col-sm-10">
+                            <div class="form-group row text-center">
+                                <label for="newletter-email" class="col-sm-12 col-form-label fw-bold">ENTER YOUR EMAIL
+                                    ADDRESS BELOW</label>
+                                <div class="col-sm-12">
                                     <input required type="email"
                                         class="form-control border-0 border-bottom rounded-0  border-secondary"
                                         id="newsletter-email" placeholder="email@gmail.com">
@@ -74,11 +79,8 @@
                             CLOSE
                         </button>
                     </form>
-
                 </div>
             </div>
-            <!-- </div> -->
-            <!-- </div> -->
         </div>
     </div>
 </div>

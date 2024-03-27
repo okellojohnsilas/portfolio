@@ -18,5 +18,7 @@
  </footer>
  <!-- Copyright Section-->
  <div class="copyright py-4 text-center text-white fw-bold">
-     <div class="container fs-5"><small><?php print 'Copyright &copy; <a class="text-decoration-none text-primary" href="mailto:johnsilasokello49@gmail.com">'.$app_name.' </a> || ' .date('Y'); ?> </small></div>
+     <div class="container fs-5">
+         <small><?php print 'Copyright &copy; <a class="text-decoration-none text-primary" href="mailto:johnsilasokello49@gmail.com">'.$app_name.' </a> || ' .date('Y'); ?>
+         </small></div>
  </div>
