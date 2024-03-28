@@ -9,7 +9,7 @@
     // Call the function to set the preferred language cookie
     setPreferredLanguageCookie();
     // Retrieve the preferred language from the cookie
-    $language = substr($_COOKIE['preferred_language'], 0, 2); // Extract the first two characters
+    // $language = substr($_COOKIE['preferred_language'], 0, 2); // Extract the first two characters
     // echo $language; // Print the preferred language    
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="<?php print base_url(); ?>">
-            <?php echo translate_text($app_name, $language);?></a>
+            <?php print $app_name; //echo translate_text($app_name, $language);?></a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded fw-bold"
             type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +12,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                        href="<?php print base_url();?>about"><?php echo translate_text('about', $language);?>
+                        href="<?php print base_url();?>about"><?php print 'ABOUT'; // echo translate_text('about', $language);?>
                     </a></li>
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                        href="<?php print base_url();?>resume"><?php echo translate_text('resume', $language);?>
+                        href="<?php print base_url();?>resume"><?php print 'RESUME' //echo translate_text('resume', $language);?>
                     </a></li>
                 <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                         href="<?php // print base_url(); ?>portfolio">Portfolio

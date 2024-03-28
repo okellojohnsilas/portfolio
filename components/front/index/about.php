@@ -28,16 +28,31 @@
                  Learning, especially in cancer research and radiomics.</p>
          </div>
          <!-- About Section Button-->
-         <div class="text-center mt-4">
-             <a class="btn btn-xl btn-outline-secondary fw-bold" href="resume">
-                 RESUME
-                 <i class="far fa-file-lines"></i> 
-
-             </a>
-             <a class="btn btn-xl btn-primary fw-bold" href="about">
-                 READ MORE
-                 <i class="fas fa-arrow-right me-2"></i>
-             </a>
+         <div class="row">
+             <div class="col-6 text-end">
+                 <!-- Desktop button -->
+                 <a class="btn btn-xl btn-outline-secondary fw-bold <?php hide_on_mobile() ?>" href="resume">
+                     RESUME
+                     <i class="far fa-file-lines"></i>
+                 </a>
+                 <!-- Mobile button -->
+                 <a class="btn btn-sm btn-block btn-outline-secondary fw-bold <?php display_on_mobile_only() ?>" href="resume">
+                     RESUME
+                     <i class="far fa-file-lines"></i>
+                 </a>
+             </div>
+             <div class="col-6 text-start">
+                <!-- Desktop button -->
+                <a class="btn btn-xl btn-primary fw-bold <?php hide_on_mobile() ?>" href="about">
+                     READ MORE
+                     <i class="fas fa-arrow-right me-2"></i>
+                 </a>
+                 <!-- Mobile button -->
+                <a class="btn btn-sm btn-block btn-primary fw-bold <?php display_on_mobile_only() ?>" href="about">
+                     READ MORE
+                     <i class="fas fa-arrow-right me-2"></i>
+                 </a>
+             </div>
          </div>
      </div>
  </section>
