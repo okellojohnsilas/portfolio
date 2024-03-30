@@ -17,7 +17,8 @@
                 <div class="col">
                     <h4 class="text-secondary"><i>I am</i> <?php print $app_name; ?></h4>
                     <hr class="border-secondary">
-                    <p class="lead text-justify">A self-motivated and adaptable software developer recognized for
+                    <p class="lead text-justify text-secondary fw-bold">A self-motivated and adaptable software
+                        developer recognized for
                         translating
                         complex business needs
                         into innovative technical solutions. Known for collaboration and adaptability, I excel in team

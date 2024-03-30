@@ -11,7 +11,7 @@
          </div>
          <!-- About Section Content-->
          <div class="ms-auto">
-             <p class="lead text-justify text-secondary">I am a self-motivated and adaptable software developer
+             <p class="lead text-justify text-secondary fw-bold">I am a self-motivated and adaptable software developer
                  recognized for
                  translating
                  complex business needs
