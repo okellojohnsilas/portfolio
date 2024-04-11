@@ -12,11 +12,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                        href="<?php print base_url();?>about"><?php print 'ABOUT'; // echo translate_text('about', $language);?>
+                        href="<?php print base_url();?>about"><?php print 'ABOUT';?>
                     </a></li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                        href="<?php print base_url();?>resume"><?php print 'RESUME' //echo translate_text('resume', $language);?>
-                    </a></li>
+                <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                        href="<?php // print base_url();?>resume"><?php // print 'RESUME' //echo translate_text('resume', $language);?>
+                    </a></li> -->
                 <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                         href="<?php // print base_url(); ?>portfolio">Portfolio
                     </a></li> -->

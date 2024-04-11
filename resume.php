@@ -406,7 +406,7 @@ hr {
                 <p>Strathmore University.</p>
                 <div class="row">
                     <div class="col-10">
-                        <h5>Diploma of Sceince , Business Information and Technology</h5>
+                        <h5>Diploma of Science , Business Information and Technology</h5>
                     </div>
                     <div class="col-2">
                         <p class=" text-end">2018 - 2019</p>
