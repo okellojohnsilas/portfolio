@@ -129,36 +129,29 @@ hr {
             <div class="container">
                 <!-- Bio and contact start -->
                 <h1 class="text-center pt-3 text-secondary">OKELLO JOHN SILAS</h1>
-                <h3 class="text-secondary">SOFTWARE ENGINEER</h3>
-                <p class="lead text-center fw-bold text-secondary">
+                <!-- <h3 class="text-secondary">SOFTWARE ENGINEER</h3> -->
+                <!-- <p class="lead text-center fw-bold text-secondary">
                     <a class="text-decoration-none text-secondary" href="mailto:johnsilasokello49@gmail.com"
                         target="_BLANK"><i class="far fa-envelope"></i>
                         johnsilasokello49@gmail.com</a> |
-                    <a href="<?php print base_url()?>" class="text-secondary" target="_BLANK"><i
+                    <a href="<?php //  print base_url()?>" class="text-secondary" target="_BLANK"><i
                             class="fas fa-link"></i>porfolio</span></a> |
-                    <a href="<?php print base_url()?>" class="text-decoration-none text-secondary" target="_BLANK"><i
+                    <a href="<?php // print base_url()?>" class="text-decoration-none text-secondary" target="_BLANK"><i
                             class="fab fa-github-square"></i> Github </span></a>
-                </p>
+                </p> -->
                 <!-- Bio and contact end -->
                 <!-- Professional summary Start -->
                 <h4 id="professional-summary">Professional Summary</h4>
                 <hr>
-                <p class="lead">I am a self-motivated and adaptable software developer recognized for translating
-                    complex
-                    business needs
-                    into innovative technical solutions. Known for collaboration and adaptability, I excel in team
-                    environments,
-                    working closely with data and operations teams to meet customer needs. My expertise includes
-                    Machine
-                    Learning and Deep Learning, with a focus on cancer research and radiomics. Proficient in
-                    handling
+                <p class="lead">I am a self-motivated and adaptable software engineer known for translating complex
+                    business needs into innovative technical solutions. Known for collaboration and adaptability, I
+                    excel in team environments, working closely with data and operations teams to meet customer needs.
+                    My expertise includes Machine Learning, Deep Learning, web, mobile and desktop application
+                    development with competencies in both frontend and backend. I am also proficient in handling
                     technical issues, creating system documentation, and conducting quality assurance, I bring
-                    efficiency to
-                    project development and prioritize user experience optimization. Backed by a strong academic and
-                    technical background, I am committed to delivering cutting-edge solutions in the dynamic field
-                    of
-                    Machine
-                    Learning, especially in cancer research and radiomics.</p>
+                    efficiency to project development and prioritize user experience optimization. Backed by a strong
+                    academic and technical background, I am committed to delivering cutting-edge solutions in any
+                    dynamic field and working environment.</p>
                 <!-- Professional summary end -->
                 <!-- Work experience end -->
                 <h4 id="work-experience">Work Experience</h4>
