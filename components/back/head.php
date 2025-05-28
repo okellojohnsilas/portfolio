@@ -25,4 +25,6 @@
     gtag('js', new Date());
     gtag('config', 'UA-119386393-1');
     </script>
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>

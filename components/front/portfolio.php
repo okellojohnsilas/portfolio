@@ -1,128 +1,209 @@
-<!-- Portfolio Section-->
-<section class="page-section bg-primary text-white portfolio" id="portfolio">
-    <div class="container">
-        <!-- Portfolio Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary text-white mb-0">SAMPLE PROJECTS</h2>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-            <div class="divider-custom-line"></div>
-        </div>
-        <!-- Portfolio Grid Items-->
-        <div class="row justify-content-center">
-            <!-- Portfolio Item 1-->
-            <div class="col-md-6 col-lg-6 mb-2">
-                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#JBN">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white"><i
-                                class="fas fa-plus fa-3x"></i></div>
-                    </div>
-                    <img class="img-fluid" src="assets/dist/front/src/img/projects/thumb/JBN.png"
-                        alt="JBN website image" style="height:15rem;width:100%;" />
-                </div>
-            </div>
-            <!-- Portfolio Item 2-->
-            <div class="col-md-6 col-lg-6 mb-2">
-                <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#STEAMLabs">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white"><i
-                                class="fas fa-plus fa-3x"></i></div>
-                    </div>
-                    <img class="img-fluid" src="assets/dist/front/src/img/projects/thumb/STEAMLabs.png"
-                        style="height:15rem;width:100%;" alt="STEAMLabs Africa Image" />
-                </div>
-            </div>
-            <!-- <a class="btn btn-xl btn-secondary fw-bold" href="about">
-                SEE ALL
-                <i class="fas fa-arrow-right me-2"></i>
-            </a> -->
-        </div>
-    </div>
-</section>
+ <!-- Portfolio Section -->
+ <section id="portfolio" class="portfolio section light-background">
 
-<!-- Portfolio Modals-->
-<!-- Portfolio Modal 1-->
-<div class="portfolio-modal modal fade" id="JBN" tabindex="-1" aria-labelledby="JBN" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                    aria-label="Close"></button></div>
-            <div class="modal-body text-center pb-5">
-                <div class="container">
-                    <!-- Portfolio Modal - Title-->
-                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">JBN CONSULTS AND
-                        PLANNERS</h2>
-                    <!-- Icon Divider-->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                    <!-- Portfolio Modal - Image-->
-                    <img class="img-fluid rounded mb-5" src="assets/dist/front/src/img/projects/thumb/JBN.png"
-                        alt="JBN THUMBNAIL" />
-                    <!-- Portfolio Modal - Text-->
-                    <p class="mb-4 lead text-justify">This is a website designed for JBN
-                        Consults and
-                        Planners LTD.
-                        It captures
-                        all the activities that they do as well as sectors and the various stakeholders.JBN
-                        specializes in environmental, social, engineering, and development services. JBN
-                        Consults and Planners is a private consulting firm registered in Uganda that provides
-                        integrated environmental & social assessment, engineering, and development consulting
-                        services in the Great Lakes Region. This integration of services provides a
-                        multi-disciplinary consultancy firm geared to meeting the needs of clients across a wide
-                        range of sectors. JBN has a demonstrable track record in the delivery of numerous
-                        development projects across a broad spread of sectors and offers a team of professionals
-                        whose skills embrace the core disciplines associated with environmental, social,
-                        engineering, and development services. </p>
-                    <!-- <button class="btn btn-primary"><a class="text-white fw-bold text-decoration-none" href="project">
-                                    <i class="fas fa-eye fa-fw"></i> DETAILS
-                                </a></button> -->
-                    <button class="btn btn-danger btn-xl fw-bold" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        CLOSE
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Portfolio Modal 2-->
-<div class="portfolio-modal modal fade" id="STEAMLabs" tabindex="-1" aria-labelledby="STEAMLabs" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                    aria-label="Close"></button></div>
-            <div class="modal-body text-center pb-5">
-                <div class="container">
-                    <!-- Portfolio Modal - Title-->
-                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">STEAMLabs Africa</h2>
-                    <!-- Icon Divider-->
-                    <div class="divider-custom">
-                        <div class="divider-custom-line"></div>
-                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                        <div class="divider-custom-line"></div>
-                    </div>
-                    <!-- Portfolio Modal - Image-->
-                    <img class="img-fluid rounded mb-5" src="assets/dist/front/src/img/projects/thumb/STEAMLabs.png"
-                        alt="..." />
-                    <!-- Portfolio Modal - Text-->
-                    <p class="mb-4 lead text-justify">STEAMLabs Africa is a nonprofit organization that seeks to
-                        mainstream STEAM
-                        Teaching and learning in through partnerships with those schools and other academic
-                        institutions. This is made possible by our rigorous and 21st Century curriculum that
-                        prepares learners for challenges and opportunities within and without the classroom.</p>
-                    <!-- <button class="btn btn-primary"><a class="text-white fw-bold text-decoration-none" href="project">
-                                    <i class="fas fa-eye fa-fw"></i> DETAILS
-                                </a></button> -->
-                    <button class="btn btn-danger btn-xl fw-bold" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        CLOSE
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+     <!-- Section Title -->
+     <div class="container section-title" data-aos="fade-up">
+         <h2>Portfolio</h2>
+         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+             fugiat sit in iste officiis commodi quidem hic quas.</p>
+     </div><!-- End Section Title -->
+
+     <div class="container">
+
+         <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+             <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+                 <li data-filter="*" class="filter-active">All</li>
+                 <li data-filter=".filter-app">App</li>
+                 <li data-filter=".filter-product">Product</li>
+                 <li data-filter=".filter-branding">Branding</li>
+                 <li data-filter=".filter-books">Books</li>
+             </ul><!-- End Portfolio Filters -->
+
+             <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>App 1</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app"
+                                 class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Product 1</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/product-1.jpg" title="Product 1"
+                                 data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Branding 1</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1"
+                                 data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Books 1</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/books-1.jpg" title="Branding 1"
+                                 data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>App 2</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app"
+                                 class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Product 2</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/product-2.jpg" title="Product 2"
+                                 data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Branding 2</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2"
+                                 data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Books 2</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/books-2.jpg" title="Branding 2"
+                                 data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>App 3</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app"
+                                 class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Product 3</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/product-3.jpg" title="Product 3"
+                                 data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Branding 3</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2"
+                                 data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+                 <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+                     <div class="portfolio-content h-100">
+                         <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
+                         <div class="portfolio-info">
+                             <h4>Books 3</h4>
+                             <p>Lorem ipsum, dolor sit amet consectetur</p>
+                             <a href="assets/img/portfolio/books-3.jpg" title="Branding 3"
+                                 data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i
+                                     class="bi bi-zoom-in"></i></a>
+                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
+                                     class="bi bi-link-45deg"></i></a>
+                         </div>
+                     </div>
+                 </div><!-- End Portfolio Item -->
+
+             </div><!-- End Portfolio Container -->
+
+         </div>
+
+     </div>
+
+ </section><!-- /Portfolio Section -->

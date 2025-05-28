@@ -12,7 +12,7 @@
   
   /* Database connection */ 
   // For Localhost
-  // $dbconn = new mysqli('localhost','root','','oj49');
+  $dbconn = new mysqli('localhost','root','','oj49');
   // For Hpanel
   // $dbconn = new mysqli('localhost', 'u855455374_okello_1', '~9TfBZuW]49', 'u855455374_jbn');
   // Application name

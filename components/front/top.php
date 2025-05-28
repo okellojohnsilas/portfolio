@@ -3,8 +3,7 @@
     include "config/config.php";
 ?>
 <!DOCTYPE html>
-<html lang="<?php // print $language; ?>">
+<html lang="en">
 <?php  include "components/front/head.php"; ?>
 
-<body>
-    <?php include 'components/front/navbar.php';?>
+<body class="index-page">
