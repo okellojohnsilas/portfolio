@@ -71,8 +71,6 @@
 
     // Get all items from the table
     function get_items_w_custom_query($dbconn,$query){
-        // Select data query
-        // $select_data_query = 'select * from '.$table.' where deleted = 0';
         return mysqli_query($dbconn, $query);
     }
 

@@ -1,10 +1,10 @@
-<?php include "admin_config.php"; ?>
+<?php include "../admin_config.php"; ?>
 <!DOCTYPE html>
 <html>
 <?php 
-    include '../components/back/head.php';
+    include '../../components/back/head.php';
     // include '../components/back/preloader.php'; 
-    include '../components/back/header.php'; 
+    include '../../components/back/header.php'; 
 ?>
 
 <body>

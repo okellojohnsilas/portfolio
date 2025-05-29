@@ -561,8 +561,8 @@ begin
 end$$
 delimiter ;
 -- Project Categories table
-drop table if exists project_category;
-create table if not exists project_category(    
+drop table if exists project_categories;
+create table if not exists project_categories(    
     id text,
     category text,
     category_avatar text,
@@ -577,7 +577,7 @@ create table if not exists project_category(
 drop trigger if exists generate_project_category_id; 
 -- Generate navigation id 
 delimiter //
-create trigger generate_project_category_id before insert on project_category
+create trigger generate_project_category_id before insert on project_categories
 for each row
 begin
    if new.id is null then
@@ -586,9 +586,108 @@ begin
 end;
 // delimiter ;
 
+-- Project Categories mirror table
+drop table if exists mrr_project_categories;
+create table if not exists mrr_project_categories(
+    mirror_id int(30) not null auto_increment primary key,
+    category text,
+    old_category text,
+    category_avatar text,
+    old_category_avatar text,
+    status text,
+    old_status text,
+    deleted text,
+    old_deleted text,
+    who text,
+    what text,
+    `when` timestamp not null default current_timestamp()
+);
+
+-- Trigger to log insert into `project_categories`
+drop trigger if exists TRG_log_project_categories_insert;
+delimiter $$
+create trigger TRG_log_project_categories_insert after insert on `project_categories`
+for each row
+begin
+    insert into mrr_project_categories (
+        category, old_category,
+        category_avatar, old_category_avatar,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        new.category, null,
+        new.category_avatar, null,
+        new.status, null,
+        new.deleted, null,
+        new.affected, 'insert'
+    );
+end$$
+delimiter ;
+
+-- Trigger to log after update into `project_categories`
+drop trigger if exists TRG_log_project_categories_update;
+delimiter $$
+create trigger TRG_log_project_categories_update after update on `project_categories`
+for each row
+begin
+    if new.deleted = 1 then
+        insert into mrr_project_categories (
+            category, old_category,
+            category_avatar, old_category_avatar,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.category, old.category,
+            new.category_avatar, old.category_avatar,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'delete'
+        );
+    else
+        insert into mrr_project_categories (
+            category, old_category,
+            category_avatar, old_category_avatar,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.category, old.category,
+            new.category_avatar, old.category_avatar,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'update'
+        );
+    end if;
+end$$
+delimiter ;
+
+-- Trigger to log after delete into `project_categories`
+drop trigger if exists TRG_log_project_categories_delete;
+delimiter $$
+create trigger TRG_log_project_categories_delete after delete on `project_categories`
+for each row
+begin
+    insert into mrr_project_categories (
+        category, old_category,
+        category_avatar, old_category_avatar,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        null, old.category,
+        null, old.category_avatar,
+        null, old.status,
+        null, old.deleted,
+        old.affected, 'delete'
+    );
+end$$
+delimiter ;
+
 -- Projects table
-drop table if exists project;
-create table if not exists project(    
+drop table if exists projects;
+create table if not exists projects(    
     id text,
     category text,
     project_name text,
@@ -606,7 +705,7 @@ create table if not exists project(
 drop trigger if exists generate_project_id; 
 -- Generate navigation id 
 delimiter //
-create trigger generate_project_id before insert on project
+create trigger generate_project_id before insert on projects
 for each row
 begin
    if new.id is null then
@@ -615,8 +714,8 @@ begin
 end;
 // delimiter ;
 -- Project table mirror
-drop table if exists mrr_project;
-create table if not exists mrr_project(
+drop table if exists mrr_projects;
+create table if not exists mrr_projects(
     mirror_id int(30) not null auto_increment primary key,
     category text,
     old_category text,
@@ -637,13 +736,13 @@ create table if not exists mrr_project(
     `when` timestamp not null default current_timestamp()
 );
 
--- Trigger to log insert into `project`
+-- Trigger to log insert into `projects`
 drop trigger if exists TRG_log_project_insert;
 delimiter $$
-create trigger TRG_log_project_insert after insert on `project`
+create trigger TRG_log_project_insert after insert on `projects`
 for each row
 begin
-    insert into mrr_project (
+    insert into mrr_projects (
         category, old_category,
         project_name, old_project_name,
         project_description, old_project_description,
@@ -665,14 +764,14 @@ begin
 end$$
 delimiter ;
 
--- Trigger to log after update into `project`
+-- Trigger to log after update into `projects`
 drop trigger if exists TRG_log_project_update;
 delimiter $$
-create trigger TRG_log_project_update after update on `project`
+create trigger TRG_log_project_update after update on `projects`
 for each row
 begin
     if new.deleted = 1 then
-        insert into mrr_project (
+        insert into mrr_projects (
             category, old_category,
             project_name, old_project_name,
             project_description, old_project_description,
@@ -692,7 +791,7 @@ begin
             new.affected, 'delete'
         );
     else
-        insert into mrr_project (
+        insert into mrr_projects (
             category, old_category,
             project_name, old_project_name,
             project_description, old_project_description,
@@ -715,13 +814,13 @@ begin
 end$$
 delimiter ;
 
--- Trigger to log after delete into `project`
+-- Trigger to log after delete into `projects`
 drop trigger if exists TRG_log_project_delete;
 delimiter $$
-create trigger TRG_log_project_delete after delete on `project`
+create trigger TRG_log_project_delete after delete on `projects`
 for each row
 begin
-    insert into mrr_project (
+    insert into mrr_projects (
         category, old_category,
         project_name, old_project_name,
         project_description, old_project_description,
