@@ -46,6 +46,7 @@ if (isset($_POST['add_project'])) {
     // Sanitize user input
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
     $project_name = mysqli_real_escape_string($dbconn, $_POST['project_name']);
+    $project_link = mysqli_real_escape_string($dbconn, $_POST['project_link']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
     $project_description = strtolower(mysqli_real_escape_string($dbconn, $_POST['project_description']));
     // Handle Project Thumbnail Upload
@@ -79,11 +80,11 @@ if (isset($_POST['add_project'])) {
     // Store screenshots as a comma-separated list
     $project_screenshots = implode(',', $screenshots);
     // Prepare the SQL insert query using a prepared statement
-    $query = "INSERT INTO projects (project_name, project_category,project_description, project_thumbnail, project_images, affected) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO projects (project_name, category, project_description, project_thumbnail, project_images, project_link, affected) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "ssssss", $project_name, $project_description, $thumbnailImage, $project_screenshots, $user);
+        mysqli_stmt_bind_param($stmt, "sssssss", $project_name,$project_category, $project_description, $thumbnailImage, $project_screenshots, $project_link, $user);
         // Execute prepared statement
         if (mysqli_stmt_execute($stmt)) {
             $_SESSION["success"] = "Project added";

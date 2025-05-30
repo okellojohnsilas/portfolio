@@ -694,8 +694,9 @@ create table if not exists projects(
     project_description text,
     project_thumbnail text,
     project_images text,
+    project_link text,
     status text default '1',
-	deleted text default '0',
+    deleted text default '0',
     affected text,
     added timestamp not null default current_timestamp(),
     last_updated timestamp not null default current_timestamp() on update current_timestamp()
@@ -703,7 +704,7 @@ create table if not exists projects(
 
 -- Portfolio Categories ID generator trigger
 drop trigger if exists generate_project_id; 
--- Generate navigation id 
+-- Generate project id 
 delimiter //
 create trigger generate_project_id before insert on projects
 for each row
@@ -713,6 +714,8 @@ begin
     end if;
 end;
 // delimiter ;
+
+
 -- Project table mirror
 drop table if exists mrr_projects;
 create table if not exists mrr_projects(
@@ -727,6 +730,8 @@ create table if not exists mrr_projects(
     old_project_thumbnail text,
     project_images text,
     old_project_images text,
+    project_link text,
+    old_project_link text,
     status text,
     old_status text,
     deleted text,
@@ -748,6 +753,7 @@ begin
         project_description, old_project_description,
         project_thumbnail, old_project_thumbnail,
         project_images, old_project_images,
+        project_link, old_project_link,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -757,6 +763,7 @@ begin
         new.project_description, null,
         new.project_thumbnail, null,
         new.project_images, null,
+        new.project_link, null,
         new.status, null,
         new.deleted, null,
         new.affected, 'insert'
@@ -777,6 +784,7 @@ begin
             project_description, old_project_description,
             project_thumbnail, old_project_thumbnail,
             project_images, old_project_images,
+            project_link, old_project_link,
             status, old_status,
             deleted, old_deleted,
             who, what
@@ -786,6 +794,7 @@ begin
             new.project_description, old.project_description,
             new.project_thumbnail, old.project_thumbnail,
             new.project_images, old.project_images,
+            new.project_link, old.project_link,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'delete'
@@ -797,6 +806,7 @@ begin
             project_description, old_project_description,
             project_thumbnail, old_project_thumbnail,
             project_images, old_project_images,
+            project_link, old_project_link,
             status, old_status,
             deleted, old_deleted,
             who, what
@@ -806,6 +816,7 @@ begin
             new.project_description, old.project_description,
             new.project_thumbnail, old.project_thumbnail,
             new.project_images, old.project_images,
+            new.project_link, old.project_link,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'update'
@@ -826,6 +837,7 @@ begin
         project_description, old_project_description,
         project_thumbnail, old_project_thumbnail,
         project_images, old_project_images,
+        project_link, old_project_link,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -835,13 +847,13 @@ begin
         null, old.project_description,
         null, old.project_thumbnail,
         null, old.project_images,
+        null, old.project_link,
         null, old.status,
         null, old.deleted,
         old.affected, 'delete'
     );
 end$$
 delimiter ;
-
 
 -- User login table
 drop table if exists user_login;

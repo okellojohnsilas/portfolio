@@ -36,9 +36,12 @@
                         <?php foreach (get_items($dbconn, 'project_categories', 'where status = 1 and deleted = 0') as $project_category) {
                             print '<option value="' . $project_category['id'] . '">' . $project_category['category'] . '</option>';
                         } ?>
-                        <!-- <option value="AZ">Arizona</option>
-                        <option value="CO">Colorado</option> -->
                     </select>
+                </div>
+                <div class="form-group">
+                    <label class="">Project Link </label>
+                    <input class="form-control form-control-sm border border-primary" type="text"
+                        name="project_link" placeholder="Enter project link here">
                 </div>
                 <div class="form-group">
                     <label class="">Project Thumbnail <span class="text-danger">(*Required)</span></label>

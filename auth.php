@@ -27,29 +27,42 @@
         </div>
         <!-- End Section Title -->
         <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="px-5">
-                <form action="<?php print base_url().'processes/auth'?>" method="post" class="" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <input type="hidden" value="<?php print $_SESSION['login_token'] = md5(uniqid(mt_rand(), true));?>"
-                        name="login_token">
-                    <div class="row gy-4">
-                        <div class="col-md-12">
-                            <label for="email-field" class="primary-color font-weight-bold">Email Address <span
-                                    class="text-danger">(*Required)</span></label>
-                            <input type="email" name="email" id="email-field" class="form-control primary-border-color"
-                                required>
-                            <label for="password-field" class="primary-color font-weight-bold">Password <span
-                                    class="text-danger">(*Required)</span></label>
-                            <input type="password" class="form-control primary-border-color" name="password" id="password-field"
-                                required>
-                        </div>
-                        <div class="col-md-12 text-center pt-2">
-                            <button type="submit" class="btn btn-block primary-btn" name="login">LOGIN
-                                <i class="far fa-paper-plane"></i></button>
-                        </div>
+            <div class="row">
+                <div class="col-md-4 border-right border-dark">
+                    <div class="px-5">
+                        <h3 class="text-capitalize font-weight-bold primary-color text-center">Login</h3>
+                        <hr class="my-4 primary-bg-color">
+                        <p class="lead">Please enter your email and password to login.</p>
+                        <p class="text-danger">* If you don't have an account, please contact the administrator.</p>
+                        <p class="text-danger">* If you forgot your password, please contact the administrator.</p>
                     </div>
-                </form>
-                <!-- End Contact Form -->
+                </div>
+                <div class="col-md-8">
+                    <div class="px-5">
+                        <form action="<?php print base_url().'processes/auth'?>" method="post" class=""
+                            data-aos="fade-up" data-aos-delay="200">
+                            <input type="hidden"
+                                value="<?php print $_SESSION['login_token'] = md5(uniqid(mt_rand(), true));?>"
+                                name="login_token">
+                            <div class="form-group"><label for="email-field"
+                                    class="primary-color font-weight-bold">Email Address <span
+                                        class="text-danger">(*Required)</span></label>
+                                <input type="email" name="email" id="email-field"
+                                    class="form-control primary-border-color" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password-field" class="primary-color font-weight-bold pt-4">Password <span
+                                        class="text-danger">(*Required)</span></label>
+                                <input type="password" class="form-control primary-border-color" name="password"
+                                    id="password-field" required>
+                            </div>
+                            <div class="text-center pt-2">
+                                <button type="submit" class="btn btn-block primary-btn" name="login">LOGIN
+                                    <i class="far fa-paper-plane"></i></button>
+                        </form>
+                        <!-- End Contact Form -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>

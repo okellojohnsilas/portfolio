@@ -355,8 +355,6 @@
     //         }
     //     }
     // }
-   
-
     
     function generate_years_descending_from_current($numYears) {
         $currentYear = date('Y');
