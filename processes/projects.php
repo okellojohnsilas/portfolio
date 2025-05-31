@@ -3,7 +3,7 @@
 include 'process_config.php';
 
 // -------------------------- PROJECT CATEGORIES SECTION ---------------------------------------
-// Add project
+// Add project category
 if (isset($_POST['add_project_category'])) {
     // Define the redirection URL
     $redirect = base_url() . 'admin/projects/categories';
@@ -12,23 +12,19 @@ if (isset($_POST['add_project_category'])) {
     // Sanitize user input
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
+    if (check_if_record_exists($dbconn, "select * from project_categories where category = '$project_category' and deleted = 0")) {
+        $_SESSION["error"] = "Category already exists.";
+        header("Location: $redirect");
+        exit();
+    }
     // Prepare the SQL insert query using a prepared statement
     $query = "INSERT INTO project_categories (category, affected) VALUES (?, ?)";
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "ss", $project_category,  $user);
+        mysqli_stmt_bind_param($stmt, "ss", $project_category, $user);
         // Execute prepared statement
-        if (mysqli_stmt_execute($stmt)) {
-            $_SESSION["success"] = "Project Category added";
-            header("Location: $redirect");
-            exit();
-        } else {
-            $_SESSION["error"] = "Failed!! " . mysqli_stmt_error($stmt);
-            header("Location: $redirect");
-            exit();
-        }
-        mysqli_stmt_close($stmt);
+        executePreparedStmt($dbconn, $stmt, $redirect);
     } else {
         $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
         header("Location: $redirect");
@@ -36,11 +32,70 @@ if (isset($_POST['add_project_category'])) {
     }
 }
 
+// Edit project category
+if (isset($_POST['edit_project_category'])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/categories';
+    // Perform a security token check
+    token_check($_POST['edit_project_category_token'], $_SESSION['edit_project_category_token'], $redirect);
+    // Sanitize user input
+    $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['category']));
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
+    // Prepare the SQL insert query using a prepared statement
+    $query = "UPDATE project_categories set category=?, affected=? where id=?";
+    $stmt = mysqli_prepare($dbconn, $query);
+    if ($stmt) {
+        // Bind parameters and set their values
+        mysqli_stmt_bind_param($stmt, "sss", $project_category, $user, $id);
+        // Execute prepared statement
+        executePreparedStmt($dbconn, $stmt, $redirect);
+    } else {
+        $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
+        header("Location: $redirect");
+        exit();
+    }
+}
+
+// Deactivate project category
+if (isset($_GET["deactivate_project_category"])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/categories';
+    // Variable declaration
+    $id = $_GET["deactivate_project_category"];
+    $status = 0;
+    // Prepare the SQL insert query using a prepared statement	
+    $query = "update project_categories set status=? where id=?";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "ss", $status, $id);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect);
+}
+
+// Activate project category
+if (isset($_GET["activate_project_category"])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/categories';
+    // Variable declaration
+    $id = $_GET["activate_project_category"];
+    $status = 1;
+    // Prepare the SQL insert query using a prepared statement	
+    $query = "update project_categories set status=? where id=?";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "ss", $status, $id);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect);
+}
+
 // -------------------------- PROJECTS SECTION ---------------------------------------
 // Add project
 if (isset($_POST['add_project'])) {
     // Define the redirection URL
-    $redirect = base_url() . 'admin/projects/projects';
+    $redirect = base_url() . 'admin/projects/project_list';
     // Perform a security token check
     token_check($_POST['add_project_token'], $_SESSION['add_project_token'], $redirect);
     // Sanitize user input
@@ -48,7 +103,7 @@ if (isset($_POST['add_project'])) {
     $project_name = mysqli_real_escape_string($dbconn, $_POST['project_name']);
     $project_link = mysqli_real_escape_string($dbconn, $_POST['project_link']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
-    $project_description = strtolower(mysqli_real_escape_string($dbconn, $_POST['project_description']));
+    $project_description = mysqli_real_escape_string($dbconn, $_POST['project_description']);
     // Handle Project Thumbnail Upload
     $thumbnail = $_FILES['project_thumbnail']['name'];
     $thumbnail_type = $_FILES['project_thumbnail']['type'];
@@ -77,25 +132,28 @@ if (isset($_POST['add_project'])) {
             }
         }
     }
+    // Handle Project File Upload (single file)
+    $project_file = '';
+    if (!empty($_FILES['project_file']['name'])) {
+        if (!file_exists('../uploads/files/projects/')) {
+            mkdir('../uploads/files/projects/', 0777, true);
+        }
+        $file_name = $_FILES['project_file']['name'];
+        $file_type = $_FILES['project_file']['type'];
+        $file_tmp_name = $_FILES['project_file']['tmp_name'];
+        $file_path = '../uploads/files/projects/';
+        $project_file = upload_file($dbconn, $file_name, $file_type, $file_tmp_name, $redirect, $file_path);
+    }
     // Store screenshots as a comma-separated list
     $project_screenshots = implode(',', $screenshots);
     // Prepare the SQL insert query using a prepared statement
-    $query = "INSERT INTO projects (project_name, category, project_description, project_thumbnail, project_images, project_link, affected) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO projects (project_name, category, project_description, project_thumbnail, project_images, project_link, project_file, affected) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "sssssss", $project_name,$project_category, $project_description, $thumbnailImage, $project_screenshots, $project_link, $user);
+        mysqli_stmt_bind_param($stmt, "ssssssss", $project_name, $project_category, $project_description, $thumbnailImage, $project_screenshots, $project_link, $project_file, $user);
         // Execute prepared statement
-        if (mysqli_stmt_execute($stmt)) {
-            $_SESSION["success"] = "Project added";
-            header("Location: $redirect");
-            exit();
-        } else {
-            $_SESSION["error"] = "Failed!! " . mysqli_stmt_error($stmt);
-            header("Location: $redirect");
-            exit();
-        }
-        mysqli_stmt_close($stmt);
+        executePreparedStmt($dbconn, $stmt, $redirect);
     } else {
         $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
         header("Location: $redirect");
@@ -112,44 +170,145 @@ if (isset($_POST['edit_project'])) {
     // Sanitize user input
     $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['project']));
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
-    $name = mysqli_real_escape_string($dbconn, $_POST['name']);
-    $email = mysqli_real_escape_string($dbconn, $_POST['email']);
-    $telephone = mysqli_real_escape_string($dbconn, $_POST['telephone']);
-    $website = mysqli_real_escape_string($dbconn, $_POST['website']);
-    $address = mysqli_real_escape_string($dbconn, $_POST['address']);
-    $description = mysqli_real_escape_string($dbconn, $_POST['description']);
-    // Avatar data
-    $logo = $_FILES['logo']['name'];
-    $logo_type = $_FILES['logo']['type'];
-    $logo_tmp_name = $_FILES['logo']['tmp_name'];
-    // ============= If Image Exists ==========================    
-    if (!empty($logo)) {
-        // Check if the uploads folder exists
-        if (!file_exists('../uploads/img/projects/')) {
-            mkdir('../uploads/img/projects/', 0777, true);
+    $project_name = mysqli_real_escape_string($dbconn, $_POST['project_name']);
+    $project_link = mysqli_real_escape_string($dbconn, $_POST['project_link']);
+    $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
+    $project_description = strtolower(mysqli_real_escape_string($dbconn, $_POST['project_description']));
+    // Handle Project Thumbnail Upload
+    $thumbnail = $_FILES['project_thumbnail']['name'];
+    $thumbnail_type = $_FILES['project_thumbnail']['type'];
+    $thumbnail_tmp_name = $_FILES['project_thumbnail']['tmp_name'];
+    $thumbnailImage = '';
+    if (!empty($thumbnail)) {
+        if (!file_exists('../uploads/img/projects/thumbnails/')) {
+            mkdir('../uploads/img/projects/thumbnails/', 0777, true);
         }
-        $path = '../uploads/img/projects/';
-        // Upload image
-        $itemImage = upload_file($dbconn, $logo, $logo_type, $logo_tmp_name, $redirect, $path);
+        $thumbnail_path = '../uploads/img/projects/thumbnails/';
+        $thumbnailImage = upload_file($dbconn, $thumbnail, $thumbnail_type, $thumbnail_tmp_name, $redirect, $thumbnail_path);
     }
     // Get project details or use default values
     $project_data = get_item_data($dbconn, "projects", " where id = '$id'");
-    $name = empty($name) ? $project_data['name'] : $name;
-    $email = empty($email) ? $project_data['email'] : $email;
-    $telephone = empty($telephone) ? $project_data['telephone'] : $telephone;
-    $website = empty($website) ? $project_data['website'] : $website;
-    $address = empty($address) ? $project_data['address'] : $address;
-    $itemImage = empty($itemImage) ? $project_data['logo'] : $itemImage;
-    $description = empty($description) ? $project_data['description'] : $description;
+    $user = empty($user) ? $project_data['affected'] : $user;
+    $project_name = empty($project_name) ? $project_data['project_name'] : $project_name;
+    $project_link = empty($project_link) ? $project_data['project_link'] : $project_link;
+    $project_category = empty($project_category) ? $project_data['project_category'] : $project_category;
+    $project_thumbnail = empty($project_thumbnail) ? $project_data['project_thumbnail'] : $project_thumbnail;
+    $project_description = empty($project_description) ? $project_data['project_description'] : $project_description;
     // Prepare the SQL insert query using a prepared statement
-    $query = "update projects set name=?,phone=?,email=?,logo=?,website=?,description=?,address=?,affected=? where id=?";
+    $query = "UPDATE projects SET project_name=?, category=?, project_description=?, project_thumbnail=?, project_link=?, affected=? WHERE id=?";
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     // Bind parameters and set their values
-    mysqli_stmt_bind_param($stmt, "sssssssss", $name, $telephone, $email, $itemImage, $website, $description, $address, $user, $id);
-    // Execute prepared statement
-    executePreparedStmt($stmt, $redirect);
+    mysqli_stmt_bind_param($stmt, "sssssss", $project_name, $project_category, $project_description, $thumbnailImage, $project_link, $user, $id);
+    executePreparedStmt($dbconn, $stmt, $redirect);
 }
+
+// Add project screenshots
+if (isset($_POST['add_project_screenshots'])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/project_list';
+    // Perform a security token check
+    token_check($_POST['add_project_screenshots_token'], $_SESSION['add_project_screenshots_token'], $redirect);
+    // Sanitize user input
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    $id = mysqli_real_escape_string($dbconn, $_POST['project']);
+    // Handle Project Screenshots Upload (multiple files)
+    $screenshots = [];
+    if (!empty($_FILES['project_screenshots']['name'][0])) {
+        if (!file_exists('../uploads/img/projects/screenshots/')) {
+            mkdir('../uploads/img/projects/screenshots/', 0777, true);
+        }
+        $screenshots_path = '../uploads/img/projects/screenshots/';
+        foreach ($_FILES['project_screenshots']['name'] as $key => $screenshot_name) {
+            $screenshot_type = $_FILES['project_screenshots']['type'][$key];
+            $screenshot_tmp_name = $_FILES['project_screenshots']['tmp_name'][$key];
+            $uploaded_screenshot = upload_file($dbconn, $screenshot_name, $screenshot_type, $screenshot_tmp_name, $redirect, $screenshots_path);
+            if ($uploaded_screenshot) {
+                $screenshots[] = $uploaded_screenshot;
+            }
+        }
+    }
+    // Store screenshots as a comma-separated list
+    $project_screenshots = implode(',', $screenshots);
+    // Prepare the SQL insert query using a prepared statement
+    $query = "UPDATE projects set project_images=?,affected=? where id=?";
+    $stmt = mysqli_prepare($dbconn, $query);
+    if ($stmt) {
+        // Bind parameters and set their values
+        mysqli_stmt_bind_param($stmt, "sss", $project_screenshots, $user, $id);
+        // Execute prepared statement
+        executePreparedStmt($dbconn, $stmt, $redirect);
+    } else {
+        $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
+        header("Location: $redirect");
+        exit();
+    }
+}
+
+// Change project file
+if (isset($_POST['change_project_file'])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/project_list';
+    // Perform a security token check
+    token_check($_POST['change_project_file_token'], $_SESSION['change_project_file_token'], $redirect);
+    // Sanitize user input
+    $id = mysqli_real_escape_string($dbconn, $_POST['project']);
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    // Handle Project File Upload (single file)
+    $project_file = '';
+    if (!empty($_FILES['project_file']['name'])) {
+        if (!file_exists('../uploads/files/projects/')) {
+            mkdir('../uploads/files/projects/', 0777, true);
+        }
+        $file_name = $_FILES['project_file']['name'];
+        $file_type = $_FILES['project_file']['type'];
+        $file_tmp_name = $_FILES['project_file']['tmp_name'];
+        $file_path = '../uploads/files/projects/';
+        $project_file = upload_file($dbconn, $file_name, $file_type, $file_tmp_name, $redirect, $file_path);
+    }
+    // Prepare the SQL insert query using a prepared statement
+    $query = "update projects set project_file=?,affected=? where id=?";
+    $stmt = mysqli_prepare($dbconn, $query);
+    if ($stmt) {
+        // Bind parameters and set their values
+        mysqli_stmt_bind_param($stmt, "sss", $project_file, $user, $id);
+        // Execute prepared statement
+        executePreparedStmt($dbconn, $stmt, $redirect);
+    } else {
+        $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
+        header("Location: $redirect");
+        exit();
+    }
+}
+
+
+// Delete media
+if (isset($_GET['delete_media'])) {
+    // Variable declaration
+    $media_data = $_GET["delete_media"];
+    // Get the data
+    $data = decode_array($media_data);
+    $project_id = $data[0];  
+    $image = $data[1]; 
+    // Define the redirection URL
+    $redirect = base_url().'admin/projects/manage_media?item='.$project_id;
+    // Project media
+    $project_media = get_item_name_by_id($dbconn,"projects","project_images","id",$project_id);
+    $media_array = explode(",", $project_media);
+    if (($key = array_search($image, $media_array)) !== false) {
+        unset($media_array[$key]);
+    }
+    $new_media = implode(",", $media_array);
+    // Prepare the SQL insert query using a prepared statement	
+    $query = "update projects set project_images=? where id=?";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "ss",$new_media,$project_id);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect);
+}
+
 
 // Deactivate project
 if (isset($_GET["deactivate_project"])) {
@@ -165,7 +324,7 @@ if (isset($_GET["deactivate_project"])) {
     // Bind parameters and set their values
     mysqli_stmt_bind_param($stmt, "ss", $status, $id);
     // Execute prepared statement
-    executePreparedStmt($stmt, $redirect);
+    executePreparedStmt($dbconn, $stmt, $redirect);
 }
 
 // Activate project
@@ -182,7 +341,8 @@ if (isset($_GET["activate_project"])) {
     // Bind parameters and set their values
     mysqli_stmt_bind_param($stmt, "ss", $status, $id);
     // Execute prepared statement
-    executePreparedStmt($stmt, $redirect);
+    executePreparedStmt($dbconn, $stmt, $redirect);
+
 }
 
 // Delete project
@@ -200,8 +360,8 @@ if (isset($_GET['delete_project'])) {
     // Bind parameters and set their values
     mysqli_stmt_bind_param($stmt, "sss", $status, $deleted, $id);
     // Execute prepared statement
-    executePreparedStmt($stmt, $redirect);
-}
+    executePreparedStmt($dbconn, $stmt, $redirect);
 
+}
 $dbconn->close();
 ?>

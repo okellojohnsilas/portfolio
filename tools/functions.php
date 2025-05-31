@@ -228,6 +228,14 @@
         }
     }
 
+    // Render CSRF token
+    function render_tokens($token_name) {
+        $token_name = $token_name.'_token';
+        $_SESSION[$token_name] = md5(uniqid(mt_rand(), true));
+        echo '<input type="hidden" name="user" value="' . $_SESSION['control']['id'] . '" />';
+        echo '<input type="hidden" value="' . $_SESSION[$token_name]  . '" name="'.$token_name.'" />';
+    }
+
     // Display status
     function display_status($status){
         if($status == 1){
@@ -300,16 +308,16 @@
     }
 
     // Execute prepared statement
-    function executePreparedStmt($dbconn,$stmt, $redirect_success, $redirect_error) {
+    function executePreparedStmt($dbconn,$stmt, $redirect) {
         // Execute the prepared statement
-        if (mysqli_stmt_execute($stmt)) {
-            // $_SESSION["success"] = $success_msg;
-            header('Location: '.$redirect_success);
+        if (mysqli_stmt_execute(statement: $stmt)) {
+            $_SESSION["success"] = "Completed successfully";
+            header('Location: '.$redirect);
             exit();
         } else {
             // Error handling
             $_SESSION['error'] = $dbconn->error;
-            header('Location: '.$redirect_error);
+            header('Location: '.$redirect);
             exit();
         }
         // Close the prepared statement

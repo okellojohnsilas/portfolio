@@ -9,7 +9,7 @@
         // Extract the file extension
         $file_extension = pathinfo($image, PATHINFO_EXTENSION);
         // Define the allowed image extensions
-        $allowed_extensions = ["png", "jpg", "jpeg", "jfif"];
+        $allowed_extensions = ["png", "jpg", "jpeg", "jfif", 'pdf'];
         // Check if the file type is valid
         if (!in_array(strtolower($file_extension), $allowed_extensions) && !empty($image_type)) {
             $_SESSION["error"] = "The file type that has been uploaded is not valid";

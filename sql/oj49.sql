@@ -695,6 +695,7 @@ create table if not exists projects(
     project_thumbnail text,
     project_images text,
     project_link text,
+    project_file text,
     status text default '1',
     deleted text default '0',
     affected text,
@@ -715,7 +716,6 @@ begin
 end;
 // delimiter ;
 
-
 -- Project table mirror
 drop table if exists mrr_projects;
 create table if not exists mrr_projects(
@@ -732,6 +732,8 @@ create table if not exists mrr_projects(
     old_project_images text,
     project_link text,
     old_project_link text,
+    project_file text,
+    old_project_file text,
     status text,
     old_status text,
     deleted text,
@@ -754,6 +756,7 @@ begin
         project_thumbnail, old_project_thumbnail,
         project_images, old_project_images,
         project_link, old_project_link,
+        project_file, old_project_file,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -764,6 +767,7 @@ begin
         new.project_thumbnail, null,
         new.project_images, null,
         new.project_link, null,
+        new.project_file, null,
         new.status, null,
         new.deleted, null,
         new.affected, 'insert'
@@ -785,6 +789,7 @@ begin
             project_thumbnail, old_project_thumbnail,
             project_images, old_project_images,
             project_link, old_project_link,
+            project_file, old_project_file,
             status, old_status,
             deleted, old_deleted,
             who, what
@@ -795,6 +800,7 @@ begin
             new.project_thumbnail, old.project_thumbnail,
             new.project_images, old.project_images,
             new.project_link, old.project_link,
+            new.project_file, old.project_file,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'delete'
@@ -807,6 +813,7 @@ begin
             project_thumbnail, old_project_thumbnail,
             project_images, old_project_images,
             project_link, old_project_link,
+            project_file, old_project_file,
             status, old_status,
             deleted, old_deleted,
             who, what
@@ -817,6 +824,7 @@ begin
             new.project_thumbnail, old.project_thumbnail,
             new.project_images, old.project_images,
             new.project_link, old.project_link,
+            new.project_file, old.project_file,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'update'
@@ -838,6 +846,7 @@ begin
         project_thumbnail, old_project_thumbnail,
         project_images, old_project_images,
         project_link, old_project_link,
+        project_file, old_project_file,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -848,6 +857,7 @@ begin
         null, old.project_thumbnail,
         null, old.project_images,
         null, old.project_link,
+        null, old.project_file,
         null, old.status,
         null, old.deleted,
         old.affected, 'delete'

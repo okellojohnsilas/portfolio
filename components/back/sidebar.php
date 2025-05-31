@@ -36,7 +36,7 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="<?php print base_url().'admin/projects/categories'?>">Project Categories</a></li>
-                        <li><a href="<?php print base_url().'admin/projects/projects'?>">Projects</a></li>
+                        <li><a href="<?php print base_url().'admin/projects/project_list'?>">Projects</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
