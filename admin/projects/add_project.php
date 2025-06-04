@@ -32,7 +32,7 @@
     <form action="<?php print base_url() . 'processes/projects' ?>" method="POST" enctype="multipart/form-data">
     <?php render_tokens('add_project'); ?>
     <div class="row pb-2">
-        <div class="col-md-4 border-right border-primary">
+        <div class="col-md-7 border-right border-primary">
             <div class="form-group">
                 <label class="">Project Name <span class="text-danger">(*Required)</span></label>
                 <input class="form-control form-control-sm border border-primary" type="text" name="project_name"
@@ -75,7 +75,7 @@
                     name="project_screenshots[]" multiple>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="html-editor pb-2 border-primary">
                 <textarea class="textarea_editor form-control border-radius-0 border-primary" rows="20"
                     name="project_description" required placeholder="Enter description here ..."></textarea>

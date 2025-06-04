@@ -45,7 +45,11 @@
                             <hr class="my-4 primary-bg-color">
                         </div>
                         <!-- End Section Title -->
-                        <form action="" method="post" class="" data-aos="fade-up" data-aos-delay="200">
+                        <form action="<?php print base_url().'processes/contact' ?>" method="POST"
+                            enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
+                            <input type="hidden"
+                                value="<?php print $_SESSION['contact_us_token'] = md5(uniqid(mt_rand(), true));?>"
+                                name="contact_us_token">
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <label for="name-field" class="primary-color font-weight-bold">Your Name</label>
@@ -68,7 +72,11 @@
                                         id="message-field" required=""></textarea>
                                 </div>
                                 <div class="col-md-12 text-center pt-2">
-                                    <button type="submit" class="btn btn-block primary-btn">SEND
+                                    <div class="h-captcha" data-sitekey="e5b7b5f3-2188-4062-902e-b3ede5b85946"></div>
+                                </div>
+                                <div class="col-md-12 text-center pt-2">
+                                    <button type="submit" name="send_feedback" class="btn btn-block primary-btn">SEND
+                                        MESSAGE
                                         <i class="far fa-paper-plane"></i></button>
                                 </div>
                             </div>

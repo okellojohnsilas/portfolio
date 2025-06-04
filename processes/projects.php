@@ -40,7 +40,6 @@ if (isset($_POST['edit_project_category'])) {
     token_check($_POST['edit_project_category_token'], $_SESSION['edit_project_category_token'], $redirect);
     // Sanitize user input
     $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['category']));
-    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
     // Prepare the SQL insert query using a prepared statement
     $query = "UPDATE project_categories set category=?, affected=? where id=?";
@@ -192,14 +191,15 @@ if (isset($_POST['edit_project'])) {
     $project_name = empty($project_name) ? $project_data['project_name'] : $project_name;
     $project_link = empty($project_link) ? $project_data['project_link'] : $project_link;
     $project_category = empty($project_category) ? $project_data['project_category'] : $project_category;
-    $project_thumbnail = empty($project_thumbnail) ? $project_data['project_thumbnail'] : $project_thumbnail;
+    $project_thumbnail = empty($thumbnailImage) ? $project_data['project_thumbnail'] : $thumbnailImage;
     $project_description = empty($project_description) ? $project_data['project_description'] : $project_description;
+    print($project_thumbnail);
     // Prepare the SQL insert query using a prepared statement
     $query = "UPDATE projects SET project_name=?, category=?, project_description=?, project_thumbnail=?, project_link=?, affected=? WHERE id=?";
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     // Bind parameters and set their values
-    mysqli_stmt_bind_param($stmt, "sssssss", $project_name, $project_category, $project_description, $thumbnailImage, $project_link, $user, $id);
+    mysqli_stmt_bind_param($stmt, "sssssss", $project_name, $project_category, $project_description, $project_thumbnail, $project_link, $user, $id);
     executePreparedStmt($dbconn, $stmt, $redirect);
 }
 
@@ -281,7 +281,6 @@ if (isset($_POST['change_project_file'])) {
     }
 }
 
-
 // Delete media
 if (isset($_GET['delete_media'])) {
     // Variable declaration
@@ -308,7 +307,6 @@ if (isset($_GET['delete_media'])) {
     // Execute prepared statement
     executePreparedStmt($dbconn, $stmt, $redirect);
 }
-
 
 // Deactivate project
 if (isset($_GET["deactivate_project"])) {

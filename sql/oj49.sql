@@ -377,6 +377,7 @@ create table if not exists website_data(
     id text,
     hero_tag text,
     hero_sub_tag text,
+    hero_sub_tag_words text,
     about text,
     contact_email text,
     twitter text,
@@ -402,6 +403,7 @@ begin
     end if;
 end;
 // delimiter ;
+
 -- Website Data mirror table
 drop table if exists mrr_website_data;
 create table if not exists mrr_website_data(
@@ -410,6 +412,8 @@ create table if not exists mrr_website_data(
     old_hero_tag text,
     hero_sub_tag text,
     old_hero_sub_tag text,
+    hero_sub_tag_words text,
+    old_hero_sub_tag_words text,
     about text,
     old_about text,
     contact_email text,
@@ -440,6 +444,7 @@ begin
     insert into mrr_website_data (
         hero_tag, old_hero_tag,
         hero_sub_tag, old_hero_sub_tag,
+        hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
         contact_email, old_contact_email,
         twitter, old_twitter,
@@ -452,6 +457,7 @@ begin
     ) values (
         new.hero_tag, null,
         new.hero_sub_tag, null,
+        new.hero_sub_tag_words, null,
         new.about, null,
         new.contact_email, null,
         new.twitter, null,
@@ -475,6 +481,7 @@ begin
         insert into mrr_website_data (
             hero_tag, old_hero_tag,
             hero_sub_tag, old_hero_sub_tag,
+            hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
             contact_email, old_contact_email,
             twitter, old_twitter,
@@ -487,6 +494,7 @@ begin
         ) values (
             new.hero_tag, old.hero_tag,
             new.hero_sub_tag, old.hero_sub_tag,
+            new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
             new.contact_email, old.contact_email,
             new.twitter, old.twitter,
@@ -501,6 +509,7 @@ begin
         insert into mrr_website_data (
             hero_tag, old_hero_tag,
             hero_sub_tag, old_hero_sub_tag,
+            hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
             contact_email, old_contact_email,
             twitter, old_twitter,
@@ -513,6 +522,7 @@ begin
         ) values (
             new.hero_tag, old.hero_tag,
             new.hero_sub_tag, old.hero_sub_tag,
+            new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
             new.contact_email, old.contact_email,
             new.twitter, old.twitter,
@@ -536,6 +546,7 @@ begin
     insert into mrr_website_data (
         hero_tag, old_hero_tag,
         hero_sub_tag, old_hero_sub_tag,
+        hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
         contact_email, old_contact_email,
         twitter, old_twitter,
@@ -548,6 +559,7 @@ begin
     ) values (
         null, old.hero_tag,
         null, old.hero_sub_tag,
+        null, old.hero_sub_tag_words,
         null, old.about,
         null, old.contact_email,
         null, old.twitter,
@@ -560,6 +572,7 @@ begin
     );
 end$$
 delimiter ;
+
 -- Project Categories table
 drop table if exists project_categories;
 create table if not exists project_categories(    
@@ -1145,3 +1158,157 @@ begin
 end$$
 delimiter ;
 
+-- Contact table
+drop table if exists contact_data;
+create table if not exists contact_data(    
+    id text,
+    name text,
+    email text,
+    subject text,
+    message text,
+    isResponded text,
+    isResolved text,
+    status text default '1',
+	deleted text default '0',
+    affected text,
+    added timestamp not null default current_timestamp(),
+    last_updated timestamp not null default current_timestamp() on update current_timestamp()
+);
+-- Control Data mirror table
+drop table if exists mrr_control_data;
+create table if not exists mrr_control_data(
+    mirror_id int(30) not null auto_increment primary key,
+    name text,
+    old_name text,
+    email text,
+    old_email text,
+    subject text,
+    old_subject text,
+    message text,
+    old_message text,
+    isResponded text,
+    old_isResponded text,
+    isResolved text,
+    old_isResolved text,
+    status text,
+    old_status text,
+    deleted text,
+    old_deleted text,
+    who text,
+    what text,
+    `when` timestamp not null default current_timestamp()
+);
+
+-- Trigger to log insert into `contact_data`
+drop trigger if exists TRG_log_contact_data_insert;
+delimiter $$
+create trigger TRG_log_contact_data_insert after insert on `contact_data`
+for each row
+begin
+    insert into mrr_control_data (
+        name, old_name,
+        email, old_email,
+        subject, old_subject,
+        message, old_message,
+        isResponded, old_isResponded,
+        isResolved, old_isResolved,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        new.name, null,
+        new.email, null,
+        new.subject, null,
+        new.message, null,
+        new.isResponded, null,
+        new.isResolved, null,
+        new.status, null,
+        new.deleted, null,
+        new.affected, 'insert'
+    );
+end$$
+delimiter ;
+
+-- Trigger to log after update into `contact_data`
+drop trigger if exists TRG_log_contact_data_update;
+delimiter $$
+create trigger TRG_log_contact_data_update after update on `contact_data`
+for each row
+begin
+    if new.deleted = 1 then
+        insert into mrr_control_data (
+            name, old_name,
+            email, old_email,
+            subject, old_subject,
+            message, old_message,
+            isResponded, old_isResponded,
+            isResolved, old_isResolved,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.name, old.name,
+            new.email, old.email,
+            new.subject, old.subject,
+            new.message, old.message,
+            new.isResponded, old.isResponded,
+            new.isResolved, old.isResolved,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'delete'
+        );
+    else
+        insert into mrr_control_data (
+            name, old_name,
+            email, old_email,
+            subject, old_subject,
+            message, old_message,
+            isResponded, old_isResponded,
+            isResolved, old_isResolved,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.name, old.name,
+            new.email, old.email,
+            new.subject, old.subject,
+            new.message, old.message,
+            new.isResponded, old.isResponded,
+            new.isResolved, old.isResolved,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'update'
+        );
+    end if;
+end$$
+delimiter ;
+
+-- Trigger to log after delete into `contact_data`
+drop trigger if exists TRG_log_contact_data_delete;
+delimiter $$
+create trigger TRG_log_contact_data_delete after delete on `contact_data`
+for each row
+begin
+    insert into mrr_control_data (
+        name, old_name,
+        email, old_email,
+        subject, old_subject,
+        message, old_message,
+        isResponded, old_isResponded,
+        isResolved, old_isResolved,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        null, old.name,
+        null, old.email,
+        null, old.subject,
+        null, old.message,
+        null, old.isResponded,
+        null, old.isResolved,
+        null, old.status,
+        null, old.deleted,
+        old.affected, 'delete'
+    );
+end$$
+delimiter ;

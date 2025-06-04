@@ -36,6 +36,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Toastify CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- hcaptcha -->
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     <style>
     .primary-color {
         color: #040b15;
@@ -69,6 +73,11 @@
 
     .text-justify {
         text-align: justify;
+    }
+
+    canvas#cap {
+        display: block;
+        margin-bottom: 8px;
     }
     </style>
 </head>

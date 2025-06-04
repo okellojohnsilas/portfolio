@@ -1,7 +1,7 @@
 <?php 
   /* Start Session */ 
   session_start();
-  
+
   /* Base Url */ 
   function base_url(){
     $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
