@@ -9,7 +9,6 @@
     // include '../components/back/preloader.php'; 
     // include '../components/back/header.php'; 
 ?>
-
 <body>
     <div class="header">
         <div class="header-left">

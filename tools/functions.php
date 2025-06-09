@@ -1,408 +1,461 @@
 <?php
-    // Navbar function
-    function navbar($dbconn) {
-        $navigation_query = "SELECT * FROM navigation WHERE status = 1 AND deleted = 0";
-        $navigation_items = mysqli_query($dbconn, $navigation_query);
-        if (mysqli_num_rows($navigation_items) > 0) {
-            print '
+// Navbar function
+function navbar($dbconn)
+{
+    $navigation_query = "SELECT * FROM navigation WHERE status = 1 AND deleted = 0";
+    $navigation_items = mysqli_query($dbconn, $navigation_query);
+    if (mysqli_num_rows($navigation_items) > 0) {
+        print '
             <nav class="nav-main mainmenu-nav d-none d-xl-block">
                 <ul class="mainmenu">';
-            while ($navigation_item = mysqli_fetch_assoc($navigation_items)) {
-                $link = empty($navigation_item['link']) ? base_url() : $navigation_item['link'];
-                $navigation_id = $navigation_item['id'];
-                $sub_navigation_query = "select * from sub_navigation where parent = '$navigation_id' and status = 1 and deleted = 0";
-                $sub_navigation_items = mysqli_query($dbconn, $sub_navigation_query);
-                if (mysqli_num_rows($sub_navigation_items) > 0) {
-                    echo '<li class="has-droupdown">
-                    <a class="nav-link" href="'.$link.'">'.ucwords($navigation_item['item']).'</a>';
-                    print '<ul class="submenu">';
-                    while ($sub_navigation_item = mysqli_fetch_assoc($sub_navigation_items)) {
-                        echo '
+        while ($navigation_item = mysqli_fetch_assoc($navigation_items)) {
+            $link = empty($navigation_item['link']) ? base_url() : $navigation_item['link'];
+            $navigation_id = $navigation_item['id'];
+            $sub_navigation_query = "select * from sub_navigation where parent = '$navigation_id' and status = 1 and deleted = 0";
+            $sub_navigation_items = mysqli_query($dbconn, $sub_navigation_query);
+            if (mysqli_num_rows($sub_navigation_items) > 0) {
+                echo '<li class="has-droupdown">
+                    <a class="nav-link" href="' . $link . '">' . ucwords($navigation_item['item']) . '</a>';
+                print '<ul class="submenu">';
+                while ($sub_navigation_item = mysqli_fetch_assoc($sub_navigation_items)) {
+                    echo '
                         <li class="">
-                            <a href="'.$sub_navigation_item['link'].'" class="">'.ucwords($sub_navigation_item['item']).'</a>
+                            <a href="' . $sub_navigation_item['link'] . '" class="">' . ucwords($sub_navigation_item['item']) . '</a>
                         </li>';
-                    }
-                    echo '</ul>';
-                }else{
-                    print '<li class="">
-                    <a class="nav-item" href="'.$link.'">'.ucfirst($navigation_item['item']).'</a>';
                 }
-                echo '</li>';
+                echo '</ul>';
+            } else {
+                print '<li class="">
+                    <a class="nav-item" href="' . $link . '">' . ucfirst($navigation_item['item']) . '</a>';
             }
-            echo '</ul>
-            </nav>';
+            echo '</li>';
         }
+        echo '</ul>
+            </nav>';
     }
+}
 
-    // Mobile navbar
-    function mobile_navbar($dbconn) {
-        $navigation_query = "SELECT * FROM navigation WHERE status = 1 AND deleted = 0";
-        $navigation_items = mysqli_query($dbconn, $navigation_query);
-        if (mysqli_num_rows($navigation_items) > 0) {
-            print '
+// Mobile navbar
+function mobile_navbar($dbconn)
+{
+    $navigation_query = "SELECT * FROM navigation WHERE status = 1 AND deleted = 0";
+    $navigation_items = mysqli_query($dbconn, $navigation_query);
+    if (mysqli_num_rows($navigation_items) > 0) {
+        print '
                 <nav class="nav-main mainmenu-nav">
                 <ul class="mainmenu">';
-            while ($navigation_item = mysqli_fetch_assoc($navigation_items)) {
-                $link = empty($navigation_item['link']) ? base_url() : $navigation_item['link'];
-                $navigation_id = $navigation_item['id'];
-                $sub_navigation_query = "select * from sub_navigation where parent = '$navigation_id' and status = 1 and deleted = 0";
-                $sub_navigation_items = mysqli_query($dbconn, $sub_navigation_query);
-                if (mysqli_num_rows($sub_navigation_items) > 0) {
-                    echo '<li class="has-droupdown">
-                    <a class="nav-link" href="'.$link.'">'.ucwords($navigation_item['item']).'</a>';
-                    print '<ul class="submenu">';
-                    while ($sub_navigation_item = mysqli_fetch_assoc($sub_navigation_items)) {
-                        echo '
+        while ($navigation_item = mysqli_fetch_assoc($navigation_items)) {
+            $link = empty($navigation_item['link']) ? base_url() : $navigation_item['link'];
+            $navigation_id = $navigation_item['id'];
+            $sub_navigation_query = "select * from sub_navigation where parent = '$navigation_id' and status = 1 and deleted = 0";
+            $sub_navigation_items = mysqli_query($dbconn, $sub_navigation_query);
+            if (mysqli_num_rows($sub_navigation_items) > 0) {
+                echo '<li class="has-droupdown">
+                    <a class="nav-link" href="' . $link . '">' . ucwords($navigation_item['item']) . '</a>';
+                print '<ul class="submenu">';
+                while ($sub_navigation_item = mysqli_fetch_assoc($sub_navigation_items)) {
+                    echo '
                         <li class="">
-                            <a href="'.$sub_navigation_item['link'].'" class="">'.ucwords($sub_navigation_item['item']).'</a>
+                            <a href="' . $sub_navigation_item['link'] . '" class="">' . ucwords($sub_navigation_item['item']) . '</a>
                         </li>';
-                    }
-                    echo '</ul>';
-                }else{
-                    print '<li class="">
-                    <a class="nav-item" href="'.$link.'">'.ucfirst($navigation_item['item']).'</a>';
                 }
-                echo '</li>';
+                echo '</ul>';
+            } else {
+                print '<li class="">
+                    <a class="nav-item" href="' . $link . '">' . ucfirst($navigation_item['item']) . '</a>';
             }
-            echo '</ul>
+            echo '</li>';
+        }
+        echo '</ul>
             </nav>';
-        }
+    }
+}
+
+// Get all items from the table
+function get_items_w_custom_query($dbconn, $query)
+{
+    return mysqli_query($dbconn, $query);
+}
+
+// Get all items from the table
+function get_all_items($dbconn, $table)
+{
+    // Select data query
+    $select_data_query = 'select * from ' . $table . ' where deleted = 0';
+    return mysqli_query($dbconn, $select_data_query);
+}
+
+// Get select items from the table
+function get_items($dbconn, $table, $where)
+{
+    // Select data query
+    $select_data_query = 'select * from ' . $table . ' ' . $where;
+    return mysqli_query($dbconn, $select_data_query);
+}
+
+// Get compare strings
+function get_non_similar_strings($old_string, $new_string)
+{
+    if (strcasecmp($old_string, $new_string) != 0) {
+        return '<span class="text-danger font-weight-bold">' . $new_string . '</span>';
+    } else {
+        return $old_string;
+    }
+}
+
+// Get single item
+function get_item_data($dbconn, $table, $where)
+{
+    if (empty($where)) {
+        $select_data_query = 'select * from ' . $table;
+    } else {
+        $select_data_query = 'select * from ' . $table . ' ' . $where;
+    }
+    // return $select_data_query;
+    return mysqli_fetch_assoc(mysqli_query($dbconn, $select_data_query));
+}
+
+function get_item_name_by_id($dbconn, $table, $column, $id_column_name, $id)
+{
+    if (empty($id_column_name) && empty($id)) {
+        $where = '';
+    } else {
+        $where = "where $id_column_name = '$id' and status = 1 and deleted = 0";
+    }
+    if (!empty($id)) {
+        $module = get_item_data($dbconn, $table, $where);
+        return !empty($module[$column]) ? $module[$column] : null;
+    }
+}
+
+// Print item if not empty
+function check_if_not_empty($item)
+{
+    if (!empty($item)) {
+        return $item;
+    }
+}
+
+// Count table items
+function count_items($dbconn, $sql)
+{
+    return $rowcount = mysqli_num_rows(mysqli_query($dbconn, $sql));
+}
+
+// Return booleans from check box 
+function check_box_boolean($value)
+{
+    if (strcasecmp($value, "on") == 0) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+// Encode array
+function encode_array($array)
+{
+    return urlencode(serialize($array));
+}
+
+// Decode array
+function decode_array($encoded_array)
+{
+    return unserialize(urldecode($encoded_array));
+}
+
+// Check if the event exists
+function check_if_record_exists($dbconn, $query)
+{
+    $result = $dbconn->query($query);
+    if ($result->num_rows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getIPAddress()
+{
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $clientIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+        $clientIP = $_SERVER['HTTP_CLIENT_IP'];
+    } else {
+        $clientIP = $_SERVER['REMOTE_ADDR'];
     }
 
-    // Get all items from the table
-    function get_items_w_custom_query($dbconn,$query){
-        return mysqli_query($dbconn, $query);
-    }
+    return $clientIP;
+}
 
-    // Get all items from the table
-    function get_all_items($dbconn,$table){
-        // Select data query
-        $select_data_query = 'select * from '.$table.' where deleted = 0';
-        return mysqli_query($dbconn, $select_data_query);
-    }
-
-    // Get select items from the table
-    function get_items($dbconn,$table,$where){
-        // Select data query
-        $select_data_query = 'select * from '.$table.' '.$where;
-        return mysqli_query($dbconn, $select_data_query);
-    }
-
-    // Get compare strings
-    function get_non_similar_strings($old_string,$new_string){
-        if(strcasecmp($old_string,$new_string)!=0){
-            return '<span class="text-danger font-weight-bold">'.$new_string.'</span>';
-        }
-        else{
-            return $old_string;
-        }
-    }
-
-    // Get single item
-    function get_item_data($dbconn,$table,$where){
-        if(empty($where)){
-            $select_data_query = 'select * from '.$table;
-        }else{
-            $select_data_query = 'select * from '.$table.' '.$where;
-        }
-        // return $select_data_query;
-        return mysqli_fetch_assoc(mysqli_query($dbconn, $select_data_query));
-    }
-    
-    function get_item_name_by_id($dbconn, $table, $column, $id_column_name, $id) {
-        if (!empty($id)) {
-            $module = get_item_data($dbconn, $table, "where $id_column_name = '$id' and status = 1 and deleted = 0");
-            return !empty($module[$column]) ? $module[$column] : null;
-        }
-    }
-    
-    // Print item if not empty
-    function check_if_not_empty($item){
-        if(!empty($item)){
-           return $item;
-        }
-    }
-
-    // Count table items
-    function count_items($dbconn,$sql){
-        return $rowcount = mysqli_num_rows(mysqli_query($dbconn, $sql));
-    }
-
-    // Return booleans from check box 
-    function check_box_boolean($value){
-        if(strcasecmp($value,"on") == 0){
-           return 1;
-        }else {
-            return 0;
-        }
-    }
-
-    // Encode array
-    function encode_array($array){
-        return urlencode (serialize($array));
-    }
-
-    // Decode array
-    function decode_array($encoded_array){
-        return unserialize(urldecode($encoded_array));
-    }
-
-    // Check if the event exists
-    function check_if_record_exists($dbconn,$query){
-        $result = $dbconn->query($query);
-        if($result->num_rows > 0 ){
-            return true;
-        }
-        else{
-            return false;
-        }  
-    }
-
-    function getIPAddress() {
-        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $clientIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-            $clientIP = $_SERVER['HTTP_CLIENT_IP'];
-        } else {
-            $clientIP = $_SERVER['REMOTE_ADDR'];
-        }
-    
-        return $clientIP;
-    }
-    
-    // Function to select gender
-    function select_gender($gender=0){
-        print '<div class="form-group">
+// Function to select gender
+function select_gender($gender = 0)
+{
+    print '<div class="form-group">
                 <label class="font-weight-bold">Gender<span class="text-danger"> (*Required)</span></label>
                 <select class="custom-select2 form-control form-control-sm" id="gender" name="gender">';
-        if($gender==1){
-            print'
+    if ($gender == 1) {
+        print '
                 <option value="1" selected>Male</option>
-                <option value="0">Female</option>';          
-        }
-        else{
-            print'
+                <option value="0">Female</option>';
+    } else {
+        print '
                 <option value="0" selected>Female</option>
-                <option value="1">Male</option>';   
-        }
-        print ' </select>
+                <option value="1">Male</option>';
+    }
+    print ' </select>
             </div>';
-    }
+}
 
-    // Return authorized sub modules
-    function get_dept_allowed_sub_modules($dbconn,$dept){
-        $query= "select sub_module.sub_module_name as sub_module_name, sub_module.sub_module_id as sub_module_id from sub_module,module_assignment where sub_module.module = module_assignment.module and module_assignment.department = '$dept'";
-        return $allowed_sub_modules= mysqli_query($dbconn,$query);
+// Return authorized sub modules
+function get_dept_allowed_sub_modules($dbconn, $dept)
+{
+    $query = "select sub_module.sub_module_name as sub_module_name, sub_module.sub_module_id as sub_module_id from sub_module,module_assignment where sub_module.module = module_assignment.module and module_assignment.department = '$dept'";
+    return $allowed_sub_modules = mysqli_query($dbconn, $query);
+}
+
+// get_assigned_modules
+function get_assigned_modules($dbconn, $department_id)
+{
+    foreach (get_items($dbconn, "module_assignment", " where department = '$department_id' and deleted = 0") as $module) {
+        print '<span class="badge badge-dark">' . get_item_name_by_id($dbconn, 'module', 'module_name', 'module_id', $module['module']) . '</span>&nbsp;';
     }
-    
-    // get_assigned_modules
-    function get_assigned_modules($dbconn,$department_id){        
-        foreach (get_items($dbconn,"module_assignment"," where department = '$department_id' and deleted = 0") as $module){
-            print '<span class="badge badge-dark">'.get_item_name_by_id($dbconn,'module','module_name','module_id',$module['module']).'</span>&nbsp;';
+}
+
+// get_staff_assigned_roles
+function get_staff_assigned_roles($dbconn, $staff_id)
+{
+    if (!empty($staff_id)) {
+        foreach (get_items($dbconn, "assigned_staff_role", " where staff = '$staff_id' and deleted = 0") as $staff_role) {
+            print '<span class="badge badge-primary">' . ucwords(get_item_name_by_id($dbconn, 'staff_role', 'title', 'staff_role_id', $staff_role['staff_role'])) . '</span>&nbsp;';
         }
     }
+}
 
-    // get_staff_assigned_roles
-    function get_staff_assigned_roles($dbconn,$staff_id){
-        if(!empty($staff_id)){
-            foreach (get_items($dbconn,"assigned_staff_role"," where staff = '$staff_id' and deleted = 0") as $staff_role){
-                print '<span class="badge badge-primary">'.ucwords(get_item_name_by_id($dbconn,'staff_role','title','staff_role_id',$staff_role['staff_role'])).'</span>&nbsp;';
-            }
-        }
+// Get staff role permissions
+function get_role_permissions($dbconn, $staff_role)
+{
+    foreach (get_items($dbconn, "staff_role_permission", " where deleted = 0 and staff_role = '$staff_role'") as $permission) {
+        print '<span class="badge badge-dark">' . ucwords(get_item_name_by_id($dbconn, 'permission', 'permission', 'permission_id', $permission['permission'])) . '</span>&nbsp;';
     }
-    
-    // Get staff role permissions
-    function get_role_permissions($dbconn,$staff_role){ 
-        foreach (get_items($dbconn,"staff_role_permission"," where deleted = 0 and staff_role = '$staff_role'") as $permission){
-            print '<span class="badge badge-dark">'.ucwords(get_item_name_by_id($dbconn,'permission','permission','permission_id',$permission['permission'])).'</span>&nbsp;';
-        }
-    }
+}
 
-    // Get user title
-    function get_gender($gender){
-        if($gender != 1){
-            print 'F';
-        }        
-        else{
-            print 'M';
-        }
+// Get user title
+function get_gender($gender)
+{
+    if ($gender != 1) {
+        print 'F';
+    } else {
+        print 'M';
     }
+}
 
-    // Render CSRF token
-    function render_tokens($token_name) {
-        $token_name = $token_name.'_token';
-        $_SESSION[$token_name] = md5(uniqid(mt_rand(), true));
-        echo '<input type="hidden" name="user" value="' . $_SESSION['control']['id'] . '" />';
-        echo '<input type="hidden" value="' . $_SESSION[$token_name]  . '" name="'.$token_name.'" />';
+// Render CSRF token
+function render_tokens($token_name)
+{
+    $token_name = $token_name . '_token';
+    $_SESSION[$token_name] = md5(uniqid(mt_rand(), true));
+    echo '<input type="hidden" name="user" value="' . $_SESSION['control']['id'] . '" />';
+    echo '<input type="hidden" value="' . $_SESSION[$token_name] . '" name="' . $token_name . '" />';
+}
+
+// Display status
+function display_status($status)
+{
+    if ($status == 1) {
+        print '<span class="badge badge-success"><i class="icon-copy fa fa-check" aria-hidden="true"></i></span>';
+    } else {
+        print '<span class="badge badge-danger"><i class="icon-copy fa fa-ban" aria-hidden="true"></i></span>';
     }
+}
 
-    // Display status
-    function display_status($status){
-        if($status == 1){
-            print '<span class="badge badge-success"><i class="icon-copy fa fa-check" aria-hidden="true"></i></span>';
-        }        
-        else{
-            print '<span class="badge badge-danger"><i class="icon-copy fa fa-ban" aria-hidden="true"></i></span>';
-        }
-    }
-
-    // Display alerts
-    function display_alerts(){
-        if (isset($_SESSION["success"])){
-            print '<div class="alert alert-success" role="alert">'.$_SESSION["success"];
-                unset($_SESSION["success"]);
-            print '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+// Display alerts
+function display_alerts()
+{
+    if (isset($_SESSION["success"])) {
+        print '<div class="alert alert-success" role="alert">' . $_SESSION["success"];
+        unset($_SESSION["success"]);
+        print '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span> </button>
                     </div>';
-        } else if (isset($_SESSION["error"])){
-            print '<div class="alert alert-danger" role="alert">'.$_SESSION["error"];
-                unset($_SESSION["error"]);
-            print '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    } else if (isset($_SESSION["error"])) {
+        print '<div class="alert alert-danger" role="alert">' . $_SESSION["error"];
+        unset($_SESSION["error"]);
+        print '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                     </div>';
-        }
     }
+}
 
-    // Activate or deactivate actions
-    function status_buttons($url,$process,$name,$status,$id){
-        if($status != 1){
-            print '<a href="'.$url.'processes/'.$process.'?activate_'.$name.'='.$id.'" class="btn btn-sm btn-success activate"><i class="icon-copy fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activate"></i></a>';
-        }else{
-            print '<a href="'.$url.'processes/'.$process.'?deactivate_'.$name.'='.$id.'" class="btn btn-sm btn-warning deactivate"><i class="icon-copy fa fa-thumbs-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Deactivate"></i></a>';
-        }
+// Activate or deactivate actions
+function status_buttons($url, $process, $name, $status, $id)
+{
+    if ($status != 1) {
+        print '<a href="' . $url . 'processes/' . $process . '?activate_' . $name . '=' . $id . '" class="btn btn-sm btn-success activate"><i class="icon-copy fa fa-thumbs-up" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Activate"></i></a>';
+    } else {
+        print '<a href="' . $url . 'processes/' . $process . '?deactivate_' . $name . '=' . $id . '" class="btn btn-sm btn-warning deactivate"><i class="icon-copy fa fa-thumbs-down" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Deactivate"></i></a>';
     }
+}
 
-    // Deny button
-    function deny_button($link){
-        // <i class="icon-copy fa fa-minus-circle" aria-hidden="true"></i>
-        print '<a href="'.$link.'" class="btn btn-sm btn-danger deny"><i class="icon-copy fa fa-times-circle" aria-hidden="true"></i></a>';
-    }
-    
-    // Allow button
-    function allow_button($link){
-        // <i class="icon-copy fa fa-minus-circle" aria-hidden="true"></i>
-        print '<a href="'.$link.'" class="btn btn-sm btn-success allow"><i class="icon-copy fa fa-check" aria-hidden="true"></i></a>';
-    }
+// Deny button
+function deny_button($link)
+{
+    // <i class="icon-copy fa fa-minus-circle" aria-hidden="true"></i>
+    print '<a href="' . $link . '" class="btn btn-sm btn-danger deny"><i class="icon-copy fa fa-times-circle" aria-hidden="true"></i></a>';
+}
 
-    // Delete button
-    function delete_button($link){
-        print '<a href="'.$link.'" class="btn btn-sm btn-danger delete"><i class="icon-copy fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>';
-    }
+// Allow button
+function allow_button($link)
+{
+    // <i class="icon-copy fa fa-minus-circle" aria-hidden="true"></i>
+    print '<a href="' . $link . '" class="btn btn-sm btn-success allow"><i class="icon-copy fa fa-check" aria-hidden="true"></i></a>';
+}
 
-    // Edit button
-    function edit_button($href){
-        print '<a href="'.$href.'" class="btn btn-sm btn-primary"><i class="icon-copy fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>';
-    }
+// Delete button
+function delete_button($link)
+{
+    print '<a href="' . $link . '" class="btn btn-sm btn-danger delete"><i class="icon-copy fa fa-trash" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Delete"></i></a>';
+}
 
-    //Database CRUD table
-    function db_crud($dbconn,$query,$redirect){   
-        if ($dbconn->query($query) === true) {
-            $_SESSION["success"] = 'Action was competed succesfully';
-            header('Location: '.$redirect);
-            exit();
-        } else {
-            $_SESSION['error'] = 'Failed to complete action successfully. Maybe because: '. $dbconn->error;
-            header('Location: '.$redirect);
-            exit();
-        }
-    }
+// Edit button
+function edit_button($href)
+{
+    print '<a href="' . $href . '" class="btn btn-sm btn-primary"><i class="icon-copy fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit"></i></a>';
+}
 
-    // Execute prepared statement
-    function executePreparedStmt($dbconn,$stmt, $redirect,$success_message, $error_message) { 
-        // Set success and error messages with defaults
+//Database CRUD table
+function db_crud($dbconn, $query, $redirect)
+{
+    if ($dbconn->query($query) === true) {
+        $_SESSION["success"] = 'Action was competed succesfully';
+        header('Location: ' . $redirect);
+        exit();
+    } else {
+        $_SESSION['error'] = 'Failed to complete action successfully. Maybe because: ' . $dbconn->error;
+        header('Location: ' . $redirect);
+        exit();
+    }
+}
+
+// // Execute prepared statement
+// function executePreparedStmt($dbconn,$stmt, $redirect,$success_message='', $error_message= '') { 
+//     // Set success and error messages with defaults
+//     $_SESSION["success"] = !empty($success_message) ? $success_message : "Action completed successfully!";
+//     $_SESSION["error"] = !empty($error_message) ? $error_message : $dbconn->error;
+//     // Execute the prepared statement
+//     if (mysqli_stmt_execute(statement: $stmt)) {
+//         $_SESSION["success"];
+//         header('Location: '.$redirect);
+//         exit();
+//     } else {
+//         // Error handling
+//         $_SESSION['error'];
+//         header('Location: '.$redirect);
+//         exit();
+//     }
+//     // Close the prepared statement
+//     mysqli_stmt_close($stmt);
+// }
+
+function executePreparedStmt($dbconn, $stmt, $redirect, $success_message = '', $error_message = '')
+{
+    // Execute the prepared statement
+    if (mysqli_stmt_execute($stmt)) {
+        // Set success message
         $_SESSION["success"] = !empty($success_message) ? $success_message : "Action completed successfully!";
-        $_SESSION["error"] = !empty($error_message) ? $error_message : $dbconn->error;
-        // Execute the prepared statement
-        if (mysqli_stmt_execute(statement: $stmt)) {
-            $_SESSION["success"];
-            header('Location: '.$redirect);
-            exit();
-        } else {
-            // Error handling
-            $_SESSION['error'];
-            header('Location: '.$redirect);
-            exit();
-        }
-        // Close the prepared statement
-        mysqli_stmt_close($stmt);
+    } else {
+        // Set error message
+        $_SESSION["error"] = !empty($error_message) ? $error_message : mysqli_error($dbconn);
     }
-    
-    // Token check
-    function token_check($token1,$token2,$redirect){
-        if(strcmp($token1,$token2) != 0) {
-            $_SESSION['error'] = "Server side scripting has occurred. Please try again later.";
-            header('Location: '.$redirect);
-            exit();
-        }
-    }
-    
-    // Function to validate and sanitize a parameter
-    function sanitizeInput($input) {
-        // Remove leading and trailing spaces
-        $input = trim($input);
-        // Sanitize and escape for HTML
-        $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
-        return $input;
-    }
-    
-    // Function to upload and optimize an image using Intervention Image
-    function upload_file($db_connection, $image, $image_type, $image_tmp_name, $redirect, $path)
-    {
-        // Extract the file extension
-        $file_extension = pathinfo($image, PATHINFO_EXTENSION);
-        // Define the allowed image extensions
-        $allowed_extensions = ["png", "jpg", "jpeg", "jfif", 'pdf'];
-        // Check if the file type is valid
-        if (!in_array(strtolower($file_extension), $allowed_extensions) && !empty($image_type)) {
-            $_SESSION["error"] = "The file type that has been uploaded is not valid";
-            header("Location: $redirect");
-            exit();
-        }
-        // Generate a unique filename
-        $new_itemImage_name = md5(time()) . '_' . rand() . '.' . $file_extension;
-        $target = $path . $new_itemImage_name;
-        // Move the uploaded image
-        if (move_uploaded_file($image_tmp_name, $target)) {
-            return $new_itemImage_name;
-        } else {
-            $_SESSION["error"] = "Failed to upload the file because: " . $db_connection->error;
-            header("Location: $redirect");
-            exit();
-        }
-    }
-    // Function to upload image
-    // function upload_file($db_connection,$image,$image_type,$image_tmp_name,$redirect,$path){
-    //     $filenames = $image ;
-    //     $arr_filenames = explode(".", $filenames);
-    //     $ext = end($arr_filenames);
-    //     $allowedExts = array("image/png", "image/PNG", "image/jpg", "image/JPG", "image/jpeg", "image/JPEG","image/jfif", "image/JFIF","application/pdf","application/PDF","application/msword","application/MSWORD");
-    //     $new_itemImage_name = md5(time()).'_'.rand().'.';
-    //     $target = $path.$new_itemImage_name.$ext;
-    //     if ((!in_array($image_type, $allowedExts)) and (!empty($image_type))) {
-    //         $_SESSION["error"] = "The file type that has been uploaded  is not valid";
-    //         header("Location: $redirect");
-    //         exit();
-    //     } else {
-    //         if (move_uploaded_file($image_tmp_name, $target)) {
-    //             return $itemImage = $new_itemImage_name.$ext;
-    //         } else {
-    //             $_SESSION["error"] = "Failed to upload the file because: " . $db_connection->error;
-    //             header("Location: $redirect");
-    //             exit();
-    //         }
-    //     }
-    // }
-    
-    function generate_years_descending_from_current($numYears) {
-        $currentYear = date('Y');
-        $startYear = $currentYear;
-        $endYear = $currentYear - $numYears;
-        return range($startYear, $endYear);
-      }
+    // Close the prepared statement
+    mysqli_stmt_close($stmt);
+    // Redirect user
+    header('Location: ' . $redirect);
+    exit();
+}
 
-    // Country codes select dropdown
-    function country_codes (){
-        return '<!-- country codes (ISO 3166) and Dial codes. -->
+
+
+// Token check
+function token_check($token1, $token2, $redirect)
+{
+    if (strcmp($token1, $token2) != 0) {
+        $_SESSION['error'] = "Server side scripting has occurred. Please try again later.";
+        header('Location: ' . $redirect);
+        exit();
+    }
+}
+
+// Function to validate and sanitize a parameter
+function sanitizeInput($input)
+{
+    // Remove leading and trailing spaces
+    $input = trim($input);
+    // Sanitize and escape for HTML
+    $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+    return $input;
+}
+
+// Function to upload and optimize an image using Intervention Image
+function upload_file($db_connection, $image, $image_type, $image_tmp_name, $redirect, $path)
+{
+    // Extract the file extension
+    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
+    // Define the allowed image extensions
+    $allowed_extensions = ["png", "jpg", "jpeg", "jfif", 'pdf'];
+    // Check if the file type is valid
+    if (!in_array(strtolower($file_extension), $allowed_extensions) && !empty($image_type)) {
+        $_SESSION["error"] = "The file type that has been uploaded is not valid";
+        header("Location: $redirect");
+        exit();
+    }
+    // Generate a unique filename
+    $new_itemImage_name = md5(time()) . '_' . rand() . '.' . $file_extension;
+    $target = $path . $new_itemImage_name;
+    // Move the uploaded image
+    if (move_uploaded_file($image_tmp_name, $target)) {
+        return $new_itemImage_name;
+    } else {
+        $_SESSION["error"] = "Failed to upload the file because: " . $db_connection->error;
+        header("Location: $redirect");
+        exit();
+    }
+}
+// Function to upload image
+// function upload_file($db_connection,$image,$image_type,$image_tmp_name,$redirect,$path){
+//     $filenames = $image ;
+//     $arr_filenames = explode(".", $filenames);
+//     $ext = end($arr_filenames);
+//     $allowedExts = array("image/png", "image/PNG", "image/jpg", "image/JPG", "image/jpeg", "image/JPEG","image/jfif", "image/JFIF","application/pdf","application/PDF","application/msword","application/MSWORD");
+//     $new_itemImage_name = md5(time()).'_'.rand().'.';
+//     $target = $path.$new_itemImage_name.$ext;
+//     if ((!in_array($image_type, $allowedExts)) and (!empty($image_type))) {
+//         $_SESSION["error"] = "The file type that has been uploaded  is not valid";
+//         header("Location: $redirect");
+//         exit();
+//     } else {
+//         if (move_uploaded_file($image_tmp_name, $target)) {
+//             return $itemImage = $new_itemImage_name.$ext;
+//         } else {
+//             $_SESSION["error"] = "Failed to upload the file because: " . $db_connection->error;
+//             header("Location: $redirect");
+//             exit();
+//         }
+//     }
+// }
+
+function generate_years_descending_from_current($numYears)
+{
+    $currentYear = date('Y');
+    $startYear = $currentYear;
+    $endYear = $currentYear - $numYears;
+    return range($startYear, $endYear);
+}
+
+// Country codes select dropdown
+function country_codes()
+{
+    return '<!-- country codes (ISO 3166) and Dial codes. -->
         <div class="form-group">
         <label class="font-weight-bold">Country Code<span class="text-danger"> (*Required)</span></label>
         <select class="custom-select2 form-control form-control-sm" id="country_code" name="country_code">
@@ -625,5 +678,5 @@
             </optgroup>
         </select>
         </div>';
-    }
+}
 ?>

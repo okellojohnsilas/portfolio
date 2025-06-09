@@ -376,6 +376,7 @@ drop table if exists website_data;
 create table if not exists website_data(    
     id text,
     hero_tag text,
+    hero_image text,
     hero_sub_tag text,
     hero_sub_tag_words text,
     about text,
@@ -404,12 +405,13 @@ begin
 end;
 // delimiter ;
 
--- Website Data mirror table
 drop table if exists mrr_website_data;
 create table if not exists mrr_website_data(
     mirror_id int(30) not null auto_increment primary key,
     hero_tag text,
     old_hero_tag text,
+    hero_image text,
+    old_hero_image text,
     hero_sub_tag text,
     old_hero_sub_tag text,
     hero_sub_tag_words text,
@@ -443,6 +445,7 @@ for each row
 begin
     insert into mrr_website_data (
         hero_tag, old_hero_tag,
+        hero_image, old_hero_image,
         hero_sub_tag, old_hero_sub_tag,
         hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
@@ -456,6 +459,7 @@ begin
         who, what
     ) values (
         new.hero_tag, null,
+        new.hero_image, null,
         new.hero_sub_tag, null,
         new.hero_sub_tag_words, null,
         new.about, null,
@@ -480,6 +484,7 @@ begin
     if new.deleted = 1 then
         insert into mrr_website_data (
             hero_tag, old_hero_tag,
+            hero_image, old_hero_image,
             hero_sub_tag, old_hero_sub_tag,
             hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
@@ -493,6 +498,7 @@ begin
             who, what
         ) values (
             new.hero_tag, old.hero_tag,
+            new.hero_image, old.hero_image,
             new.hero_sub_tag, old.hero_sub_tag,
             new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
@@ -508,6 +514,7 @@ begin
     else
         insert into mrr_website_data (
             hero_tag, old_hero_tag,
+            hero_image, old_hero_image,
             hero_sub_tag, old_hero_sub_tag,
             hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
@@ -521,6 +528,7 @@ begin
             who, what
         ) values (
             new.hero_tag, old.hero_tag,
+            new.hero_image, old.hero_image,
             new.hero_sub_tag, old.hero_sub_tag,
             new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
@@ -545,6 +553,7 @@ for each row
 begin
     insert into mrr_website_data (
         hero_tag, old_hero_tag,
+        hero_image, old_hero_image,
         hero_sub_tag, old_hero_sub_tag,
         hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
@@ -558,6 +567,7 @@ begin
         who, what
     ) values (
         null, old.hero_tag,
+        null, old.hero_image,
         null, old.hero_sub_tag,
         null, old.hero_sub_tag_words,
         null, old.about,

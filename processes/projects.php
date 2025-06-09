@@ -81,11 +81,29 @@ if (isset($_GET["activate_project_category"])) {
     $id = $_GET["activate_project_category"];
     $status = 1;
     // Prepare the SQL insert query using a prepared statement	
-    $query = "update project_categories set status=? where id=?";
+    $query = "UPDATE project_categories SET status=? WHERE id=?";
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     // Bind parameters and set their values
     mysqli_stmt_bind_param($stmt, "ss", $status, $id);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect);
+}
+
+// Delete project category
+if (isset($_GET["delete_project_category"])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/projects/categories';
+    // Variable declaration
+    $id = $_GET["delete_project_category"];
+    $status = 0;
+    $deleted = 1;
+    // Prepare the SQL insert query using a prepared statement	
+    $query = "UPDATE project_categories SET deleted=?, status=? WHERE id=?";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "sss", $deleted,$status, $id);
     // Execute prepared statement
     executePreparedStmt($dbconn, $stmt, $redirect);
 }
