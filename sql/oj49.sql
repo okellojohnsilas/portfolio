@@ -381,10 +381,6 @@ create table if not exists website_data(
     hero_sub_tag_words text,
     about text,
     contact_email text,
-    twitter text,
-    instagram text,
-    linkedin text,
-    youtube text,
     status text default '1',
 	deleted text default '0',
     affected text,
@@ -420,14 +416,6 @@ create table if not exists mrr_website_data(
     old_about text,
     contact_email text,
     old_contact_email text,
-    twitter text,
-    old_twitter text,
-    instagram text,
-    old_instagram text,
-    linkedin text,
-    old_linkedin text,
-    youtube text,
-    old_youtube text,
     status text,
     old_status text,
     deleted text,
@@ -436,7 +424,6 @@ create table if not exists mrr_website_data(
     what text,
     `when` timestamp not null default current_timestamp()
 );
-
 -- Trigger to log insert into `website_data`
 drop trigger if exists TRG_log_website_data_insert;
 delimiter $$
@@ -450,10 +437,6 @@ begin
         hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
         contact_email, old_contact_email,
-        twitter, old_twitter,
-        instagram, old_instagram,
-        linkedin, old_linkedin,
-        youtube, old_youtube,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -464,10 +447,6 @@ begin
         new.hero_sub_tag_words, null,
         new.about, null,
         new.contact_email, null,
-        new.twitter, null,
-        new.instagram, null,
-        new.linkedin, null,
-        new.youtube, null,
         new.status, null,
         new.deleted, null,
         new.affected, 'insert'
@@ -489,10 +468,6 @@ begin
             hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
             contact_email, old_contact_email,
-            twitter, old_twitter,
-            instagram, old_instagram,
-            linkedin, old_linkedin,
-            youtube, old_youtube,
             status, old_status,
             deleted, old_deleted,
             who, what
@@ -503,10 +478,6 @@ begin
             new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
             new.contact_email, old.contact_email,
-            new.twitter, old.twitter,
-            new.instagram, old.instagram,
-            new.linkedin, old.linkedin,
-            new.youtube, old.youtube,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'delete'
@@ -519,24 +490,16 @@ begin
             hero_sub_tag_words, old_hero_sub_tag_words,
             about, old_about,
             contact_email, old_contact_email,
-            twitter, old_twitter,
-            instagram, old_instagram,
-            linkedin, old_linkedin,
-            youtube, old_youtube,
             status, old_status,
             deleted, old_deleted,
             who, what
         ) values (
             new.hero_tag, old.hero_tag,
             new.hero_image, old.hero_image,
-            new.hero_sub_tag, old.hero_sub_tag,
+            new.hero_sub_tag, old_hero_sub_tag,
             new.hero_sub_tag_words, old.hero_sub_tag_words,
             new.about, old.about,
             new.contact_email, old.contact_email,
-            new.twitter, old.twitter,
-            new.instagram, old.instagram,
-            new.linkedin, old.linkedin,
-            new.youtube, old.youtube,
             new.status, old.status,
             new.deleted, old.deleted,
             new.affected, 'update'
@@ -558,10 +521,6 @@ begin
         hero_sub_tag_words, old_hero_sub_tag_words,
         about, old_about,
         contact_email, old_contact_email,
-        twitter, old_twitter,
-        instagram, old_instagram,
-        linkedin, old_linkedin,
-        youtube, old_youtube,
         status, old_status,
         deleted, old_deleted,
         who, what
@@ -572,10 +531,142 @@ begin
         null, old.hero_sub_tag_words,
         null, old.about,
         null, old.contact_email,
-        null, old.twitter,
-        null, old.instagram,
-        null, old.linkedin,
-        null, old.youtube,
+        null, old.status,
+        null, old.deleted,
+        old.affected, 'delete'
+    );
+end$$
+delimiter ;
+  
+-- Social Links Data table
+drop table if exists social_links;
+create table if not exists social_links(    
+    id text,
+    social text,
+    link text,
+    icon text,
+    status text default '1',
+    deleted text default '0',
+    affected text,
+    added timestamp not null default current_timestamp(),
+    last_updated timestamp not null default current_timestamp() on update current_timestamp()
+);
+
+-- Social Links Data ID generator trigger
+drop trigger if exists generate_social_links_id; 
+-- Generate navigation id 
+delimiter //
+create trigger generate_social_links_id before insert on social_links
+for each row
+begin
+   if new.id is null then
+        set new.id = lower(left(md5(rand()), 15));
+    end if;
+end;
+// delimiter ;
+
+-- Social Links mirror table
+drop table if exists mrr_social_links;
+create table if not exists mrr_social_links(
+    mirror_id int(30) not null auto_increment primary key,
+    social text,
+    old_social text,
+    link text,
+    old_link text,
+    icon text,
+    old_icon text,
+    status text,
+    old_status text,
+    deleted text,
+    old_deleted text,
+    who text,
+    what text,
+    `when` timestamp not null default current_timestamp()
+);
+
+-- Trigger to log insert into `social_links`
+drop trigger if exists TRG_log_social_links_insert;
+delimiter $$
+create trigger TRG_log_social_links_insert after insert on `social_links`
+for each row
+begin
+    insert into mrr_social_links (
+        social, old_social,
+        link, old_link,
+        icon, old_icon,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        new.social, null,
+        new.link, null,
+        new.icon, null,
+        new.status, null,
+        new.deleted, null,
+        new.affected, 'insert'
+    );
+end$$
+delimiter ;
+
+-- Trigger to log after update into `social_links`
+drop trigger if exists TRG_log_social_links_update;
+delimiter $$
+create trigger TRG_log_social_links_update after update on `social_links`
+for each row
+begin
+    if new.deleted = 1 then
+        insert into mrr_social_links (
+            social, old_social,
+            link, old_link,
+            icon, old_icon,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.social, old.social,
+            new.link, old.link,
+            new.icon, old.icon,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'delete'
+        );
+    else
+        insert into mrr_social_links (
+            social, old_social,
+            link, old_link,
+            icon, old_icon,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.social, old.social,
+            new.link, old.link,
+            new.icon, old.icon,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'update'
+        );
+    end if;
+end$$
+delimiter ;
+
+-- Trigger to log after delete into `social_links`
+drop trigger if exists TRG_log_social_links_delete;
+delimiter $$
+create trigger TRG_log_social_links_delete after delete on `social_links`
+for each row
+begin
+    insert into mrr_social_links (
+        social, old_social,
+        link, old_link,
+        icon, old_icon,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        null, old.social,
+        null, old.link,
+        null, old.icon,
         null, old.status,
         null, old.deleted,
         old.affected, 'delete'
@@ -608,23 +699,6 @@ begin
     end if;
 end;
 // delimiter ;
-
--- Project Categories mirror table
-drop table if exists mrr_project_categories;
-create table if not exists mrr_project_categories(
-    mirror_id int(30) not null auto_increment primary key,
-    category text,
-    old_category text,
-    category_avatar text,
-    old_category_avatar text,
-    status text,
-    old_status text,
-    deleted text,
-    old_deleted text,
-    who text,
-    what text,
-    `when` timestamp not null default current_timestamp()
-);
 
 -- Trigger to log insert into `project_categories`
 drop trigger if exists TRG_log_project_categories_insert;
@@ -1316,6 +1390,129 @@ begin
         null, old.message,
         null, old.isResponded,
         null, old.isResolved,
+        null, old.status,
+        null, old.deleted,
+        old.affected, 'delete'
+    );
+end$$
+delimiter ;
+
+-- Speciality table
+drop table if exists specialities;
+create table if not exists specialities(
+    id text,
+    speciality text,
+    icon text,
+    status text default '1',
+    deleted text default '0',
+    affected text,
+    added timestamp not null default current_timestamp(),
+    last_updated timestamp not null default current_timestamp() on update current_timestamp()
+);
+
+-- User Speciality ID generator trigger
+drop trigger if exists generate_speciality_login_id; 
+delimiter //
+create trigger generate_speciality_login_id before insert on specialities
+for each row
+begin
+   if new.id is null then
+        set new.id = lower(left(md5(rand()), 15));
+    end if;
+end;
+// delimiter ;
+-- Mirror table for specialities
+drop table if exists mrr_specialities;
+create table if not exists mrr_specialities(
+    mirror_id int(30) not null auto_increment primary key,
+    speciality text,
+    old_speciality text,
+    icon text,
+    old_icon text,
+    status text,
+    old_status text,
+    deleted text,
+    old_deleted text,
+    who text,
+    what text,
+    `when` timestamp not null default current_timestamp()
+);
+
+-- Trigger to log insert into `specialities`
+drop trigger if exists TRG_log_specialities_insert;
+delimiter $$
+create trigger TRG_log_specialities_insert after insert on `specialities`
+for each row
+begin
+    insert into mrr_specialities (
+        speciality, old_speciality,
+        icon, old_icon,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        new.speciality, null,
+        new.icon, null,
+        new.status, null,
+        new.deleted, null,
+        new.affected, 'insert'
+    );
+end$$
+delimiter ;
+
+-- Trigger to log after update into `specialities`
+drop trigger if exists TRG_log_specialities_update;
+delimiter $$
+create trigger TRG_log_specialities_update after update on `specialities`
+for each row
+begin
+    if new.deleted = 1 then
+        insert into mrr_specialities (
+            speciality, old_speciality,
+            icon, old_icon,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.speciality, old.speciality,
+            new.icon, old.icon,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'delete'
+        );
+    else
+        insert into mrr_specialities (
+            speciality, old_speciality,
+            icon, old_icon,
+            status, old_status,
+            deleted, old_deleted,
+            who, what
+        ) values (
+            new.speciality, old.speciality,
+            new.icon, old.icon,
+            new.status, old.status,
+            new.deleted, old.deleted,
+            new.affected, 'update'
+        );
+    end if;
+end$$
+delimiter ;
+
+-- Trigger to log after delete into `specialities`
+drop trigger if exists TRG_log_specialities_delete;
+delimiter $$
+create trigger TRG_log_specialities_delete after delete on `specialities`
+for each row
+begin
+    insert into mrr_specialities (
+        speciality, old_speciality,
+        icon, old_icon,
+        status, old_status,
+        deleted, old_deleted,
+        who, what
+    ) values (
+        null, old.speciality,
+        null, old.icon,
         null, old.status,
         null, old.deleted,
         old.affected, 'delete'

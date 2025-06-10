@@ -39,6 +39,7 @@ if (isset($_POST['edit_project_category'])) {
     // Perform a security token check
     token_check($_POST['edit_project_category_token'], $_SESSION['edit_project_category_token'], $redirect);
     // Sanitize user input
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
     $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['category']));
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
     // Prepare the SQL insert query using a prepared statement
@@ -58,7 +59,7 @@ if (isset($_POST['edit_project_category'])) {
 
 // Deactivate project category
 if (isset($_GET["deactivate_project_category"])) {
-    // Define the redirection URL
+    // Define the redrection URL
     $redirect = base_url() . 'admin/projects/categories';
     // Variable declaration
     $id = $_GET["deactivate_project_category"];
@@ -205,7 +206,7 @@ if (isset($_POST['edit_project'])) {
     }
     // Get project details or use default values
     $project_data = get_item_data($dbconn, "projects", " where id = '$id'");
-    $user = empty($user) ? $project_data['affected'] : $user;
+    // $user = empty($user) ? $project_data['affected'] : $user;
     $project_name = empty($project_name) ? $project_data['project_name'] : $project_name;
     $project_link = empty($project_link) ? $project_data['project_link'] : $project_link;
     $project_category = empty($project_category) ? $project_data['project_category'] : $project_category;

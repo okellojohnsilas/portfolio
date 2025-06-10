@@ -31,96 +31,103 @@ if ($edit_category == 1) {
             switch (isset($_GET['edit_category']) ? $_GET['edit_category'] : 0) {
                 case 1:
                     ?>
-                    <h4 class="h4 text-blue text-center">Edit Project Category</h4>
-                    <hr class="bg-primary">
-                    <form action="<?php print base_url() . 'processes/projects' ?>" method="POST" enctype="multipart/form-data">
-                        <?php render_tokens('edit_project_category'); ?>
-                        <input type="hidden" name="category" value="<?php print $category_data['id']; ?>">
-                        <div class="form-group">
-                            <label class="font-weight-bold text-blue">Category Name</label>
-                            <input class="form-control form-control-sm border border-primary" type="text"
-                                name="project_category" value="<?php print $category_data['category']; ?>">
-                        </div>
-                        <button type="submit" name="edit_project_category"
-                            class="btn btn-sm btn-block btn-primary font-weight-bold"><i class="fas fa-pen-to-square"></i>
-                            EDIT CATEGORY</button>
-                    </form>
-                    <?php
+            <h4 class="h4 text-blue text-center">Edit Project Category</h4>
+            <hr class="bg-primary">
+            <form action="<?php print base_url() . 'processes/projects' ?>" method="POST" enctype="multipart/form-data">
+                <?php render_tokens('edit_project_category'); ?>
+                <input type="hidden" name="category" value="<?php print $category_data['id']; ?>">
+                <div class="form-group">
+                    <label class="font-weight-bold text-blue">Category Name</label>
+                    <input class="form-control form-control-sm border border-primary" type="text"
+                        name="project_category" value="<?php print $category_data['category']; ?>">
+                </div>
+                <button type="submit" name="edit_project_category"
+                    class="btn btn-sm btn-block btn-primary font-weight-bold"><i class="fas fa-pen-to-square"></i>
+                    EDIT CATEGORY</button>
+            </form>
+            <?php
                     break;
                 default:
                     ?>
-                    <h4 class="h4 text-blue text-center">Add Project Category</h4>
-                    <hr class="bg-primary">
-                    <form action="<?php print base_url() . 'processes/projects' ?>" method="POST" enctype="multipart/form-data">
-                        <?php render_tokens('add_project_category'); ?>
-                        <div class="form-group">
-                            <label class="font-weight-bold text-blue">Category Name</label>
-                            <input class="form-control form-control-sm border border-primary" type="text"
-                                name="project_category" placeholder="Enter category name here">
-                        </div>
-                        <button type="submit" name="add_project_category"
-                            class="btn btn-sm btn-block btn-primary font-weight-bold"><i class="fas fa-circle-plus"></i>
-                            ADD CATEGORY</button>
-                    </form>
-                    <?php
+            <h4 class="h4 text-blue text-center">Add Project Category</h4>
+            <hr class="bg-primary">
+            <form action="<?php print base_url() . 'processes/projects' ?>" method="POST" enctype="multipart/form-data">
+                <?php render_tokens('add_project_category'); ?>
+                <div class="form-group">
+                    <label class="font-weight-bold text-blue">Category Name</label>
+                    <input class="form-control form-control-sm border border-primary" type="text"
+                        name="project_category" placeholder="Enter category name here">
+                </div>
+                <button type="submit" name="add_project_category"
+                    class="btn btn-sm btn-block btn-primary font-weight-bold"><i class="fas fa-circle-plus"></i>
+                    ADD CATEGORY</button>
+            </form>
+            <?php
                     break;
             }
             ?>
         </div>
         <div class="col-md-8">
-            <form class="">
-                <div class="py-2 border-primary">
-                    <div class="row">
-                        <div class="col-7">
-                            <h4 class="text-center text-primary">Categories</h4>
-                            <hr class="bg-primary">
-                        </div>
-                        <div class="col-5">
-                            <div class="text-right">
-                                <a href="<?php print base_url() . 'admin/projects/project_list' ?>"
-                                    class="btn btn-sm text-center btn-primary font-weight-bold btn-block">
-                                    Projects <i class="fas fa-right-long"></i></a>
-                            </div>
+            <?php if (count_items($dbconn, "select * from projects where deleted = 0") > 0) { ?>
+            <div class="py-2 border-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <h4 class="text-center text-primary">Categories</h4>
+                        <hr class="bg-primary">
+                    </div>
+                    <div class="col-5">
+                        <div class="text-right">
+                            <a href="<?php print base_url() . 'admin/projects/project_list' ?>"
+                                class="btn btn-sm text-center btn-primary font-weight-bold btn-block">
+                                Projects <i class="fas fa-right-long"></i></a>
                         </div>
                     </div>
-                    <hr class="bg-primary">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-sm">
-                            <thead>
-                                <tr class="text-center">
-                                    <th scope="col">#</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+                </div>
+                <hr class="bg-primary">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
                                 $n = 1;
                                 foreach (get_all_items($dbconn, 'project_categories') as $category) {
                                     ?>
-                                    <tr class="text-center">
-                                        <td><?php print $n++; ?></td>
-                                        <td><?php print $category['category']; ?></td>
-                                        <td><?php display_status($category['status']); ?>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group mr-2" role="group" aria-label="Actions">
-                                                <?php
+                            <tr class="text-center">
+                                <td><?php print $n++; ?></td>
+                                <td><?php print $category['category']; ?></td>
+                                <td><?php display_status($category['status']); ?>
+                                </td>
+                                <td>
+                                    <div class="btn-group mr-2" role="group" aria-label="Actions">
+                                        <?php
                                                 edit_button(base_url() . 'admin/projects/categories?edit_category=1&item=' . $category['id']);
                                                 status_buttons(base_url(), 'projects', 'project_category', $category['status'], $category['id']);
                                                 delete_button(base_url() . 'processes/projects?delete_project_category=' . $category['id']);
                                                 ?>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php }
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php }
                                 unset($category); ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
+            <?php } else { ?>
+            <div class="text-center">
+                <h4 class="text-primary">No Categories Found</h4>
+                <hr class="bg-primary">
+                <p class="lead">*** There are no categories at the moment, use the button below to add a new project ***
+                </p>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

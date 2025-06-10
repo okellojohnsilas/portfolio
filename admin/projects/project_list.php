@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="card border border-primary shadow-lg p-4">
-    <?php if (count_items($dbconn, "select * from projects where status = 1 and deleted = 0") > 0) { ?>
+    <?php if (count_items($dbconn, "select * from projects where deleted = 0") > 0) { ?>
     <div class="pb-2 border-primary">
         <div class="row">
             <div class="col-7">
@@ -93,8 +93,7 @@
                             </div>
                         </td>
                     </tr>
-                    <?php }
-                    unset($project); ?>
+                    <?php } unset($project); ?>
                 </tbody>
             </table>
         </div>

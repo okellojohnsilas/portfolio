@@ -9,36 +9,109 @@ if (isset($_POST['add_sub_tag_word'])) {
     token_check($_POST['add_sub_tag_word_token'], $_SESSION['add_sub_tag_word_token'], $redirect);
     // Sanitize user input
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
-    $hero_sub_tag_word = mysqli_real_escape_string($dbconn, $_POST['hero_sub_tag_word']);
+    $hero_sub_tag_word = strtolower(mysqli_real_escape_string($dbconn, $_POST['hero_sub_tag_word']));
     // Append new sub tag to the existing hero_sub_tag
-    $website_data = get_item_data($dbconn, "website_data", "");
-    $existing_sub_tags = $website_data['hero_sub_tag_words'];
-    // Normalize and split existing sub-tags
-    $sub_tags_array = array_map('trim', explode(',', $existing_sub_tags));
-
-    // Check if the sub-tag already exists (case-insensitive)
-    if (in_array(strtolower($hero_sub_tag_word), array_map('strtolower', $sub_tags_array))) {
-        $_SESSION['error'] = "Sub Tag Word Already Exists";
-        header("Location: $redirect");
-        exit();
-    }
-
-    // Append new sub-tag
-    $hero_sub_tag_word = trim($hero_sub_tag_word);
-    $hero_sub_tag_word = !empty($existing_sub_tags)
-        ? $existing_sub_tags . ', ' . $hero_sub_tag_word
-        : $hero_sub_tag_word;
-
+    $updated_csv = append_csv_data($dbconn, "website_data", "hero_sub_tag_words", $hero_sub_tag_word, $redirect);
     // Prepare the SQL insert query using a prepared statement
     $query = "UPDATE website_data SET hero_sub_tag_words=? LIMIT 1";
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     // Bind parameters and set their values
-    mysqli_stmt_bind_param($stmt, "s", $hero_sub_tag_word);
+    mysqli_stmt_bind_param($stmt, "s", $updated_csv);
     // Execute prepared statement
-    executePreparedStmt($dbconn, $stmt, $redirect, $success_message = "Sub Tag Word Added", $error_message = "Failed to send your message. Please try again later.");
+    executePreparedStmt($dbconn, $stmt, $redirect, $success_message = "Sub Tag Word Added", $error_message = "Failed to add a new subtag. Please try again later.");
 }
 
+// -------------------------- EDIT SUB TAG SECTION ---------------------------------------
+if (isset($_POST['edit_sub_tag_word'])) {
+    // Define the redirection URL
+    $redirect = base_url() . '/admin/site/home';
+    // Perform a security token check
+    token_check($_POST['edit_sub_tag_word_token'], $_SESSION['edit_sub_tag_word_token'], $redirect);
+    // Sanitize user input
+    // $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    $old_hero_sub_tag_word = strtolower(mysqli_real_escape_string($dbconn, $_POST['old_hero_sub_tag_word']));
+    $new_hero_sub_tag_word = strtolower(mysqli_real_escape_string($dbconn, $_POST['new_hero_sub_tag_word']));
+    // Append new sub tag to the existing hero_sub_tag
+    $updated_csv = edit_csv_data($dbconn, "website_data", "hero_sub_tag_words", $old_hero_sub_tag_word, $new_hero_sub_tag_word, $redirect);
+    // print($updated_csv);
+    // Prepare the SQL insert query using a prepared statement
+    $query = "UPDATE website_data SET hero_sub_tag_words=? LIMIT 1";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "s", $updated_csv);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect, $success_message = "Sub Tag Word Edited", $error_message = "Failed to edit subtag. Please try again later.");
+}
+
+// -------------------------- DELETE SUB TAG SECTION ---------------------------------------
+if (isset($_GET["delete_sub_tag_word"])) {
+    // Define the redrection URL
+    $redirect = base_url() . '/admin/site/home';
+    // Variable declaration
+    $tag_to_delete = strtolower($_GET["delete_sub_tag_word"]);
+    print($tag_to_delete."<br>");
+    $updated_csv = delete_csv_data($dbconn, "website_data", "hero_sub_tag_words", $tag_to_delete, $redirect);
+    // Prepare the SQL insert query using a prepared statement
+    $query = "UPDATE website_data SET hero_sub_tag_words=? LIMIT 1";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    // Bind parameters and set their values
+    mysqli_stmt_bind_param($stmt, "s", $updated_csv);
+    // Execute prepared statement
+    executePreparedStmt($dbconn, $stmt, $redirect, $success_message = "Sub Tag Word Deleted", $error_message = "Failed to delete subtag. Please try again later.");
+}
+
+// -------------------------- EDIT ABOUT ME TEXT SECTION ---------------------------------------
+if (isset($_POST['edit_about_text'])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/site/about';
+    // Perform a security token check
+    token_check($_POST['edit_about_text_token'], $_SESSION['edit_about_text_token'], $redirect);
+    // Sanitize user input
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    $about_text = mysqli_real_escape_string($dbconn, $_POST['about_text']);
+    $query = "UPDATE website_data SET about = ?, affected = ? LIMIT 1";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    if ($stmt) {
+        // Bind parameters and set their values
+        mysqli_stmt_bind_param($stmt, "ss", $about_text, $user);
+        // Execute prepared statement
+        executePreparedStmt($dbconn, $stmt, $redirect);
+    } else {
+        $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
+        header("Location: $redirect");
+        exit();
+    }
+}
+
+if (isset($_POST['edit_email_address'])) {
+    // Define the redirection URL
+    $redirect = base_url() . 'admin/feedback/contact_information';
+    // Perform a security token check
+    token_check($_POST['edit_email_address_token'], $_SESSION['edit_email_address_token'], $redirect);
+    // Sanitize user input
+    $user = mysqli_real_escape_string($dbconn, $_POST['user']);
+    $email_address = mysqli_real_escape_string($dbconn, $_POST['email_address']);
+    // Use default email address if not provided
+    $website_data = get_item_data($dbconn, "website_data", "");
+    $email_address = empty($email_address) ? $website_data['contact_email'] : $email_address;
+    $query = "UPDATE website_data SET contact_email = ?, affected = ? LIMIT 1";
+    // Create a prepared statement
+    $stmt = mysqli_prepare($dbconn, $query);
+    if ($stmt) {
+        // Bind parameters and set their values
+        mysqli_stmt_bind_param($stmt, "ss", $email_address, $user);
+        // Execute prepared statement
+        executePreparedStmt($dbconn, $stmt, $redirect);
+    } else {
+        $_SESSION["error"] = "Failed to prepare statement: " . mysqli_error($dbconn);
+        header("Location: $redirect");
+        exit();
+    }
+}
 // -------------------------- UPDATE LANDING PAGE HERO SECTION ---------------------------------------
 if (isset($_POST['update_landing_page_hero'])) {
     // Define the redirection URL
@@ -63,15 +136,15 @@ if (isset($_POST['update_landing_page_hero'])) {
     }
     // Prepare the SQL insert query using a prepared statement
     $website_data = get_item_data($dbconn, "website_data", "");
-    $user = empty($user) ? $website_data['affected'] : $user;
     $hero_tag = empty($hero_tag) ? $website_data['hero_tag'] : $hero_tag;
-    $hero_sub_tag_statement = empty($hero_sub_tag_statement) ? $website_data['hero_sub_tag_statement'] : $hero_sub_tag_statement;
-    // $project_thumbnail = empty($thumbnailImage) ? $website_data['project_thumbnail'] : $thumbnailImage;
-    $query = "UPDATE website_data SET hero_sub_tag = ?, affected = ?";
+    $hero_sub_tag_statement = empty($hero_sub_tag_statement) ? $website_data['hero_sub_tag'] : $hero_sub_tag_statement;
+    $project_thumbnail = empty($thumbnailImage) ? $website_data['hero_image'] : $thumbnailImage;
+    $query = "UPDATE website_data SET hero_tag = ?,hero_sub_tag = ?,hero_image = ?, affected = ? LIMIT 1";
+    // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "ss", $project_category, $user);
+        mysqli_stmt_bind_param($stmt, "ssss", $hero_tag,$hero_sub_tag_statement,$hero_image, $user);
         // Execute prepared statement
         executePreparedStmt($dbconn, $stmt, $redirect);
     } else {

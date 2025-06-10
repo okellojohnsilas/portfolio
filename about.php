@@ -17,49 +17,37 @@
         </div>
     </div>
     <!-- End Page Title -->
+    <?php if(!empty($website_data['about'])){ ?>
     <!-- About Section -->
     <div class="pt-5 px-5" data-aos="fade-up">
         <h2 class="text-capitalize text-center font-weight-bold"><?php print $page_name; ?></h2>
         <hr class="my-4 primary-bg-color">
-        <p class="lead text-justify primary-color">I am a self-motivated and adaptable software engineer known for
-            translating complex
-            business
-            needs into
-            innovative technical solutions. Known for collaboration and adaptability, I excel in team environments,
-            working closely with data and operations teams to meet customer needs. My expertise includes Machine
-            Learning, Deep Learning, web, mobile and desktop application development with competencies in both
-            frontend and backend. I am also proficient in handling technical issues, creating system documentation,
-            and conducting quality assurance, I bring efficiency to project development and prioritize user experience
-            optimization. Backed by a strong academic and technical background, I am committed to delivering cuttingedge
-            solutions in any dynamic field and working environment.</p>
+        <p class="lead text-justify primary-color"><?php print $website_data['about']; ?></p>
     </div>
-    <!-- End  About Section -->
-    <!-- About Section -->
+    <!-- End About Section -->
+    <?php } ?>
+    <?php if (count_items($dbconn, "select * from specialities where status =1 and deleted = 0") > 0) { ?>
+    <!-- Specialities Section -->
     <div class="py-5 px-5" data-aos="fade-up">
         <h2 class="text-capitalize font-weight-bold text-center">Specialities</h2>
         <hr class="my-4 primary-bg-color">
         <p class="lead text-center primary-color">Below are the some of my specialities </p>
         <div class="row">
-            <div class="col-md-4">
+            <?php foreach (get_all_items($dbconn, 'specialities') as $speciality) { ?>
+            <div class="col-md-4 pt-2">
                 <div class="card shadow-lg text-white primary-bg-color">
                     <div class="card-body text-center">
-                        <i class="fas fa-microchip text-white fa-5x"></i>
+                        <span class="display-4"><?php print $speciality['icon']?></span>
                         <hr class="my-4 bg-white">
-                        <h5 class="text-white font-weight-bold">Artificial Intelligence</h5>
+                        <h5 class="text-white font-weight-bold"><?php print $speciality['speciality']?></h5>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card shadow-lg text-white primary-bg-color">
-                    <div class="card-body text-center">
-                        <i class="fas fa-code text-white fa-5x"></i>
-                        <hr class="my-4 bg-white">
-                        <h5 class="text-white font-weight-bold">Software development</h5>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
-    <!-- End  About Section -->
+    <!-- End Specialities Section -->
+    <?php } ?>
+    <?php if(empty($website_data['about']) &&  (count_items($dbconn, "select * from specialities where status =1 and deleted = 0") < 1)){ echo $no_content_message; } ?>
 </main>
 <?php include "components/front/bottom.php"; ?>

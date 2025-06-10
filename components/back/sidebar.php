@@ -46,7 +46,7 @@
                     <ul class="submenu">
                         <li><a href="<?php print base_url().'admin/feedback/form_submissions'?>">Form Submissions</a>
                         </li>
-                        <li><a href="<?php print base_url().'admin/feedback'?>">Contact Information</a></li>
+                        <li><a href="<?php print base_url().'admin/feedback/contact_information'?>">Contact Information</a></li>
                     </ul>
                 </li>
                 <li class="border-top border-bottom">

@@ -33,7 +33,7 @@
                             <i class="far fa-envelope flex-shrink-0"></i>
                             <div>
                                 <h3>Email Me Now</h3>
-                                <p>johnsilasokello49@gmail.com</p>
+                                <p><?php print $website_data['contact_email']  ?? 'Being Updated' ?></p>
                             </div>
                         </div>
                     </div>

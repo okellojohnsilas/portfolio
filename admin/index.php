@@ -9,6 +9,7 @@
     // include '../components/back/preloader.php'; 
     // include '../components/back/header.php'; 
 ?>
+
 <body>
     <div class="header">
         <div class="header-left">
@@ -59,7 +60,51 @@
                         <div class="card-body">
                             <h4 class="card-title weight-500 text-center text-blue">About</h4>
                             <hr class="bg-primary">
-                            <a href="#" class="btn btn-outline-primary btn-sm btn-block font-weight-bold">View</a>
+                            <a href="<?php print base_url().'admin/site/about'?>"
+                                class="btn btn-outline-primary btn-sm btn-block font-weight-bold">Manage</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 mb-30">
+                    <div class="card card-box border border-primary shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title weight-500 text-center text-blue">Specialities</h4>
+                            <hr class="bg-primary">
+                            <a href="<?php print base_url().'admin/site/specialities'?>"
+                                class="btn btn-outline-primary btn-sm btn-block font-weight-bold">Manage</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 mb-30">
+                    <div class="card card-box border border-primary shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title weight-500 text-center text-blue">Projects</h4>
+                            <hr class="bg-primary">
+                            <a href="<?php print base_url().'admin/projects/project_list'?>"
+                                class="btn btn-outline-primary btn-sm btn-block font-weight-bold">Manage</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 mb-30">
+                    <div class="card card-box border border-primary shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title weight-500 text-center text-blue">Feedback</h4>
+                            <hr class="bg-primary">
+                            <a href="<?php print base_url().'admin/feedback/form_submissions'?>"
+                                class="btn btn-outline-primary btn-sm btn-block font-weight-bold">Manage</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 mb-30">
+                    <div class="card card-box border border-primary shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title weight-500 text-center text-blue">Invoices</h4>
+                            <hr class="bg-primary">
+                            <a href="<?php print base_url().'admin/'?>"
+                                class="btn btn-outline-primary btn-sm btn-block font-weight-bold">Manage</a>
                         </div>
                     </div>
                 </div>

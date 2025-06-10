@@ -7,18 +7,19 @@
                class="img-fluid rounded-circle">
        </div>
 
-       <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+       <a href="<?php print base_url()?>" class="logo d-flex align-items-center justify-content-center">
            <!-- Uncomment the line below if you also wish to use an image logo -->
            <!-- <img src="assets/img/logo.png" alt=""> -->
            <h1 class="sitename">Okello John Silas</h1>
        </a>
 
+       <?php if (count_items($dbconn, "select * from social_links where status = 1 and deleted = 0") > 0) { ?>
        <div class="social-links text-center">
-           <a href="#" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-           <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-           <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+           <?php  foreach (get_all_items($dbconn, 'social_links') as $social) { 
+           echo '<a href="'.$social['link'].'" class="'.$social['social'].'" target="_blank">'.$social['icon'].'</a>';
+            } ?>
        </div>
-
+       <?php } ?>
        <nav id="navmenu" class="navmenu">
            <ul>
                <li><a href="<?php print base_url(); ?>" class="font-weight-bold"><i
@@ -28,5 +29,4 @@
                <li><a href="contact"><i class="fas fa-headset navicon"></i> Contact Me</a></li>
            </ul>
        </nav>
-
    </header>

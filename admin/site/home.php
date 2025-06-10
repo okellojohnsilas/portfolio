@@ -1,6 +1,14 @@
-<?php 
-    include '../../components/back/top.php' ; 
-    $website_data=get_item_data($dbconn,"website_data","");
+<?php
+include '../../components/back/top.php';
+$website_data = get_item_data($dbconn, "website_data", "");
+// $edit_tag_word = 0; 
+$edit_tag_word = isset($_GET['edit_sub_tag_word']) ? intval($_GET['edit_sub_tag_word']) : 0;
+if ($edit_tag_word == 1) {
+    if (isset($_GET['item'])) {
+        $id = $_GET['item'];
+        $edit_tag_word = get_item_data($dbconn, "website_data", "");
+    }
+}
 ?>
 <div class="page-header border border-primary shadow-lg">
     <div class="row">
@@ -34,10 +42,10 @@
                 <div class="form-group">
                     <label class="">Hero Sub Tag Statement</label>
                     <input class="form-control form-control-sm border border-primary"
-                        value="<?php print $website_data['hero_sub_tag'] ?? '';?>" type="text"
+                        value="<?php print $website_data['hero_sub_tag'] ?? ''; ?>" type="text"
                         name="hero_sub_tag_statement">
                 </div>
-                <div class="form-group">
+                <div class="form-group d-none">
                     <label class="">Hero Background Image</label>
                     <input class="form-control form-control-sm border border-primary" type="file" name="hero_image">
                 </div>
@@ -46,8 +54,13 @@
                     UPDATE LANDING PAGE</button>
             </form>
         </div>
-        <div class="col-md-4 border-left border-primary">
-            <?php // if (count_items($dbconn, "select * from projects where status = 1 and deleted = 0") > 0) { ?>
+        <div class="col-md-5 border-left border-primary">
+            <?php 
+            if ($edit_tag_word == 0) {
+                    $sub_tag_words = explode(',', get_item_data($dbconn, "website_data", "")['hero_sub_tag_words'] ?? '');
+                    $sub_tag_words = array_map('trim', $sub_tag_words);
+                    if (count($sub_tag_words) < 4) {
+            ?>
             <form action="<?php print base_url() . 'processes/site' ?>" method="POST" enctype="multipart/form-data">
                 <?php render_tokens('add_sub_tag_word'); ?>
                 <div class="form-group">
@@ -58,8 +71,21 @@
                 <button type="submit" class="btn btn-sm btn-block btn-primary font-weight-bold"
                     name="add_sub_tag_word"><i class="fas fa-circle-plus"></i> ADD NEW SUB TAG</button>
             </form>
-            <?php // } ?>
-            <?php if (!empty($website_data['hero_sub_tag_words'])){ ?>
+            <?php } ?>
+            <?php } else { ?>
+            <form action="<?php print base_url() . 'processes/site' ?>" method="POST" enctype="multipart/form-data">
+                <?php render_tokens('edit_sub_tag_word'); ?>
+                <input type="hidden" name="old_hero_sub_tag_word" value="<?php print $_GET['item']; ?>">
+                <div class="form-group">
+                    <label class="">Edit Sub Tag</label>
+                    <input class="form-control form-control-sm border border-primary"
+                        value="<?php print ucwords($_GET['item']); ?>" type="text" name="new_hero_sub_tag_word">
+                </div>
+                <button type="submit" class="btn btn-sm btn-block btn-primary font-weight-bold"
+                    name="edit_sub_tag_word"><i class="fas fa-circle-plus"></i> EDIT SUB TAG</button>
+            </form>
+            <?php } ?>
+            <?php if (!empty($website_data['hero_sub_tag_words'])) { ?>
             <div class="table-responsive pt-2">
                 <table class="table table-bordered">
                     <thead>
@@ -70,17 +96,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                            $n=1;
-                            $sub_tags = explode(",",$website_data['hero_sub_tag_words']??'');
+                        <?php
+                            $n = 1;
+                            $sub_tags = explode(",", $website_data['hero_sub_tag_words'] ?? '');
                             foreach ($sub_tags as $sub_tag) { ?>
                         <tr class="text-center">
                             <td><?php print $n++; ?></td>
-                            <td><?php print $sub_tag; ?></td>
+                            <td><?php print ucwords($sub_tag); ?></td>
                             <td>
                                 <?php
-                                    edit_button(base_url() . 'admin/projects/categories?edit_category=1&item=' . $sub_tag);
-                                    delete_button(base_url() . 'processes/projects?delete_project_category=' . $sub_tag);
+                                    edit_button(base_url() . 'admin/site/home?edit_sub_tag_word=1&item=' . $sub_tag);
+                                    delete_button(base_url() . 'processes/site?delete_sub_tag_word=' . $sub_tag);
                                 ?>
                             </td>
                         </tr>
