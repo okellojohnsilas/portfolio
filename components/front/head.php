@@ -9,11 +9,36 @@
     <meta name="author" content="" />
     <title> <?php print $app_name; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="" name="keywords">
+    <!-- <meta content="" name="keywords"> -->
+    <!-- Essential SEO -->
+    <meta name="description"
+        content="Official portfolio of Okello Johnsilas — showcasing AI, ML, software engineering, and IT consulting projects.">
+    <!-- Canonical -->
+    <link rel="canonical" href="<?php print base_url(); ?>">
+    <!-- Open Graph (for Facebook, LinkedIn, etc) -->
+    <meta property="og:title" content="Okello Johnsilas | AI Engineer & IT Consultant">
+    <meta property="og:description"
+        content="Explore my projects, AI research, software development, and IT consulting services.">
+    <meta property="og:image" content="<?php print base_url().'assets/assets/dist/front/src/img/seo/portfolio-twitter.png'; ?>">
+    <!-- Replace with your real image -->
+    <meta property="og:url" content="<?php print base_url(); ?>">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Okello Johnsilas | AI Engineer & IT Consultant">
+    <meta name="twitter:description"
+        content="Explore my projects, AI research, software development, and IT consulting services.">
+    <meta name="twitter:image" content="<?php print base_url().'assets/assets/dist/front/src/img/seo/portfolio-twitter.png'; ?>">
+    <!-- Replace with your real image -->
+    <meta name="twitter:site" content="@johnsilasokello"> 
+    <!-- Optional -->
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php print base_url().'assets/dist/front/src/img'; ?>/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="<?php print base_url().'assets/dist/front/src/img'; ?>/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">

@@ -2,14 +2,13 @@
        <i class="header-toggle d-xl-none fas fa-bars-staggered"></i>
 
        <div class="profile-img">
-           <!-- C:\xampp\htdocs\portfolio\assets\dist\front\src\img\personal -->
            <img src="<?php print base_url().'assets/dist/front/src/'; ?>img/personal/me.jpeg" alt="Avatar"
                class="img-fluid rounded-circle">
        </div>
 
        <a href="<?php print base_url()?>" class="logo d-flex align-items-center justify-content-center">
            <!-- Uncomment the line below if you also wish to use an image logo -->
-           <!-- <img src="assets/img/logo.png" alt=""> -->
+           <!-- <img src="" alt=""> -->
            <h1 class="sitename">Okello John Silas</h1>
        </a>
 
