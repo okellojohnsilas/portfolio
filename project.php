@@ -54,6 +54,7 @@
                                         class="badge primary-bg-color text-white"><?php print get_item_name_by_id($dbconn, "project_categories", "category", "id", $project_data['category']); ?></span>
                                 </td>
                             </tr>
+                            <?php if (!empty($project_data['project_file'])) { ?>
                             <tr class="text-center primary-color">
                                 <td class="border-dark" style="border-width:1px;">File</td>
                                 <td class="border-dark" style="border-width:1px;"><a
@@ -61,14 +62,19 @@
                                         download="" class="btn btn-sm primary-btn btn-block">Download <i
                                             class="fas fa-download"></i></a></td>
                             </tr>
-                            <!-- <tr class="text-center primary-color">
-                                <td class="border-dark" style="border-width:1px;">Tech Stack</td>
-                                <td class="border-dark" style="border-width:1px;"><i class="fab fa-php fa-2x"></i> <i
-                                        class="fab fa-html5 fa-2x"></i></td>
-                            </tr> -->
+                            <?php } ?>
+                            <?php if (!empty($project_data['project_link'])) { ?>
+                            <tr class="text-center primary-color">
+                                <td class="border-dark" style="border-width:1px;">Link</td>
+                                <td class="border-dark" style="border-width:1px;"><a
+                                        href="<?php print $project_data['project_link']; ?>" target="_blank"
+                                        class="btn btn-sm primary-btn btn-block">View <i
+                                            class="fas fa-up-right-from-square"></i></a>
+                                </td>
+                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
-                    <!-- <span class="badge badge-primary">Category</span> -->
                     <h5 class="font-weight-bold text-center">Project Description</h5>
                     <hr class="primary-bg-color">
                     <p class="lead text-justify primary-color"><?php print $project_data['project_description']; ?>
@@ -79,7 +85,7 @@
         <?php if (!empty($project_data['project_images'])) { ?>
         <h2 class="font-weight-bold text-center">Screenshots</h2>
         <hr class="primary-bg-color">
-        <div class="row py-5" data-aos="fade-up">
+        <div class="row py-3" data-aos="fade-up">
             <?php  
                 $images = explode(",", $project_data['project_images']);
                 foreach ($images as $image) {  

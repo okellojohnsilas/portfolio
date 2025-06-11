@@ -9,14 +9,19 @@ if (isset($_POST['add_speciality'])) {
     token_check($_POST['add_speciality_token'], $_SESSION['add_speciality_token'], $redirect);
     // Sanitize user input
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
-    $speciality_name = mysqli_real_escape_string($dbconn, $_POST['speciality_name']);
-    $speciality_icon = stripslashes(mysqli_real_escape_string($dbconn, $_POST['speciality_icon']));
+    $speciality_name = trim(mysqli_real_escape_string($dbconn, $_POST['speciality_name']));
+    $speciality_icon = trim(stripslashes(mysqli_real_escape_string($dbconn, $_POST['speciality_icon'])));
+    if (check_if_record_exists($dbconn, "select * from specialities where speciality = '$speciality_name' and deleted = 0")) {
+        $_SESSION["error"] = "Name already exists.";
+        header("Location: $redirect");
+        exit();
+    }
     $query = "INSERT INTO specialities (speciality,icon,affected) VALUES (?, ?, ?)";
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "sss", $speciality_name,$speciality_icon, $user);
+        mysqli_stmt_bind_param($stmt, "sss", $speciality_name, $speciality_icon, $user);
         // Execute prepared statement
         executePreparedStmt($dbconn, $stmt, $redirect);
     } else {
@@ -32,19 +37,20 @@ if (isset($_POST['edit_speciality'])) {
     token_check($_POST['edit_speciality_token'], $_SESSION['edit_speciality_token'], $redirect);
     // Sanitize user input
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
-    $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['speciality_id']));
-    $speciality_name = mysqli_real_escape_string($dbconn, $_POST['speciality_name']);
-    $speciality_icon = stripslashes(mysqli_real_escape_string($dbconn, $_POST['speciality_icon']));
+    $id = mysqli_real_escape_string($dbconn, $_POST['speciality_id']);
+    $speciality_name = trim(mysqli_real_escape_string($dbconn, $_POST['speciality_name']));
+    $speciality_icon = trim(stripslashes(mysqli_real_escape_string($dbconn, $_POST['speciality_icon'])));
     // Get speciality details or use default values
     $speciality_data = get_item_data($dbconn, "specialities", " where id = '$id'");
+    // print ($speciality_data);
     $speciality_name = empty($speciality_name) ? $speciality_data['speciality'] : $speciality_name;
     $speciality_icon = empty($speciality_icon) ? $speciality_data['icon'] : $speciality_icon;
     // Prepare the SQL insert query using a prepared statement
-    $query = "UPDATE specialities set speciality=?, icon=?, affected=? where id=?";
+    $query = "UPDATE specialities SET speciality=?, icon=?, affected=? where id=?";
     $stmt = mysqli_prepare($dbconn, $query);
     if ($stmt) {
         // Bind parameters and set their values
-        mysqli_stmt_bind_param($stmt, "ssss", $speciality_name,$speciality_icon, $user, $id);
+        mysqli_stmt_bind_param($stmt, "ssss", $speciality_name, $speciality_icon, $user, $id);
         // Execute prepared statement
         executePreparedStmt($dbconn, $stmt, $redirect);
     } else {
@@ -95,7 +101,7 @@ if (isset($_GET["delete_speciality"])) {
     // Create a prepared statement
     $stmt = mysqli_prepare($dbconn, $query);
     // Bind parameters and set their values
-    mysqli_stmt_bind_param($stmt, "sss", $deleted,$status, $id);
+    mysqli_stmt_bind_param($stmt, "sss", $deleted, $status, $id);
     // Execute prepared statement
     executePreparedStmt($dbconn, $stmt, $redirect);
 }

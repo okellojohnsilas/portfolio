@@ -125,34 +125,82 @@ function append_csv_data($dbconn, $table, $column, $new_value, $redirect) {
         : $new_value;
 }
 
+// function edit_csv_data($dbconn, $table, $column, $old_value, $new_value, $redirect) {
+//     // Fetch existing data
+//     $data = get_item_data($dbconn, $table, "");
+//     $existing_values = $data[$column];
+
+//     // Normalize and split existing values
+//     $values_array = array_map('trim', explode(',', $existing_values));
+
+//     // Check if new value already exists (case-insensitive)
+//     if (in_array(strtolower($new_value), array_map('strtolower', $values_array))) {
+//         $_SESSION['error'] = "Value Already Exists";
+//         header("Location: $redirect");
+//         exit();
+//     }
+
+//     // Replace old value with new value (case-insensitive match)
+//     $updated_values_array = [];
+//     foreach ($values_array as $value) {
+//         if (strcasecmp($value, $old_value) === 0) {
+//             $updated_values_array[] = trim($new_value);
+//         } else {
+//             $updated_values_array[] = trim($value);
+//         }
+//     }
+
+//     // Return updated CSV string
+//     return implode(', ', $updated_values_array);
+// }
+
 function edit_csv_data($dbconn, $table, $column, $old_value, $new_value, $redirect) {
     // Fetch existing data
     $data = get_item_data($dbconn, $table, "");
-    $existing_values = $data[$column];
+    
+    // if (!$data || !isset($data[$column])) {
+    //     $_SESSION['error'] = "Data not found";
+    //     header("Location: $redirect");
+    //     exit();
+    // }
 
-    // Normalize and split existing values
+    $existing_values = $data[$column];
     $values_array = array_map('trim', explode(',', $existing_values));
 
+    // Normalize inputs
+    $old_value_trimmed = trim($old_value);
+    $new_value_trimmed = trim($new_value);
+
     // Check if new value already exists (case-insensitive)
-    if (in_array(strtolower($new_value), array_map('strtolower', $values_array))) {
-        $_SESSION['error'] = "Value Already Exists";
+    // if (in_array(strtolower($new_value_trimmed), array_map('strtolower', $values_array))) {
+    //     $_SESSION['error'] = "Value Already Exists";
+    //     header("Location: $redirect");
+    //     exit();
+    // }
+
+    // Replace old value with new value (case-insensitive)
+    $updated_values_array = [];
+    $replaced = false;
+
+    foreach ($values_array as $value) {
+        if (strcasecmp($value, $old_value_trimmed) === 0) {
+            $updated_values_array[] = $new_value_trimmed;
+            $replaced = true;
+        } else {
+            $updated_values_array[] = $value;
+        }
+    }
+
+    if (!$replaced) {
+        $_SESSION['error'] = "Old value not found";
         header("Location: $redirect");
         exit();
     }
 
-    // Replace old value with new value (case-insensitive match)
-    $updated_values_array = [];
-    foreach ($values_array as $value) {
-        if (strcasecmp($value, $old_value) === 0) {
-            $updated_values_array[] = trim($new_value);
-        } else {
-            $updated_values_array[] = trim($value);
-        }
-    }
-
-    // Return updated CSV string
     return implode(', ', $updated_values_array);
 }
+
+
 function delete_csv_data($dbconn, $table, $column, $value_to_delete, $redirect) {
     // Fetch existing data
     $data = get_item_data($dbconn, $table, "");

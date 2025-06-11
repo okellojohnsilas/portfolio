@@ -30,11 +30,11 @@ if (isset($_POST['edit_sub_tag_word'])) {
     token_check($_POST['edit_sub_tag_word_token'], $_SESSION['edit_sub_tag_word_token'], $redirect);
     // Sanitize user input
     // $user = mysqli_real_escape_string($dbconn, $_POST['user']);
-    $old_hero_sub_tag_word = strtolower(mysqli_real_escape_string($dbconn, $_POST['old_hero_sub_tag_word']));
-    $new_hero_sub_tag_word = strtolower(mysqli_real_escape_string($dbconn, $_POST['new_hero_sub_tag_word']));
+    $old_hero_sub_tag_word = (mysqli_real_escape_string($dbconn, $_POST['old_hero_sub_tag_word']));
+    $new_hero_sub_tag_word = (mysqli_real_escape_string($dbconn, $_POST['new_hero_sub_tag_word']));
     // Append new sub tag to the existing hero_sub_tag
     $updated_csv = edit_csv_data($dbconn, "website_data", "hero_sub_tag_words", $old_hero_sub_tag_word, $new_hero_sub_tag_word, $redirect);
-    // print($updated_csv);
+    print($new_hero_sub_tag_word);
     // Prepare the SQL insert query using a prepared statement
     $query = "UPDATE website_data SET hero_sub_tag_words=? LIMIT 1";
     // Create a prepared statement
