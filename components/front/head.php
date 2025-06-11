@@ -11,8 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="" name="keywords">
     <!-- Favicons -->
-    <link href="<?php print base_url().'assets/dist/front/src/'; ?>img/favicon.png" rel="icon">
-    <link href="<?php print base_url().'assets/dist/front/src/'; ?>/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php print base_url().'assets/dist/front/src/img'; ?>/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php print base_url().'assets/dist/front/src/img'; ?>/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
