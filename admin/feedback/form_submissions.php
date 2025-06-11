@@ -16,23 +16,13 @@
     </div>
 </div>
 <div class="card border border-primary shadow-lg p-4">
-    <?php if (count_items($dbconn, "select * from projects where status = 1 and deleted = 0") > 0) { ?>
+    <?php if (count_items($dbconn, "select * from contact_data where status = 1 and deleted = 0") > 0) { ?>
     <div class="py-2 border-primary">
-        <div class="row">
-            <div class="col-7">
-                <h4 class="text-center text-primary">Feedback</h4>
-                <hr class="bg-primary">
-            </div>
-            <div class="col-5 d-none">
-                <div class="text-right">
-                    <a href="<?php print base_url() . 'admin/projects/project_list' ?>"
-                        class="btn btn-sm text-center btn-primary font-weight-bold btn-block">
-                        Projects <i class="fas fa-right-long"></i></a>
-                </div>
-            </div>
-        </div>
+        <h4 class="text-center text-primary">Feedback</h4>
         <hr class="bg-primary">
-        <div class="table-responsive">
+        <input class="form-control form-control-sm border border-primary" type="text"
+            placeholder="Filter messages here .....">
+        <div class="table-responsive pt-2">
             <table class="table table-bordered table-sm">
                 <thead>
                     <tr class="text-center">
@@ -55,22 +45,23 @@
                         <td><?php display_status($contact['status']); ?>
                         </td>
                         <td>
+
                             <div class="btn-group mr-2" role="group" aria-label="Actions">
-                                <?php
-                                        // edit_button(base_url() . 'admin/contact/categories?edit_category=1&item=' . $category['id']);
-                                        // status_buttons(base_url(), 'projects', 'project_category', $category['status'], $category['id']);
-                                        // delete_button(base_url() . 'processes/projects?delete_project_category=' . $category['id']);
-                                    ?>
+                                <!-- <a href="" class="btn btn-sm btn-dark"><i class="fas fa-eye"></i></a> -->
+                                <a href="<?php print base_url() . 'admin/feedback/feedback_response?item=' . $contact['id']; ?>"
+                                    class="btn btn-sm btn-block btn-primary"><i class="fas fa-feather"></i></a>
                             </div>
+
                         </td>
+
                     </tr>
-                    <?php } unset($category); ?>
+                    <?php } unset($contact); ?>
                 </tbody>
             </table>
         </div>
     </div>
     <?php }else{ ?>
-        <p class="lead text-center">There have been no submissions</p>
+    <p class="lead text-center">There have been no submissions</p>
     <?php } ?>
 </div>
 <?php include '../../components/back/bottom.php' ?>
