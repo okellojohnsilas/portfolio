@@ -68,7 +68,7 @@ if ($edit_category == 1) {
             ?>
         </div>
         <div class="col-md-8">
-            <?php if (count_items($dbconn, "select * from projects where deleted = 0") > 0) { ?>
+            <?php if (count_items($dbconn, "select * from project_categories where deleted = 0") > 0) { ?>
             <div class="py-2 border-primary">
                 <div class="row">
                     <div class="col-7">

@@ -1,6 +1,6 @@
-drop database if exists oj49;
-create database if not exists oj49;
-use oj49;
+-- drop database if exists oj49;
+-- create database if not exists oj49;
+-- use oj49;
 
 -- Navigation table
 drop table if exists navigation;
@@ -699,6 +699,26 @@ begin
     end if;
 end;
 // delimiter ;
+
+
+-- Project Categories Mirror table
+drop table if exists mrr_project_categories;
+create table if not exists mrr_project_categories(    
+    id text,
+    old_id text,
+    category text,
+    old_category text,
+    category_avatar text,
+    old_category_avatar text,
+    status text,
+    old_status text,
+    deleted text,
+    old_deleted text,
+    who text,
+    what text,
+    `when` timestamp not null default current_timestamp()
+);
+
 
 -- Trigger to log insert into `project_categories`
 drop trigger if exists TRG_log_project_categories_insert;

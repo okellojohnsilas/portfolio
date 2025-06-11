@@ -19,7 +19,13 @@ values
 
 -- Insert website data into the website_data table
 insert into
-    website_data (hero_tag, hero_sub_tag, hero_sub_tag_words, about,contact_email)
+    website_data (
+        hero_tag,
+        hero_sub_tag,
+        hero_sub_tag_words,
+        about,
+        contact_email
+    )
 values
     (
         'Welcome, am Okello John Silas',
@@ -28,3 +34,21 @@ values
         'I am a self-motivated and adaptable software engineer known for translating complex business needs into innovative technical solutions. Known for collaboration and adaptability, I excel in team environments, working closely with data and operations teams to meet customer needs. My expertise includes Machine Learning, Deep Learning, web, mobile and desktop application development with competencies in both frontend and backend. I am also proficient in handling technical issues, creating system documentation, and conducting quality assurance, I bring efficiency to project development and prioritize user experience optimization. Backed by a strong academic and technical background, I am committed to delivering cuttingedge solutions in any dynamic field and working environment.',
         'johnsilasokello49@gmail.com'
     );
+
+-- Insert website data into the social_links table
+insert into
+    social_links (
+        social,
+        link,
+        icon
+    )
+values
+    (
+        'Github',
+        'https://github.com/okellojohnsilas',
+        '<i class="fab fa-github"></i>'
+    ),(
+        'X',
+        'https://x.com/johnsilasokello',
+        '<i class="fa-brands fa-x-twitter"></i>'
+    ) ;

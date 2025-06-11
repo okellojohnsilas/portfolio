@@ -1,5 +1,5 @@
    <header id="header" class="header dark-background d-flex flex-column">
-       <i class="header-toggle d-xl-none bi bi-list"></i>
+       <i class="header-toggle d-xl-none fas fa-bars-staggered"></i>
 
        <div class="profile-img">
            <!-- C:\xampp\htdocs\portfolio\assets\dist\front\src\img\personal -->

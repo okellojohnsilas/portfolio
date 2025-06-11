@@ -1,6 +1,6 @@
 # Error pages
-# ErrorDocument 404  https://www.okellojohnsilas.com/404
-# ErrorDocument 500  https://www.okellojohnsilas.com/500
+ErrorDocument 404  https://www.okellojohnsilas.com/404
+ErrorDocument 500  https://www.okellojohnsilas.com/500
 
 RewriteEngine On
 RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]

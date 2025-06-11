@@ -1,7 +1,11 @@
 <?php 
     $page_name = "Project";
     include 'components/front/top.php';
-    include "components/front/header.php"; 
+    include "components/front/header.php";
+    if(isset($_GET['project'])){
+        $id = $_GET['project'];
+    } 
+    $project_data = get_item_data($dbconn,"projects"," where id = '$id'"); 
 ?>
 <main class="main">
     <!-- Page Title -->
@@ -17,23 +21,45 @@
         </div>
     </div>
     <!-- End Page Title -->
-    <div class="container">
+    <div class="container-fluid px-5">
         <div class="row py-5" data-aos="fade-up">
-            <div class="col-md-6">
-                <img src="https://placehold.co/400" alt="" class="img-fluid border-dark shadow"
-                    style="width: 100%; height: 60vh; object-fit: cover;">
+            <div class="col-md-5 pb-2 text-center">
+                <style>
+                .responsive-image {
+                    height: 60vh;
+                    object-fit: cover;
+                }
+
+                @media (max-width: 768px) {
+                    .responsive-image {
+                        height: min(60vh, 300px);
+                        width: 100%;
+                    }
+                }
+                </style>
+
+                <img src="<?php print base_url().'uploads/img/projects/thumbnails/'.$project_data['project_thumbnail']; ?>"
+                    alt="" class="img-fluid border border-dark shadow responsive-image">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="card p-4 border border-dark shadow">
-                    <h2 class="font-weight-bold text-center">Project Name</h2>
+                    <h2 class="font-weight-bold text-center"><?php print $project_data['project_name']; ?></h2>
                     <hr class="primary-bg-color">
                     <table class="table table-bordered">
                         <tbody>
                             <tr class="text-center primary-color">
                                 <td class="border-dark" style="border-width:1px;">Category</td>
                                 <td class="border-dark" style="border-width:1px;">
-                                    <span class="badge primary-bg-color text-white">Category</span>
+                                    <span
+                                        class="badge primary-bg-color text-white"><?php print get_item_name_by_id($dbconn, "project_categories", "category", "id", $project_data['category']); ?></span>
                                 </td>
+                            </tr>
+                            <tr class="text-center primary-color">
+                                <td class="border-dark" style="border-width:1px;">File</td>
+                                <td class="border-dark" style="border-width:1px;"><a
+                                        href="<?php print base_url().'uploads/files/projects/'.$project_data['project_file']; ?>"
+                                        download="" class="btn btn-sm primary-btn btn-block">Download <i
+                                            class="fas fa-download"></i></a></td>
                             </tr>
                             <!-- <tr class="text-center primary-color">
                                 <td class="border-dark" style="border-width:1px;">Tech Stack</td>
@@ -45,28 +71,29 @@
                     <!-- <span class="badge badge-primary">Category</span> -->
                     <h5 class="font-weight-bold text-center">Project Description</h5>
                     <hr class="primary-bg-color">
-                    <p class="lead text-justify primary-color">Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
-                        1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                        book. It has survived not only five centuries, but also the leap into electronic typesetting,
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                        Aldus PageMaker including versions of Lorem Ipsum.
+                    <p class="lead text-justify primary-color"><?php print $project_data['project_description']; ?>
                     </p>
                 </div>
             </div>
         </div>
-        <h2 class="font-weight-bold text-center">Project Screenshots</h2>
+        <?php if (!empty($project_data['project_images'])) { ?>
+        <h2 class="font-weight-bold text-center">Screenshots</h2>
         <hr class="primary-bg-color">
         <div class="row py-5" data-aos="fade-up">
+            <?php  
+                $images = explode(",", $project_data['project_images']);
+                foreach ($images as $image) {  
+            ?>
             <div class="col-md-4 py-2">
-                <a href="https://themewagon.github.io/iPortfolio/assets/img/portfolio/app-3.jpg"
+                <a href="<?php print base_url().'uploads/img/projects/screenshots/'.$image; ?>"
                     data-gallery="portfolio-gallery-app" class="glightbox preview-link">
-                    <img src="https://placehold.co/400" alt="" class="img-fluid border-dark shadow"
-                        style="height: 25rem; object-fit: cover;">
+                    <img src="<?php print base_url().'uploads/img/projects/screenshots/'.$image; ?>" alt=""
+                        class="img-fluid border-dark shadow-lg border" style="height: 25rem; object-fit: cover;">
                 </a>
             </div>
+            <?php } ?>
         </div>
+        <?php } ?>
     </div>
 </main>
 <?php include "components/front/bottom.php"; ?>

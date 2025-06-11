@@ -49,7 +49,7 @@
                 }
             } else {
                 unset($_SESSION["control"]);
-                $_SESSION['error'] = 'Invalid user credentials.';
+                $_SESSION['error'] = 'Unknown user.';
                 header('Location: ' . $redirect);
                 exit();
             }

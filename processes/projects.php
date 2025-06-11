@@ -121,7 +121,7 @@ if (isset($_POST['add_project'])) {
     $project_name = mysqli_real_escape_string($dbconn, $_POST['project_name']);
     $project_link = mysqli_real_escape_string($dbconn, $_POST['project_link']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
-    $project_description = mysqli_real_escape_string($dbconn, $_POST['project_description']);
+    $project_description = stripslashes(mysqli_real_escape_string($dbconn, $_POST['project_description']));
     // Handle Project Thumbnail Upload
     $thumbnail = $_FILES['project_thumbnail']['name'];
     $thumbnail_type = $_FILES['project_thumbnail']['type'];
@@ -186,12 +186,12 @@ if (isset($_POST['edit_project'])) {
     // Perform a security token check
     token_check($_POST['edit_project_token'], $_SESSION['edit_project_token'], $redirect);
     // Sanitize user input
-    $id = strtolower(mysqli_real_escape_string($dbconn, $_POST['project']));
+    $id = mysqli_real_escape_string($dbconn, $_POST['project']);
     $user = mysqli_real_escape_string($dbconn, $_POST['user']);
     $project_name = mysqli_real_escape_string($dbconn, $_POST['project_name']);
     $project_link = mysqli_real_escape_string($dbconn, $_POST['project_link']);
     $project_category = mysqli_real_escape_string($dbconn, $_POST['project_category']);
-    $project_description = strtolower(mysqli_real_escape_string($dbconn, $_POST['project_description']));
+    $project_description = stripslashes(mysqli_real_escape_string($dbconn, $_POST['project_description']));
     // Handle Project Thumbnail Upload
     $thumbnail = $_FILES['project_thumbnail']['name'];
     $thumbnail_type = $_FILES['project_thumbnail']['type'];
